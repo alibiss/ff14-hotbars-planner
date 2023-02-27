@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hotbars Planner</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script> 
+</head>
+<body>
+    <div id="container" data-layout="12">
+        <div class="topbar">
+            <div data-category="0">
+                <img src="" alt="DoW/DoM">
+                <input type="radio" id="jobs-combat-picker" name="jobs" value="0" checked>
+                <img src="" alt="DoH">
+                <input type="radio" id="jobs-craft-picker" name="jobs" value="1">
+                <img src="" alt="DoL">
+                <input type="radio" id="jobs-gather-picker" name="jobs" value="2">
+
+                <select name="jobs" id="jobs-combat">
+                    <option value="1">Paladin</option>
+                    <option value="2">Warrior</option>
+                    <option value="3">Dark Knight</option>
+                    <option value="4">Gunbreaker</option>
+                    <option value="5">White Mage</option>
+                    <option value="6">Scholar</option>
+                    <option value="7">Astrologian</option>
+                    <option value="8">Sage</option>
+                    <option value="9">Monk</option>
+                    <option value="10">Dragoon</option>
+                    <option value="11">Ninja</option>
+                    <option value="12">Samurai</option>
+                    <option value="13">Reaper</option>
+                    <option value="14">Bard</option>
+                    <option value="15">Machinist</option>
+                    <option value="16">Dancer</option>
+                    <option value="17">Black Mage</option>
+                    <option value="18">Summoner</option>
+                    <option value="19">Red Mage</option>
+                    <option value="20">Blue Mage</option>
+                </select>
+
+                <select name="jobs" id="jobs-crafting">
+                    <option value="1">Carpenter</option>
+                    <option value="2">Blacksmith</option>
+                    <option value="3">Armorer</option>
+                    <option value="4">Goldsmith</option>
+                    <option value="5">Leatherworker</option>
+                    <option value="6">Weaver</option>
+                    <option value="7">Alchemist</option>
+                    <option value="8">Culinarian</option>
+                </select>
+
+                <select name="jobs" id="jobs-gathering">
+                    <option value="1">Miner</option>
+                    <option value="2">Botanist</option>
+                    <option value="3">Fisher</option>
+                </select>
+            </div>
+            <div>
+                <label for="layouts">Layout: </label>
+                <select name="layouts" id="layouts">
+                    <option value="12">12x1</option>
+                    <option value="6">6x2</option>
+                    <option value="4">4x3</option>
+                    <option value="3">3x4</option>
+                    <option value="2">2x6</option>
+                    <option value="1">1x12</option>
+                </select>
+            </div>
+        </div>
+        <div class="content">
+            <div class="hotbar-container">
+                <div id="hotbar">
+                    <div data-slot="1"></div>
+                    <div data-slot="2"></div>
+                    <div data-slot="3"></div>
+                    <div data-slot="4"></div>
+                    <div data-slot="5"></div>
+                    <div data-slot="6"></div>
+                    <div data-slot="7"></div>
+                    <div data-slot="8"></div>
+                    <div data-slot="9"></div>
+                    <div data-slot="10"></div>
+                    <div data-slot="11"></div>
+                    <div data-slot="12"></div>
+                </div>
+            </div>
+            <div id="list">Test</div>
+        </div>
+    </div>
+</body>
+</html>
