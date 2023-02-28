@@ -72,7 +72,7 @@ new Promise(parsedDb => {
                                 .catch(err => console.error(err));
                             } else {
                                 console.log(`No HD icon found for ${filename}!`);
-                                fs.writeFileSync(`../img/${destination}/${formattedFilename}_PLACEHOLDER`, "");
+                                fs.writeFileSync(`../img/${destination}/${formattedFilename} PLACEHOLDER`, "");
                                 return Promise.resolve();
                             }
                         })])
