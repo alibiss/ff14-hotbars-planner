@@ -63,8 +63,7 @@ new Promise(allSettled => {
 })
 .then(() => {
     console.log("All done!");
-    console.log(jobs.combat[0].actions.pvp.jobActions);
-    // fs.writeFileSync("./jobs.json", JSON.stringify(jobs, null, 2));
+    fs.writeFileSync("./jobs.json", JSON.stringify(jobs, null, 2));
 })
 
 function arrayPager(array, amount) {
@@ -111,6 +110,7 @@ function scrapeSkills(d, job) {
             case action.id.startsWith("prange_action"):
             case action.id.startsWith("mrange_action"):
                 skills.pve.roleActions.push(findElements(action));
+                break;
             case action.id.startsWith("pvp_action"):
                 skills.pvp.jobActions.push(findElements(action));
                 break;
