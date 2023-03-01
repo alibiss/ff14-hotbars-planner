@@ -2,33 +2,41 @@ import fetch from 'node-fetch';
 import { parse } from 'node-html-parser';
 import * as fs from 'fs';
 
-const jobNames = [
-    [
-        ["PLD", "Paladin"], ["WAR", "Warrior"], ["DRK", "Dark Knight"], ["GNB", "Gunbreaker"],
-        ["WHM", "White Mage"], ["SCH", "Scholar"], ["AST", "Astrologian"], ["SGE", "Sage"],
-        ["MNK", "Monk"], ["DRG", "Dragoon"], ["NIN", "Ninja"], ["SAM", "Samurai"], ["RPR", "Reaper"],
-        ["BRD", "Bard"], ["MCH", "Machinist"], ["DNC", "Dancer"],
-        ["BLM", "Black Mage"], ["SMN", "Summoner"], ["RDM", "Red Mage"], ["BLU", "Blue Mage"]
-    ],
-    [
-        ["CRP", "Carpenter"], ["BSM", "Blacksmith"], ["ARM", "Armoer"], ["GSM", "Goldsmith"],
-        ["LTW", "Leatherworker"], ["WVR", "Weaver"], ["ALC", "Alchemist"], ["CUL", "Culinarian"]
-    ],
-    [
-        ["MIN", "Miner"], ["BTN", "Botanist"], ["FSH", "Fisher"]
-    ]
-];
-
-const jobs = { combat: [], crafting: [], gathering: [] };
-
-// Init
-Object.keys(jobs).map((category, i) => {
-    jobNames[i].forEach(job => {
-        jobs[category].push(
-            { name: job[1], code: job[0], actions: {} }
-        )
-    })
-});
+const jobs = { combat: [
+    { name: "Paladin", code: "PLD", actions: {} },
+    { name: "Warrior", code: "WAR", actions: {} },
+    { name: "Dark Knight", code: "DRK", actions: {} },
+    { name: "Gunbreaker", code: "GNB", actions: {} },
+    { name: "White Mage", code: "WHM", actions: {} },
+    { name: "Scholar", code: "SCH", actions: {} },
+    { name: "Astrologian", code: "AST", actions: {} },
+    { name: "Sage", code: "SGE", actions: {} },
+    { name: "Monk", code: "MNK", actions: {} },
+    { name: "Dragoon", code: "DRG", actions: {} },
+    { name: "Ninja", code: "NIN", actions: {} },
+    { name: "Samurai", code: "SAM", actions: {} },
+    { name: "Reaper", code: "RPR", actions: {} },
+    { name: "Bard", code: "BRD", actions: {} },
+    { name: "Machinist", code: "MCH", actions: {} },
+    { name: "Dancer", code: "DNC", actions: {} },
+    { name: "Black Mage", code: "BLM", actions: {} },
+    { name: "Summoner", code: "SMN", actions: {} },
+    { name: "Red Mage", code: "RDM", actions: {} },
+    { name: "Blue Mage", code: "BLU", actions: {} }
+], crafting: [
+    { name: "Carpenter", code: "CRP", actions: {} },
+    { name: "Blacksmith", code: "BSM", actions: {} },
+    { name: "Armoer", code: "ARM", actions: {} },
+    { name: "Goldsmith", code: "GSM", actions: {} },
+    { name: "Leatherworker", code: "LTW", actions: {} },
+    { name: "Weaver", code: "WVR", actions: {} },
+    { name: "Alchemist", code: "ALC", actions: {} },
+    { name: "Culinarian", code: "CUL", actions: {} }
+], gathering: [
+    { name: "Miner", code: "MIN", actions: {} },
+    { name: "Botanist", code: "BTN", actions: {} },
+    { name: "Fisher", code: "FSH", actions: {} }
+] };
 
 // Split requests in 10 items long pages and wait 1s before each page request
 const pagedRequests = split(jobs.combat);
