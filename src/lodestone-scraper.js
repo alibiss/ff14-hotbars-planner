@@ -39,40 +39,33 @@ const jobs = { combat: [
 ] };
 
 let counter = 0;
-const pagedRequests = arrayPager(jobs.combat, 10);
+const pagedRequests = arrayPager(jobs.combat, 5);
 new Promise(allSettled => {
-
+    sendRequest(pagedRequests[counter]);
+    function sendRequest(batch) {
+        Promise.allSettled([...batch.map(job => {
+            const formattedName = job.name.toLowerCase().replace(/\s/g, "");
+            return fetch("https://na.finalfantasyxiv.com/jobguide/" + formattedName)
+            .then(res => res.text())
+            .then(html => {
+                const document = parse(html);
+                const actions = scrapeSkills(document, formattedName);
+                Object.assign(job.actions, actions);
+                console.log(`Finished parsing ${job.name}..`);
+            })
+        })])
+        .then(() => {
+            counter++;
+            if ( (counter + 1) > pagedRequests.length ) return allSettled();
+            setTimeout(() => { sendRequest(pagedRequests[counter]) }, 1000);
+        })
+    }
 })
 .then(() => {
     console.log("All done!");
-})
-
-// Split requests in 10 items long pages and wait 1s before each page request
-
-Promise.allSettled([...pagedRequests.map((p, i) => {
-    return new Promise((res) => {
-        setTimeout(() => {
-            res(Promise.allSettled([...p.map(job => {
-                const formattedName = job.name.toLowerCase().replace(/\s/g, "");
-                return fetch("https://na.finalfantasyxiv.com/jobguide/" + formattedName)
-                .then(res => {
-                    // console.log(`Parsing ${res.url}`);
-                    return res.text()
-                })
-                .then(html => {
-                    const document = parse(html);
-                    const actions = scrapeSkills(document, formattedName);
-                    Object.assign(job.actions, actions);
-                })
-                .catch(err => console.error(err))
-            })]))
-        }, 1000 * i)
-    })
-})])
-.then(() => {
-    console.log("All done!");
+    console.log(jobs.combat[0].actions.pvp.jobActions);
     // fs.writeFileSync("./jobs.json", JSON.stringify(jobs, null, 2));
-});
+})
 
 function arrayPager(array, amount) {
     if ( !(Array.isArray(array)) ) {
