@@ -38,8 +38,17 @@ const jobs = { combat: [
     { name: "Fisher", code: "FSH", actions: {} }
 ] };
 
+let counter = 0;
+const pagedRequests = arrayPager(jobs.combat, 10);
+new Promise(allSettled => {
+
+})
+.then(() => {
+    console.log("All done!");
+})
+
 // Split requests in 10 items long pages and wait 1s before each page request
-const pagedRequests = split(jobs.combat);
+
 Promise.allSettled([...pagedRequests.map((p, i) => {
     return new Promise((res) => {
         setTimeout(() => {
@@ -62,18 +71,22 @@ Promise.allSettled([...pagedRequests.map((p, i) => {
 })])
 .then(() => {
     console.log("All done!");
-    fs.writeFileSync("./jobs.json", JSON.stringify(jobs, null, 2));
+    // fs.writeFileSync("./jobs.json", JSON.stringify(jobs, null, 2));
 });
 
-function split(arr) {
-    // Make a copy or splice will overwrite the source!
-    const array = [...arr];
+function arrayPager(array, amount) {
+    if ( !(Array.isArray(array)) ) {
+        throw new Error("Failed to parse array: ", array)
+    };
+
+    // Make a copy of the source array
+    const newArray = [...array];
   
     let i = 0;
     const output = [];
-    while (i < array.length) {
-        output.push(array.splice(0, 10));
-        i++
+    while (i < newArray.length) {
+        output.push(newArray.splice(0, amount));
+        i++;
     };
 
     return output
