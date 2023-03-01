@@ -38,31 +38,58 @@ const jobs = { combat: [
     { name: "Fisher", code: "FSH", actions: {} }
 ] };
 
-let counter = 0;
-const pagedRequests = arrayPager(jobs.combat, 5);
 new Promise(allSettled => {
-    sendRequest(pagedRequests[counter]);
-    function sendRequest(batch) {
-        Promise.allSettled([...batch.map(job => {
-            const formattedName = job.name.toLowerCase().replace(/\s/g, "");
-            return fetch("https://na.finalfantasyxiv.com/jobguide/" + formattedName)
-            .then(res => res.text())
-            .then(html => {
-                const document = parse(html);
-                const actions = scrapeSkills(document, formattedName);
-                Object.assign(job.actions, actions);
-                console.log(`Finished parsing ${job.name}..`);
-            })
-        })])
+    let categoryCounter = 0;
+    const pagedCategories = Object.values(jobs);
+    loopCategories(pagedCategories);
+    function loopCategories(array) {
+        console.log(`Category counter: ${categoryCounter}`);
+        new Promise(catSettled => {
+            let jobsCounter = 0;
+            const pagedRequests = arrayPager(array[categoryCounter], 5);
+            loopJobs(pagedRequests);
+            function loopJobs(array) {
+                Promise.allSettled([...array[jobsCounter].map(job => {
+                    return new Promise(jobParsed => {
+                        // Init array container
+                        const skills = { pve: { jobActions: [], roleActions: [] } };
+
+                        if ( categoryCounter > 0 || job.code === "BLU" ) {
+                            jobParsed( Object.assign(job.actions, skills) );
+                        } else {
+                            skills.pvp = { jobActions: [], limitBreak: [], commonActions: [] };
+                            Object.assign(job.actions, skills);
+    
+                            const formattedName = job.name.toLowerCase().replace(/\s/g, "");
+                            return fetch("https://na.finalfantasyxiv.com/jobguide/" + formattedName)
+                            .then(res => res.text())
+                            .then(html => {
+                                const document = parse(html);
+                                jobParsed( scrapeSkills(document, job.actions) );
+                            })
+                        }
+                    })
+                    .then(() => {
+                        console.log(`Finished parsing ${job.name}..`);
+                    })
+                })])
+                .then(() => {
+                    jobsCounter++;
+                    if ( (jobsCounter + 1) > pagedRequests.length ) return catSettled();
+                    setTimeout(() => { loopJobs(pagedRequests) }, 1000);
+                })
+            }
+        })
         .then(() => {
-            counter++;
-            if ( (counter + 1) > pagedRequests.length ) return allSettled();
-            setTimeout(() => { sendRequest(pagedRequests[counter]) }, 1000);
+            categoryCounter++;
+            if ( (categoryCounter + 1) > pagedCategories.length ) return allSettled();
+            setTimeout(() => { loopCategories(pagedCategories) }, 1000);
         })
     }
 })
 .then(() => {
     console.log("All done!");
+    //console.log(jobs)
     fs.writeFileSync("./jobs.json", JSON.stringify(jobs, null, 2));
 })
 
@@ -84,46 +111,34 @@ function arrayPager(array, amount) {
     return output
 }
 
-function scrapeSkills(d, job) {
+function scrapeSkills(d, jobActions) {
     // Node structure isn't preserved 1:1 but thankfully
     // all the important nodes have a convenient id assigned..
-    const actions = Array.from(d.querySelectorAll("tr")).filter(node => {
-        if (node.id) return node
-    });
+    const actions = Array.from(d.querySelectorAll("tr")).filter(node => node.id);
 
-    // Blue Mage fallback I guess..
-    if ( job === "bluemage" ) return [];
-
-    // Init array container
-    const skills = {
-        pve: { jobActions: [], roleActions: [] }, 
-        pvp: { jobActions: [], limitBreak: [], commonActions: [] }
-    };
     actions.forEach(action => {
         switch(true) {
             case action.id.startsWith("pve_action"):
-                skills.pve.jobActions.push(findElements(action));
+                jobActions.pve.jobActions.push(findElements(action));
                 break;
             case action.id.startsWith("tank_action"):
             case action.id.startsWith("healer_action"):
             case action.id.startsWith("melee_action"):
             case action.id.startsWith("prange_action"):
             case action.id.startsWith("mrange_action"):
-                skills.pve.roleActions.push(findElements(action));
+                jobActions.pve.roleActions.push(findElements(action));
                 break;
             case action.id.startsWith("pvp_action"):
-                skills.pvp.jobActions.push(findElements(action));
+                jobActions.pvp.jobActions.push(findElements(action));
                 break;
             case action.id.startsWith("pvplimitbreakaction"):
-                skills.pvp.limitBreak.push(findElements(action));
+                jobActions.pvp.limitBreak.push(findElements(action));
                 break;
             case action.id.startsWith("pvpcommmononlyaction"):
-                skills.pvp.commonActions.push(findElements(action));
+                jobActions.pvp.commonActions.push(findElements(action));
                 break;
         }
     });
-
-    return skills
 
     function findElements(n) {
        
