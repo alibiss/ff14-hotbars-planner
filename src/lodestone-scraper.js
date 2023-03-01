@@ -144,10 +144,9 @@ function scrapeSkills(d, jobActions) {
        
         const payload = {};
 
+        payload.name = n.querySelector(".skill p strong").innerText;
         if (n.querySelector(".jobclass")) payload.lvl = n.querySelector(".jobclass").innerText.match(/\d+/)[0];
         if (n.querySelector(".classification")) payload.type = n.querySelector(".classification").innerText;
-
-        payload.name = n.querySelector(".skill p strong").innerText;
         payload.cast = n.querySelector(".cast").innerText;
         payload.recast = n.querySelector(".recast").innerText;
         payload.cost = n.querySelector(".cost").innerText.replace(/-/, "0 MP");
