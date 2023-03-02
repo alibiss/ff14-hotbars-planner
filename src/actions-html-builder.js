@@ -25,7 +25,7 @@ new Promise(parsedDb => {
                     output += `<span class="${type}">`;
                     const actions = Object.values(job.actions[mode][type]);
                     actions.forEach(action => {
-                        const icon = `<img src="" width="48" height="48">`
+                        const icon = `<img width="48" height="48">`
                         output += `<div class="item parent" data-skill="${action.name}" draggable="true">${icon}</div>`;
                     })
                     output += "</span>"; // close type div
