@@ -90,6 +90,7 @@ new Promise(allSettled => {
 .then(() => {
     console.log("All done!");
     //console.log(jobs)
+    fs.writeFileSync("../dist/jobs.json", JSON.stringify(jobs));
     fs.writeFileSync("./jobs.json", JSON.stringify(jobs, null, 2));
 })
 
