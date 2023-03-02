@@ -35,6 +35,7 @@ body[data-layout="1"] .hotbar-container {
 #hotbar {
     display: flex;
     justify-content: center;
+    align-content: center;
     flex-wrap: wrap;
     gap: 5px;
     margin: 0 auto;
