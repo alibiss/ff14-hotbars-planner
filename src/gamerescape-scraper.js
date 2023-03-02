@@ -56,10 +56,9 @@ new Promise(parsedDb => {
                             const filename = node.getAttribute("alt").replace(/ Icon\.png$/, "").replace(/[\\/:*?"<>|]/g, "");
 
                             // Init destination if it doesn't exist already
-                            const destination = /\(PvP\)$/.test(filename) ? `${jobAbbr}/pvp` : `${jobAbbr}`;
-                            if ( !(fs.existsSync(`../img/${destination}`)) ) {
-                                fs.mkdirSync(`../img/${destination}`, { recursive: true });
-                            }
+                            const mode = /\(PvP\)$/.test(filename) ? "pvp" : "pve";
+                            const destination = `../img/actions/${jobAbbr}/${mode}`;
+                            fs.existsSync(destination) || fs.mkdirSync(destination, { recursive: true });
 
                             // Get rid of redundant (PvP) tag in the filename after successful fetch
                             const formattedFilename = filename.replace(/ \(PvP\)$/, "");
@@ -67,12 +66,12 @@ new Promise(parsedDb => {
                             if ( isHD ) {
                                 return fetch(`https://ffxiv.gamerescape.com${relativePath}`)
                                 .then(res => {
-                                    res.body.pipe(fs.createWriteStream(`../img/${destination}/${formattedFilename}.png`));
+                                    res.body.pipe(fs.createWriteStream(`${destination}/${formattedFilename}.png`));
                                 })
                                 .catch(err => console.error(err));
                             } else {
                                 console.log(`No HD icon found for ${filename}!`);
-                                fs.writeFileSync(`../img/${destination}/${formattedFilename} PLACEHOLDER`, "");
+                                fs.writeFileSync(`${destination}/${formattedFilename} PLACEHOLDER`, "");
                                 return Promise.resolve();
                             }
                         })])
