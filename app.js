@@ -25,6 +25,7 @@ const pickerCombat = document.getElementById("jobs-combat-picker"),
 [pickerCombat, pickerCrafting, pickerGathering].forEach(p => {
     p.addEventListener("change", (e) => {
         if (e.target.checked) {
+            document.body.removeAttribute("data-job");
             document.body.setAttribute("data-category", e.target.value);
 
             // Reset options when changing filters
