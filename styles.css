@@ -12,9 +12,9 @@
     display: flex;
     justify-content: space-between;
 }
-div:not([data-category="0"]) > #jobs-combat,
-div:not([data-category="1"]) > #jobs-crafting,
-div:not([data-category="2"]) > #jobs-gathering {
+body:not([data-category="0"]) #jobs-combat,
+body:not([data-category="1"]) #jobs-crafting,
+body:not([data-category="2"]) #jobs-gathering {
     display: none;
 }
 
@@ -26,10 +26,10 @@ div:not([data-category="2"]) > #jobs-gathering {
     display: flex;
     flex: 1 1 40%;
 }
-#container[data-layout="12"] .hotbar-container {
+body[data-layout="12"] .hotbar-container {
     flex: 1 1 100%;
 }
-#container[data-layout="1"] .hotbar-container {
+body[data-layout="1"] .hotbar-container {
     flex: 1 1 10%;
 }
 #hotbar {
@@ -39,22 +39,22 @@ div:not([data-category="2"]) > #jobs-gathering {
     gap: 5px;
     margin: 0 auto;
 }
-#container[data-layout="12"] #hotbar {
+body[data-layout="12"] #hotbar {
     flex: 0 0 calc((12 * 48px) + (11 * 5px));
 }
-#container[data-layout="6"] #hotbar {
+body[data-layout="6"] #hotbar {
     flex: 0 0 calc((6 * 48px) + (5 * 5px));
 }
-#container[data-layout="4"] #hotbar {
+body[data-layout="4"] #hotbar {
     flex: 0 0 calc((4 * 48px) + (3 * 5px));
 }
-#container[data-layout="3"] #hotbar {
+body[data-layout="3"] #hotbar {
     flex: 0 0 calc((3 * 48px) + (2 * 5px));
 }
-#container[data-layout="2"] #hotbar {
+body[data-layout="2"] #hotbar {
     flex: 0 0 calc((2 * 48px) + (1 * 5px));
 }
-#container[data-layout="1"] #hotbar {
+body[data-layout="1"] #hotbar {
     flex: 0 0 calc((1 * 48px) + (0 * 5px));
 }
 #hotbar > div {
@@ -62,12 +62,58 @@ div:not([data-category="2"]) > #jobs-gathering {
     height: 48px;
     background-color: lightslategray;
 }
+
 #list {
     flex-basis: 60%;
 }
-#container[data-layout="12"] #list {
+body[data-layout="12"] #list {
     flex: 1 1 100%;
 }
-#container[data-layout="1"] #list {
+body[data-layout="1"] #list {
     flex: 1 1 90%;
+}
+body:not([data-category="0"]) #list > .combat,
+body:not([data-category="1"]) #list > .crafting,
+body:not([data-category="2"]) #list > .gathering {
+    display: none;
+}
+body:not([data-job]) #list > div,
+body:not([data-job="PLD"]) #list .PLD,
+body:not([data-job="WAR"]) #list .WAR,
+body:not([data-job="DRK"]) #list .DRK,
+body:not([data-job="GNB"]) #list .GNB,
+body:not([data-job="WHM"]) #list .WHM,
+body:not([data-job="SCH"]) #list .SCH,
+body:not([data-job="AST"]) #list .AST,
+body:not([data-job="SGE"]) #list .SGE,
+body:not([data-job="MNK"]) #list .MNK,
+body:not([data-job="DRG"]) #list .DRG,
+body:not([data-job="NIN"]) #list .NIN,
+body:not([data-job="SAM"]) #list .SAM,
+body:not([data-job="RPR"]) #list .RPR,
+body:not([data-job="BRD"]) #list .BRD,
+body:not([data-job="MCH"]) #list .MCH,
+body:not([data-job="DNC"]) #list .DNC,
+body:not([data-job="BLM"]) #list .BLM,
+body:not([data-job="SMN"]) #list .SMN,
+body:not([data-job="RDM"]) #list .RDM,
+body:not([data-job="BLU"]) #list .BLU,
+body:not([data-job="CRP"]) #list .CRP,
+body:not([data-job="BSM"]) #list .BSM,
+body:not([data-job="ARM"]) #list .ARM,
+body:not([data-job="GSM"]) #list .GSM,
+body:not([data-job="LTW"]) #list .LTW,
+body:not([data-job="WVR"]) #list .WVR,
+body:not([data-job="ALC"]) #list .ALC,
+body:not([data-job="CUL"]) #list .CUL,
+body:not([data-job="MIN"]) #list .MIN,
+body:not([data-job="BTN"]) #list .BTN,
+body:not([data-job="FSH"]) #list .FSH {
+    display: none;
+}
+.jobActions > div, 
+.roleActions > div, 
+.limitBreak > div, 
+.commonActions > div {
+    display: inline-block;
 }
