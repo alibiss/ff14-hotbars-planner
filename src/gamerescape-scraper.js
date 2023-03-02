@@ -106,11 +106,9 @@ function arrayPager(array, amount) {
     // Make a copy of the source array
     const newArray = [...array];
   
-    let i = 0;
     const output = [];
-    while (i < newArray.length) {
+    while (newArray.length > 0) {
         output.push(newArray.splice(0, amount));
-        i++;
     };
 
     return output
