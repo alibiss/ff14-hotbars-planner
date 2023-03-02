@@ -37,5 +37,5 @@ new Promise(parsedDb => {
         output += "</div>"; // close category div
     });
 
-    fs.writeFileSync("./actions.html", jsb.html(output));
+    fs.writeFileSync("../dist/actions.html", jsb.html(output));
 })
