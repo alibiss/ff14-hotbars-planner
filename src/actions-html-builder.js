@@ -22,13 +22,13 @@ new Promise(parsedDb => {
                 output += `<div class="${mode}">`;
                 const types = Object.keys(job.actions[mode]);
                 types.forEach(type => { // jobActions, roleActions, etc..
-                    output += `<div class="${type}">`;
+                    output += `<span class="${type}">`;
                     const actions = Object.values(job.actions[mode][type]);
                     actions.forEach(action => {
                         const icon = `<img src="" width="48" height="48">`
                         output += `<div class="item parent" data-skill="${action.name}" draggable="true">${icon}</div>`;
                     })
-                    output += "</div>"; // close type div
+                    output += "</span>"; // close type div
                 })
                 output += "</div>"; // close mode div
             })
