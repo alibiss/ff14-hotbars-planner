@@ -43,7 +43,6 @@ new Promise(allSettled => {
     const pagedCategories = Object.values(jobs);
     loopCategories(pagedCategories);
     function loopCategories(array) {
-        console.log(`Category counter: ${categoryCounter}`);
         new Promise(catSettled => {
             let jobsCounter = 0;
             const pagedRequests = arrayPager(array[categoryCounter], 5);
@@ -51,23 +50,38 @@ new Promise(allSettled => {
             function loopJobs(array) {
                 Promise.allSettled([...array[jobsCounter].map(job => {
                     return new Promise(jobParsed => {
-                        // Init array container
-                        const skills = { pve: { jobActions: [], roleActions: [] } };
-
-                        if ( categoryCounter > 0 || job.code === "BLU" ) {
-                            jobParsed( Object.assign(job.actions, skills) );
-                        } else {
-                            skills.pvp = { jobActions: [], limitBreak: [], commonActions: [] };
-                            Object.assign(job.actions, skills);
-    
-                            const formattedName = job.name.toLowerCase().replace(/\s/g, "");
-                            return fetch("https://na.finalfantasyxiv.com/jobguide/" + formattedName)
-                            .then(res => res.text())
-                            .then(html => {
-                                const document = parse(html);
-                                jobParsed( scrapeSkills(document, job.actions) );
-                            })
+                        // Exit early if Blue Mage (nothing to fetch on the Lodestone)
+                        if ( job.code === "BLU" ) return jobParsed( Object.assign(job.actions, skills) );
+                        
+                        // Init action types
+                        let skills = {}, URLcomponent;
+                        switch(true) {
+                            case categoryCounter === 0:
+                                // If combat job
+                                URLcomponent = "jobguide";
+                                skills.pve = { jobActions: [], roleActions: [] };
+                                skills.pvp = { jobActions: [], limitBreak: [], commonActions: [] };
+                                break;
+                            case categoryCounter === 1:
+                                // If crafting job
+                                URLcomponent = "crafting_gathering_guide";
+                                skills.pve = { classActions: [], specialistActions: [] };
+                                break;
+                            case categoryCounter === 2:
+                                // If gathering job
+                                URLcomponent = "crafting_gathering_guide";
+                                skills.pve = { classActions: [], roleActions: [] };
+                                break;
                         }
+                        Object.assign(job.actions, skills);
+
+                        const formattedName = job.name.toLowerCase().replace(/\s/g, "");
+                        return fetch(`https://na.finalfantasyxiv.com/${URLcomponent}/${formattedName}`)
+                        .then(res => res.text())
+                        .then(html => {
+                            const document = parse(html);
+                            jobParsed( scrapeSkills(document, job, categoryCounter) );
+                        })
                     })
                     .then(() => {
                         console.log(`Finished parsing ${job.name}..`);
@@ -102,57 +116,89 @@ function arrayPager(array, amount) {
     // Make a copy of the source array
     const newArray = [...array];
   
-    let i = 0;
     const output = [];
-    while (i < newArray.length) {
+    while (newArray.length > 0) {
         output.push(newArray.splice(0, amount));
-        i++;
     };
 
     return output
 }
 
-function scrapeSkills(d, jobActions) {
+function scrapeSkills(document, job, category) {
     // Node structure isn't preserved 1:1 but thankfully
     // all the important nodes have a convenient id assigned..
-    const actions = Array.from(d.querySelectorAll("tr")).filter(node => node.id);
+    const nodes = Array.from(document.querySelectorAll("tr")).filter(node => node.id);
 
-    actions.forEach(action => {
+    nodes.forEach(node => {
         switch(true) {
-            case action.id.startsWith("pve_action"):
-                jobActions.pve.jobActions.push(findElements(action));
+            // Combat
+            case node.id.startsWith("pve_action"):
+                job.actions.pve.jobActions.push(findElements(node, category));
                 break;
-            case action.id.startsWith("tank_action"):
-            case action.id.startsWith("healer_action"):
-            case action.id.startsWith("melee_action"):
-            case action.id.startsWith("prange_action"):
-            case action.id.startsWith("mrange_action"):
-                jobActions.pve.roleActions.push(findElements(action));
+            case node.id.startsWith("tank_action"):
+            case node.id.startsWith("healer_action"):
+            case node.id.startsWith("melee_action"):
+            case node.id.startsWith("prange_action"):
+            case node.id.startsWith("mrange_action"):
+                job.actions.pve.roleActions.push(findElements(node, category));
                 break;
-            case action.id.startsWith("pvp_action"):
-                jobActions.pvp.jobActions.push(findElements(action));
+            case node.id.startsWith("pvp_action"):
+                job.actions.pvp.jobActions.push(findElements(node, category, true));
                 break;
-            case action.id.startsWith("pvplimitbreakaction"):
-                jobActions.pvp.limitBreak.push(findElements(action));
+            case node.id.startsWith("pvplimitbreakaction"):
+                job.actions.pvp.limitBreak.push(findElements(node, category, true));
                 break;
-            case action.id.startsWith("pvpcommmononlyaction"):
-                jobActions.pvp.commonActions.push(findElements(action));
+            case node.id.startsWith("pvpcommmononlyaction"):
+                job.actions.pvp.commonActions.push(findElements(node, category, true));
+                break;
+            // Crafting
+            case category === 1 && node.id.startsWith("action"):
+                job.actions.pve.classActions.push(findElements(node, category))
+                break;
+            case node.id.startsWith("meisteraction"):
+                job.actions.pve.specialistActions.push(findElements(node, category))
+                break;
+            // Gathering
+            case category === 2 && node.id.startsWith("action"):
+                job.actions.pve.classActions.push(findElements(node, category))
+                break;
+            case node.id.startsWith("addaction"):
+                job.actions.pve.roleActions.push(findElements(node, category))
                 break;
         }
     });
 
-    function findElements(n) {
-       
+    function findElements(n, c, pvp) {
         const payload = {};
 
         payload.name = n.querySelector(".skill p strong").innerText;
-        if (n.querySelector(".jobclass")) payload.lvl = n.querySelector(".jobclass").innerText.match(/\d+/)[0];
-        if (n.querySelector(".classification")) payload.type = n.querySelector(".classification").innerText;
-        payload.cast = n.querySelector(".cast").innerText;
-        payload.recast = n.querySelector(".recast").innerText;
-        payload.cost = n.querySelector(".cost").innerText.replace(/-/, "0 MP");
-        payload.range = n.querySelector(".distant_range").innerText.match(/(\d+y)/g)[0];
-        payload.radius = n.querySelector(".distant_range").innerText.match(/(\d+y)/g)[1];
+
+        switch(true) {
+            case c === 0:
+                // combat
+                if (!pvp) payload.lvl = n.querySelector(".jobclass").innerText.match(/\d+/)[0];
+                if (!pvp) payload.type = n.querySelector(".classification").innerText;
+                payload.cast = n.querySelector(".cast").innerText;
+                payload.recast = n.querySelector(".recast").innerText;
+                payload.cost = n.querySelector(".cost").innerText.replace(/^[\t\n]+|[\t\n]+$/g, "");
+                payload.range = n.querySelector(".distant_range").innerText.match(/(\d+y)/g)[0];
+                payload.radius = n.querySelector(".distant_range").innerText.match(/(\d+y)/g)[1];
+                payload.desc = n.querySelector(".content").innerHTML.replace(/^[\t\n]+|[\t\n]+$/g, "");
+                break;
+            case c === 1:
+                // crafting
+                payload.lvl = n.querySelector(".jobclass").innerText.match(/\d+/)[0];
+                payload.cost = n.querySelector(".cost").innerText.replace(/^[\t\n]+|[\t\n]+$/g, "");
+                break;
+            case c === 2:
+                // gathering
+                payload.lvl = n.querySelector(".jobclass").innerText.match(/\d+/)[0];
+                payload.type = n.querySelector(".classification").innerText;
+                payload.recast = n.querySelector(".recast").innerText;
+                payload.cost = n.querySelector(".cost").innerText.replace(/^[\t\n]+|[\t\n]+$/g, "");
+                break;
+        }
+
         payload.desc = n.querySelector(".content").innerHTML.replace(/^[\t\n]+|[\t\n]+$/g, "");
 
         return payload
