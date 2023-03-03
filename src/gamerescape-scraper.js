@@ -22,79 +22,89 @@ new Promise(parsedDb => {
     })
 })
 .then(() => {
-    let jobCount = 0;
     new Promise(allSettled => {
-        fetchJob(database.combat[jobCount]);
+        let categoryCount = 0;
+        const categories = Object.values(database);
 
-        function fetchJob(job) {
-            const jobName = job.name;
-            const jobAbbr = job.code;
-            const _jobName = jobName.replace(/ /, "_");
+        parseCategory(categories[categoryCount]);
+        function parseCategory(category) {
+            new Promise(categorySettled => {
+                let jobCount = 0;
 
-            new Promise((jobParsed, failedParse) => {
-                fetch("https://ffxiv.gamerescape.com/wiki/" + _jobName, { mode: "cors" })
-                .then(res => res.text())
-                .then(html => {
-                    const document = parse(html);
-                    const icons = document.querySelectorAll("a > img[width='40']");
-                    const pagedIcons = arrayPager(Array.from(icons), 10);
-                
-                    let pageCount = 0;
-                    dlIcons(pagedIcons);
-        
-                    function dlIcons(batch) {
-                        Promise.allSettled([...batch[pageCount]
-                        .filter(node => node.hasAttribute("srcset"))
-                        .map(node => {
-                            const isHD = /2x$/.test(node.getAttribute("srcset"));
+                fetchJob(category[jobCount]);
+                function fetchJob(job) {
+                    const _jobName = job.name.replace(/ /, "_");
 
-                            let relativePath = node.getAttribute("srcset");
-                            if ( isHD ) { relativePath = relativePath.split(", ")[1] };
-                            relativePath = relativePath.split(" ")[0];
+                    new Promise((jobParsed) => {
+                        fetch("https://ffxiv.gamerescape.com/wiki/" + _jobName, { mode: "cors" })
+                        .then(res => res.text())
+                        .then(html => {
+                            const document = parse(html);
+                            const icons = document.querySelectorAll("a > img[width='40']");
+                            const pagedIcons = arrayPager(Array.from(icons), 10);
+                        
+                            let pageCount = 0;
 
-                            // Simplify and sanitize filename imported from [Alt]
-                            const filename = node.getAttribute("alt").replace(/ Icon\.png$/, "").replace(/[\\/:*?"<>|]/g, "");
+                            dlIcons(pagedIcons);
+                            function dlIcons(batch) {
+                                Promise.allSettled([...batch[pageCount]
+                                .filter(node => node.hasAttribute("srcset"))
+                                .map(node => {
+                                    const isHD = /2x$/.test(node.getAttribute("srcset"));
 
-                            // Init destination if it doesn't exist already
-                            const mode = /\(PvP\)$/.test(filename) ? "pvp" : "pve";
-                            const destination = `../img/actions/${jobAbbr}/${mode}`;
-                            fs.existsSync(destination) || fs.mkdirSync(destination, { recursive: true });
+                                    let relativePath = node.getAttribute("srcset");
+                                    if ( isHD ) { relativePath = relativePath.split(", ")[1] };
+                                    relativePath = relativePath.split(" ")[0];
 
-                            // Get rid of redundant (PvP) tag in the filename after successful fetch
-                            const formattedFilename = filename.replace(/ \(PvP\)$/, "");
+                                    // Simplify and sanitize filename imported from [Alt]
+                                    const filename = node.getAttribute("alt").replace(/ Icon\.png$/, "").replace(/[\\/:*?"<>|]/g, "");
 
-                            if ( isHD ) {
-                                return fetch(`https://ffxiv.gamerescape.com${relativePath}`)
-                                .then(res => {
-                                    res.body.pipe(fs.createWriteStream(`${destination}/${formattedFilename}.png`));
+                                    // Init destination if it doesn't exist already
+                                    const mode = /\(PvP\)$/.test(filename) ? "pvp" : "pve";
+                                    const destination = `../img/actions/${job.code}/${mode}`;
+                                    fs.existsSync(destination) || fs.mkdirSync(destination, { recursive: true });
+
+                                    // Get rid of redundant tags like (PvP) or (Carpenter) in the filename
+                                    const formattedFilename = filename.replace(/ \(\w+\)$/, "");
+
+                                    if ( isHD ) {
+                                        return fetch(`https://ffxiv.gamerescape.com${relativePath}`)
+                                        .then(res => {
+                                            res.body.pipe(fs.createWriteStream(`${destination}/${formattedFilename}.png`));
+                                        })
+                                        .catch(err => console.error(err));
+                                    } else {
+                                        console.log(`No HD icon found for ${filename}!`);
+                                        fs.writeFileSync(`${destination}/${formattedFilename} PLACEHOLDER`, "");
+                                        return Promise.resolve();
+                                    }
+                                })])
+                                .then(() => {
+                                    pageCount++;
+                                    if ( (pageCount + 1) > pagedIcons.length ) return jobParsed();
+                                    setTimeout(() => { dlIcons(pagedIcons) }, 250)
                                 })
-                                .catch(err => console.error(err));
-                            } else {
-                                console.log(`No HD icon found for ${filename}!`);
-                                fs.writeFileSync(`${destination}/${formattedFilename} PLACEHOLDER`, "");
-                                return Promise.resolve();
                             }
-                        })])
-                        .then(() => {
-                            pageCount++;
-                            if ( (pageCount + 1) > pagedIcons.length ) return jobParsed();
-                            setTimeout(() => { dlIcons(pagedIcons) }, 250)
                         })
-                        .catch(err => { failedParse(err) })
-                    }
-                })
+                        .catch(err => { throw new Error(err) })
+                    })
+                    .then(() => {
+                        console.log(`Finished parsing ${job.name}..`);
+                        jobCount++;
+                        if ( (jobCount + 1) > categories[categoryCount].length ) return categorySettled();
+                        setTimeout(() => { fetchJob(category[jobCount]) }, 1000);
+                    })
+                }
             })
             .then(() => {
-                console.log(`Finished parsing ${jobName}..`);
-                jobCount++;
-                if ( (jobCount + 1) > database.combat.length ) return allSettled();
-                setTimeout(() => { fetchJob(database.combat[jobCount]) }, 1000);
+                categoryCount++;
+                if ( (categoryCount + 1) > Object.keys(database).length ) return allSettled();
+                setTimeout(() => { parseCategory(categories[categoryCount]) }, 1000);
             })
-            .catch(err => { throw new Error(err) })
         }
     })
     .then(() => {
-        console.log("Finished parsing all the job URLs.")
+        console.log("Finished parsing all the job URLs.");
     })
 });
 
