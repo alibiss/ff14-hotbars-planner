@@ -48,5 +48,17 @@ const jobsCombat = document.getElementById("jobs-combat"),
             option = e.target.querySelector(`option[value="${value}"]`);
         
         document.body.setAttribute("data-job", option.value);
+        initJobicons(option.value);
     })
 });
+
+function initJobicons(job) {
+    const parentNode = actions.querySelector(`[class="${job}"]`);
+    if ( parentNode.querySelector("img").hasAttribute("src") ) return;
+
+    parentNode.querySelectorAll(".item > img").forEach(icon => {
+        const actionContainer = icon.parentNode;
+        const modeContainer = actionContainer.parentNode.parentNode;
+        icon.src = `./img/actions/${job}/${modeContainer.className}/${actionContainer.getAttribute("data-skill")}.png`;
+    })
+}
