@@ -36,6 +36,9 @@ new Promise(parsedDb => {
                     const _jobName = job.name.replace(/ /, "_");
 
                     new Promise((jobParsed) => {
+                        // Prevent overwriting of icons if parent job directory exists
+                        if ( fs.existsSync(`../img/actions/${job.code}`) ) return jobParsed();
+
                         fetch("https://ffxiv.gamerescape.com/wiki/" + _jobName, { mode: "cors" })
                         .then(res => res.text())
                         .then(html => {
