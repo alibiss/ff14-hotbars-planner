@@ -26,7 +26,7 @@ const jobs = { combat: [
 ], crafting: [
     { name: "Carpenter", code: "CRP", actions: {} },
     { name: "Blacksmith", code: "BSM", actions: {} },
-    { name: "Armoer", code: "ARM", actions: {} },
+    { name: "Armorer", code: "ARM", actions: {} },
     { name: "Goldsmith", code: "GSM", actions: {} },
     { name: "Leatherworker", code: "LTW", actions: {} },
     { name: "Weaver", code: "WVR", actions: {} },
@@ -82,6 +82,7 @@ new Promise(allSettled => {
                             const document = parse(html);
                             jobParsed( scrapeSkills(document, job, categoryCounter) );
                         })
+                        .catch(err => { throw new Error(err) })
                     })
                     .then(() => {
                         console.log(`Finished parsing ${job.name}..`);

@@ -12387,12 +12387,212 @@
       }
     },
     {
-      "name": "Armoer",
+      "name": "Armorer",
       "code": "ARM",
       "actions": {
         "pve": {
-          "classActions": [],
-          "specialistActions": []
+          "classActions": [
+            {
+              "name": "Basic Synthesis",
+              "lvl": "1",
+              "cost": "0",
+              "desc": "Increases progress.<br>Efficiency: 120%<br>Success Rate: 100%"
+            },
+            {
+              "name": "Basic Touch",
+              "lvl": "5",
+              "cost": "18",
+              "desc": "Increases quality.<br>Efficiency: 100%<br>Success Rate: 100%"
+            },
+            {
+              "name": "Master's Mend",
+              "lvl": "7",
+              "cost": "88",
+              "desc": "Restores item durability by 30."
+            },
+            {
+              "name": "Hasty Touch",
+              "lvl": "9",
+              "cost": "0",
+              "desc": "Increases quality and requires no CP.<br>Efficiency: 100%<br>Success Rate: 60%"
+            },
+            {
+              "name": "Rapid Synthesis",
+              "lvl": "9",
+              "cost": "0",
+              "desc": "Increases progress.<br>Efficiency: 500%<br>Success Rate: 50%"
+            },
+            {
+              "name": "Observe",
+              "lvl": "13",
+              "cost": "7",
+              "desc": "Do nothing for one step."
+            },
+            {
+              "name": "Tricks of the Trade",
+              "lvl": "13",
+              "cost": "0",
+              "desc": "Restores 20 CP.<br><br>Available only when material condition is Good or Excellent."
+            },
+            {
+              "name": "Waste Not",
+              "lvl": "15",
+              "cost": "56",
+              "desc": "Reduces loss of durability by 50% for the next four steps."
+            },
+            {
+              "name": "Veneration",
+              "lvl": "15",
+              "cost": "18",
+              "desc": "Increases efficiency of Synthesis actions by 50% for the next four steps."
+            },
+            {
+              "name": "Standard Touch",
+              "lvl": "18",
+              "cost": "32",
+              "desc": "Increases quality.<br>Efficiency: 125%<br>Success Rate: 100%<br>Combo Action: Basic Touch<br>Combo Bonus: CP cost reduced to 18"
+            },
+            {
+              "name": "Great Strides",
+              "lvl": "21",
+              "cost": "32",
+              "desc": "Increases the efficiency of next Touch action by 100%. Effect active for three steps."
+            },
+            {
+              "name": "Innovation",
+              "lvl": "26",
+              "cost": "18",
+              "desc": "Increases efficiency of Touch actions by 50% for the next four steps."
+            },
+            {
+              "name": "Final Appraisal",
+              "lvl": "42",
+              "cost": "1",
+              "desc": "The next action that would complete item synthesis will instead leave one progress point remaining.<br>Effect active for five steps."
+            },
+            {
+              "name": "Waste Not II",
+              "lvl": "47",
+              "cost": "98",
+              "desc": "Reduces loss of durability by 50% for the next eight steps."
+            },
+            {
+              "name": "Byregot's Blessing",
+              "lvl": "50",
+              "cost": "24",
+              "desc": "Increases quality. Inner Quiet effect ends upon use.<br>Efficiency: 100% plus 20% for each count of your Inner Quiet stack, up to a maximum of 300%<br>Success Rate: 100%<br>Requires at least one stack of Inner Quiet."
+            },
+            {
+              "name": "Precise Touch",
+              "lvl": "53",
+              "cost": "18",
+              "desc": "Increases quality.<br>Additional Effect: Increases Inner Quiet stack by one (up to 10)<br>Efficiency: 150%<br>Success Rate: 100%<br><br>Available only when material condition is Good or Excellent."
+            },
+            {
+              "name": "Muscle Memory",
+              "lvl": "54",
+              "cost": "6",
+              "desc": "Increases progress.<br>Efficiency: 300%<br>Success Rate: 100%<br>Additional Effect: Efficiency of your next Synthesis action is increased by 100%<br><br>Available only on the first step.<br>Additional effect is active for five steps."
+            },
+            {
+              "name": "Careful Synthesis",
+              "lvl": "62",
+              "cost": "7",
+              "desc": "Increases progress.<br>Efficiency: 180%<br>Success Rate: 100%"
+            },
+            {
+              "name": "Manipulation",
+              "lvl": "65",
+              "cost": "96",
+              "desc": "Restores 5 points of durability after each step for the next eight steps."
+            },
+            {
+              "name": "Prudent Touch",
+              "lvl": "66",
+              "cost": "25",
+              "desc": "Increases quality at half the durability cost.<br>Efficiency: 100%<br>Success Rate: 100%<br><br>Unavailable when Waste Not or Waste Not II is active."
+            },
+            {
+              "name": "Focused Synthesis",
+              "lvl": "67",
+              "cost": "5",
+              "desc": "Increases progress.<br>Efficiency: 200%<br>Success Rate: 50%<br>Combo Action: Observe<br>Combo Bonus: Increases success rate to 100%"
+            },
+            {
+              "name": "Focused Touch",
+              "lvl": "68",
+              "cost": "18",
+              "desc": "Increases quality.<br>Efficiency: 150%<br>Success Rate: 50%<br>Combo Action: Observe<br>Combo Bonus: Increases success rate to 100%"
+            },
+            {
+              "name": "Reflect",
+              "lvl": "69",
+              "cost": "6",
+              "desc": "Increases quality.<br>Efficiency: 100%<br>Success Rate: 100%<br>Additional Effect: Increases Inner Quiet stack by one (up to 10)<br><br>Available only on the first step. "
+            },
+            {
+              "name": "Preparatory Touch",
+              "lvl": "71",
+              "cost": "40",
+              "desc": "Increases quality at greater cost to durability.<br>Additional Effect: Increases Inner Quiet stack by one (up to 10)<br>Efficiency: 200%<br>Success Rate: 100%<br>Durability Cost: 20"
+            },
+            {
+              "name": "Groundwork",
+              "lvl": "72",
+              "cost": "18",
+              "desc": "Increases progress at greater cost to durability. Efficiency decreases by half when durability is below durability cost.<br>Efficiency: 360%<br>Success Rate: 100%<br>Durability Cost: 20"
+            },
+            {
+              "name": "Delicate Synthesis",
+              "lvl": "76",
+              "cost": "32",
+              "desc": "Increases both progress and quality.<br>Efficiency: 100%<br>Success Rate: 100%"
+            },
+            {
+              "name": "Intensive Synthesis",
+              "lvl": "78",
+              "cost": "6",
+              "desc": "Increases progress.<br>Efficiency: 400%<br>Success Rate: 100%<br> <br>Available only when material condition is Good or Excellent."
+            },
+            {
+              "name": "Trained Eye",
+              "lvl": "80",
+              "cost": "250",
+              "desc": "Increases quality by 100%.<br><br>Available only on the first step. Recipe level must be at least 10 levels below yours.<br>Cannot be used with expert crafting recipes."
+            },
+            {
+              "name": "Advanced Touch",
+              "lvl": "84",
+              "cost": "46",
+              "desc": "Increases quality.<br>Efficiency: 150%<br>Success Rate: 100%<br>Combo Action: Standard Touch<br>Combo Bonus: CP cost reduced to 18"
+            },
+            {
+              "name": "Prudent Synthesis",
+              "lvl": "88",
+              "cost": "18",
+              "desc": "Increases progress at half the durability cost.<br>Efficiency: 180%<br>Success Rate: 100%<br><br>Unavailable when Waste Not or Waste Not II is active."
+            },
+            {
+              "name": "Trained Finesse",
+              "lvl": "90",
+              "cost": "32",
+              "desc": "Increases quality at no cost to durability.<br>Efficiency: 100%<br>Success Rate: 100%<br><br>Available only when Inner Quiet stack size is 10."
+            }
+          ],
+          "specialistActions": [
+            {
+              "name": "Careful Observation",
+              "lvl": "55",
+              "cost": "0",
+              "desc": "Specialist Action<br><br>Do nothing for one step, preserving the status of any actions presently in effect.<br><br>A crafter's delineation is used upon execution.<br>Can only be used up to three times per synthesis.<br>This action does not increase step count."
+            },
+            {
+              "name": "Heart and Soul",
+              "lvl": "86",
+              "cost": "0",
+              "desc": "Specialist Action<br><br>Allows the execution of Precise Touch, Intensive Synthesis, or Tricks of the Trade regardless of material condition.<br>Effect ends if the aforementioned actions are executed when material condition is not Good or Excellent.<br><br>A crafter's delineation is used upon execution.<br>Can only be used once per synthesis.<br>This action does not increase step count."
+            }
+          ]
         }
       }
     },
