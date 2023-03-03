@@ -115,6 +115,45 @@ body:not([data-job="FSH"]) #list .FSH {
 .jobActions > div, 
 .roleActions > div, 
 .limitBreak > div, 
-.commonActions > div {
+.commonActions > div,
+.classActions > div,
+.specialistActions > div,
+.roleActions > div {
     display: inline-block;
+}
+#list .pve > div,
+#list .pvp > div {
+    display: inline-block;
+    margin-top: 1.25em;
+}
+.item {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    background: url("/img/actions/background.png") no-repeat;
+    background-size: 48px 48px;
+    vertical-align: middle;
+}
+.item::before {
+    content: "";
+    background: url("/img/actions/foreground.png") no-repeat;
+    background-size: cover;
+    width: 56px;
+    height: 56px;
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -4px;
+    z-index: 2;
+}
+.item.parent {
+    margin-top: .5em;
+}
+.item > img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: inline-block;
+    z-index: 1;
+    margin-left: calc((48 / 2) * -1px);
 }
