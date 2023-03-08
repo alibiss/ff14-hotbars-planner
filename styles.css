@@ -116,24 +116,23 @@ body:not([data-job="BTN"]) #list .BTN,
 body:not([data-job="FSH"]) #list .FSH {
     display: none;
 }
-#list .pve > div,
-#list .pvp > div {
-    display: inline-block;
+#list .pve,
+#list .pvp {
+    display: flex;
     margin-top: 1.25em;
-}
-#list .pve > div > div,
-#list .pvp > div > div {
-    display: inline-block;
+    flex-wrap: wrap;
+    gap: 10px 5px;
 }
 .item {
     position: relative;
 
     width: 48px;
     height: 48px;
+    border-radius: 5px;
 
     background: url("/img/actions/background.png") no-repeat;
     background-size: 48px 48px;
-    vertical-align: middle;
+    font-size: 0;
 }
 .item::before {
     content: "";
@@ -146,6 +145,7 @@ body:not([data-job="FSH"]) #list .FSH {
     display: block;
     width: 56px;
     height: 56px;
+    border-radius: 5px;
     
     background: url("/img/actions/foreground.png") no-repeat;
     background-size: cover;
