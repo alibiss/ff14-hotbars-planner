@@ -63,7 +63,7 @@ function initJobicons(job) {
 
     parentNode.querySelectorAll(".item > img").forEach(icon => {
         const actionContainer = icon.parentNode;
-        const modeContainer = actionContainer.parentNode.parentNode;
+        const modeContainer = actionContainer.parentNode;
         icon.src = `./img/actions/${job}/${modeContainer.className}/${actionContainer.getAttribute("data-skill")}.png`;
     })
 }
