@@ -18,6 +18,7 @@
     justify-content: space-between;
 
     display: flex;
+    margin-bottom: .5em;
 }
 body:not([data-category="0"]) #jobs-combat,
 body:not([data-category="1"]) #jobs-crafting,
