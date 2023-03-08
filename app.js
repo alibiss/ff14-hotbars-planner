@@ -8,7 +8,12 @@ fetch("./dist/jobs.json", { mode: "no-cors" })
 
 fetch("./dist/actions")
 .then(res => res.text())
-.then(data => actions.innerHTML = data);
+.then(data => {
+    actions.innerHTML = data;
+    let script = document.createElement("script");
+    script.src = "drag.js";
+    actions.appendChild(script);
+});
 
 // Change hotbar layout
 const layouts = document.getElementById("layouts");
