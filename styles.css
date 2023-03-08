@@ -7,137 +7,8 @@
 
 /* || General */
 
-#container {
-    flex-wrap: wrap;
-
-    display: flex;
-    width: 75vw;
-    margin: 0 auto;
-}
-#container > div {
-    flex: 1 1 100%;
-}
-
-/* || Topbar */
-
-.topbar {
-    justify-content: space-between;
-
-    display: flex;
-    margin-bottom: .5em;
-}
-body:not([data-category="0"]) #jobs-combat,
-body:not([data-category="1"]) #jobs-crafting,
-body:not([data-category="2"]) #jobs-gathering {
-    display: none;
-}
-
-/* || Content */
-
-.content {
-    display: flex;
-    flex-wrap: wrap;
-}
-.hotbar-container {
-    display: flex;
-    flex: 1 1 40%;
-}
-body[data-layout="12"] .hotbar-container {
-    flex: 1 1 100%;
-}
-body[data-layout="1"] .hotbar-container {
-    flex: 1 1 10%;
-}
-#hotbar {
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    gap: 5px;
-
-    display: flex;
-    margin: 0 auto;
-}
-body[data-layout="12"] #hotbar {
-    flex: 0 0 calc((12 * 48px) + (11 * 5px));
-}
-body[data-layout="6"] #hotbar {
-    flex: 0 0 calc((6 * 48px) + (5 * 5px));
-}
-body[data-layout="4"] #hotbar {
-    flex: 0 0 calc((4 * 48px) + (3 * 5px));
-}
-body[data-layout="3"] #hotbar {
-    flex: 0 0 calc((3 * 48px) + (2 * 5px));
-}
-body[data-layout="2"] #hotbar {
-    flex: 0 0 calc((2 * 48px) + (1 * 5px));
-}
-body[data-layout="1"] #hotbar {
-    flex: 0 0 calc((1 * 48px) + (0 * 5px));
-}
-#hotbar > div {
-    width: 48px;
-    height: 48px;
-    border-radius: 5px;
-
-    background-color: lightslategray;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-
-#list {
-    flex-basis: 60%;
-}
-body[data-layout="12"] #list {
-    flex: 1 1 100%;
-}
-body[data-layout="1"] #list {
-    flex: 1 1 90%;
-}
-body:not([data-category="0"]) #list > .combat,
-body:not([data-category="1"]) #list > .crafting,
-body:not([data-category="2"]) #list > .gathering {
-    display: none;
-}
-body:not([data-job]) #list > div,
-body:not([data-job="PLD"]) #list .PLD,
-body:not([data-job="WAR"]) #list .WAR,
-body:not([data-job="DRK"]) #list .DRK,
-body:not([data-job="GNB"]) #list .GNB,
-body:not([data-job="WHM"]) #list .WHM,
-body:not([data-job="SCH"]) #list .SCH,
-body:not([data-job="AST"]) #list .AST,
-body:not([data-job="SGE"]) #list .SGE,
-body:not([data-job="MNK"]) #list .MNK,
-body:not([data-job="DRG"]) #list .DRG,
-body:not([data-job="NIN"]) #list .NIN,
-body:not([data-job="SAM"]) #list .SAM,
-body:not([data-job="RPR"]) #list .RPR,
-body:not([data-job="BRD"]) #list .BRD,
-body:not([data-job="MCH"]) #list .MCH,
-body:not([data-job="DNC"]) #list .DNC,
-body:not([data-job="BLM"]) #list .BLM,
-body:not([data-job="SMN"]) #list .SMN,
-body:not([data-job="RDM"]) #list .RDM,
-body:not([data-job="BLU"]) #list .BLU,
-body:not([data-job="CRP"]) #list .CRP,
-body:not([data-job="BSM"]) #list .BSM,
-body:not([data-job="ARM"]) #list .ARM,
-body:not([data-job="GSM"]) #list .GSM,
-body:not([data-job="LTW"]) #list .LTW,
-body:not([data-job="WVR"]) #list .WVR,
-body:not([data-job="ALC"]) #list .ALC,
-body:not([data-job="CUL"]) #list .CUL,
-body:not([data-job="MIN"]) #list .MIN,
-body:not([data-job="BTN"]) #list .BTN,
-body:not([data-job="FSH"]) #list .FSH {
-    display: none;
-}
-#list .pve,
-#list .pvp {
-    display: flex;
-    margin-top: 1.25em;
-    flex-wrap: wrap;
-    gap: 10px 5px;
+img:not([src]) {
+    visibility: hidden;
 }
 .item {
     position: relative;
@@ -164,13 +35,6 @@ body:not([data-job="FSH"]) #list .FSH {
     background: var(--action-foreground, url("/img/actions/foreground.png")) no-repeat;
     background-size: cover;
 }
-.item.parent {
-    margin-top: .5em;
-}
-/* Make dragged items overlap their parent */
-.item.child {
-    z-index: 3;
-}
 .item > img {
     position: absolute;
     top: 0;
@@ -181,24 +45,73 @@ body:not([data-job="FSH"]) #list .FSH {
     margin-left: calc((48 / 2) * -1px);
 }
 
-/* || Footer */
+/* || Hotbar */
 
-.footer {
-    display: flex;
-}
-.footer pre {
-    width: 100%;
-    min-height: 100px;
-    padding: 1em;
+#hotbar > div {
+    width: 48px;
+    height: 48px;
     border-radius: 5px;
 
-    background-color: lightgrey;
-    font-size: x-large;
-    color: rgba(0,0,0,.7);
-    white-space: pre-line;
-    word-wrap: break-word;
+    background-color: lightslategray;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
-.footer pre:empty::before {
-    content: 'Your macro will show up here..';
-    opacity: .75;
+.item.child {
+    z-index: 3;
+}
+
+/* || Actions */
+
+#actions .pve,
+#actions .pvp {
+    display: flex;
+    margin-top: 1.25em;
+    flex-wrap: wrap;
+    gap: 10px 5px;
+}
+
+/* || Filters */
+
+body:not([data-category="1"]) #job-cat-1-items,
+body:not([data-category="2"]) #job-cat-2-items,
+body:not([data-category="3"]) #job-cat-3-items {
+    display: none;
+}
+body:not([data-category="1"]) #actions > .combat,
+body:not([data-category="2"]) #actions > .crafting,
+body:not([data-category="3"]) #actions > .gathering {
+    display: none;
+}
+body:not([data-job]) #actions > div,
+body:not([data-job="PLD"]) #actions .PLD,
+body:not([data-job="WAR"]) #actions .WAR,
+body:not([data-job="DRK"]) #actions .DRK,
+body:not([data-job="GNB"]) #actions .GNB,
+body:not([data-job="WHM"]) #actions .WHM,
+body:not([data-job="SCH"]) #actions .SCH,
+body:not([data-job="AST"]) #actions .AST,
+body:not([data-job="SGE"]) #actions .SGE,
+body:not([data-job="MNK"]) #actions .MNK,
+body:not([data-job="DRG"]) #actions .DRG,
+body:not([data-job="NIN"]) #actions .NIN,
+body:not([data-job="SAM"]) #actions .SAM,
+body:not([data-job="RPR"]) #actions .RPR,
+body:not([data-job="BRD"]) #actions .BRD,
+body:not([data-job="MCH"]) #actions .MCH,
+body:not([data-job="DNC"]) #actions .DNC,
+body:not([data-job="BLM"]) #actions .BLM,
+body:not([data-job="SMN"]) #actions .SMN,
+body:not([data-job="RDM"]) #actions .RDM,
+body:not([data-job="BLU"]) #actions .BLU,
+body:not([data-job="CRP"]) #actions .CRP,
+body:not([data-job="BSM"]) #actions .BSM,
+body:not([data-job="ARM"]) #actions .ARM,
+body:not([data-job="GSM"]) #actions .GSM,
+body:not([data-job="LTW"]) #actions .LTW,
+body:not([data-job="WVR"]) #actions .WVR,
+body:not([data-job="ALC"]) #actions .ALC,
+body:not([data-job="CUL"]) #actions .CUL,
+body:not([data-job="MIN"]) #actions .MIN,
+body:not([data-job="BTN"]) #actions .BTN,
+body:not([data-job="FSH"]) #actions .FSH {
+    display: none;
 }

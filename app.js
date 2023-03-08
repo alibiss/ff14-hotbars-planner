@@ -1,69 +1,54 @@
-let database = {};
-const container = document.getElementById("container");
-const actions = document.getElementById("list");
+(() => {
+    let database = {};
+    fetch("./dist/jobs.json", { mode: "no-cors" })
+    .then(res => res.json())
+    .then(data => Object.assign(database, data));
 
-fetch("./dist/jobs.json", { mode: "no-cors" })
-.then(res => res.json())
-.then(data => Object.assign(database, data));
+    const actions = document.getElementById("actions");
+    fetch("./dist/actions")
+    .then(res => res.text())
+    .then(data => {
+        actions.innerHTML = data;
+        let script = document.createElement("script");
+        script.src = "drag.js";
+        //actions.appendChild(script);
+    });
 
-fetch("./dist/actions")
-.then(res => res.text())
-.then(data => {
-    actions.innerHTML = data;
-    let script = document.createElement("script");
-    script.src = "drag.js";
-    actions.appendChild(script);
-});
-
-// Change hotbar layout
-const layouts = document.getElementById("layouts");
-layouts.value = 12; // Reset on page reload
-layouts.addEventListener("change", (e) => {
-    document.body.setAttribute("data-layout", e.target.value)
-})
-
-// Show/Hide pickers depending on filter value
-const pickerCombat = document.getElementById("jobs-combat-picker"),
-    pickerCrafting = document.getElementById("jobs-craft-picker"),
-    pickerGathering = document.getElementById("jobs-gather-picker");
-
-[pickerCombat, pickerCrafting, pickerGathering].forEach(p => {
-    p.addEventListener("change", (e) => {
-        if (e.target.checked) {
-            document.body.removeAttribute("data-job");
+    const categories = document.getElementById("categories");
+    categories.querySelectorAll("input").forEach(category => {
+        category.addEventListener("change", (e) => {
             document.body.setAttribute("data-category", e.target.value);
 
-            // Reset options when changing filters
-            [jobsCombat, jobsCrafting, jobsGathering].forEach(c => c.value = -1);
-        }
-    })
-});
+            // Reset job picker when changing category
+            document.body.removeAttribute("data-job");
+            jobPickers.querySelectorAll("select").forEach(picker => picker.value = 0);
+        })
+    });
 
-// Show/Hide job-specific skills
-const jobsCombat = document.getElementById("jobs-combat"),
-    jobsCrafting = document.getElementById("jobs-crafting"),
-    jobsGathering = document.getElementById("jobs-gathering");
+    const jobPickers = document.getElementById("job-pickers");
+    jobPickers.querySelectorAll("select").forEach(job => {
+        job.addEventListener("change", (e) => {
+            if ( e.target.value.length < 1 ) return;
+            document.body.setAttribute("data-job", e.target.value);
+            initJobicons(e.target.value);
+        })
+    });
 
-[jobsCombat, jobsCrafting, jobsGathering].forEach(c => {
-    c.value = -1; // Reset on page reload
+    const layouts = document.getElementById("layouts");
+    layouts.querySelectorAll("input").forEach(layout => {
+        layout.addEventListener("change", (e) => { 
+            document.body.setAttribute("data-layout", e.target.value);
+         })
+    });
 
-    // Add callback function on value change
-    c.addEventListener("change", (e) => {
-        const value = e.target.value,
-            option = e.target.querySelector(`option[value="${value}"]`);
-        
-        document.body.setAttribute("data-job", option.value);
-        initJobicons(option.value);
-    })
-});
-
-function initJobicons(job) {
-    const parentNode = actions.querySelector(`[class="${job}"]`);
-    if ( parentNode.querySelector("img").hasAttribute("src") ) return;
-
-    parentNode.querySelectorAll(".item > img").forEach(icon => {
-        const actionContainer = icon.parentNode;
-        const modeContainer = actionContainer.parentNode;
-        icon.src = `./img/actions/${job}/${modeContainer.className}/${actionContainer.getAttribute("data-skill")}.png`;
-    })
-}
+    function initJobicons(job) {
+        const parentNode = actions.querySelector(`[class="${job}"]`);
+        if ( parentNode.querySelector("img").hasAttribute("src") ) return;
+    
+        parentNode.querySelectorAll(".item > img").forEach(icon => {
+            const actionContainer = icon.parentNode;
+            const modeContainer = actionContainer.parentNode;
+            icon.src = `./img/actions/${job}/${modeContainer.className}/${actionContainer.getAttribute("data-skill")}.png`;
+        });
+    };
+})()

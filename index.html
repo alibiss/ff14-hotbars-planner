@@ -1,97 +1,122 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Hotbars Planner</title>
-    <link rel="stylesheet" href="./styles.css">
-    <script src="./app.js" defer></script> 
-</head>
-<body data-category="0" data-layout="12">
-    <div id="container">
-        <div class="topbar">
-            <div>
-                <img src="" alt="DoW/DoM">
-                <input type="radio" id="jobs-combat-picker" name="jobs" value="0" checked>
-                <img src="" alt="DoH">
-                <input type="radio" id="jobs-craft-picker" name="jobs" value="1">
-                <img src="" alt="DoL">
-                <input type="radio" id="jobs-gather-picker" name="jobs" value="2">
-
-                <select name="jobs" id="jobs-combat">
-                    <option value="PLD">Paladin</option>
-                    <option value="WAR">Warrior</option>
-                    <option value="DRK">Dark Knight</option>
-                    <option value="GNB">Gunbreaker</option>
-                    <option value="WHM">White Mage</option>
-                    <option value="SCH">Scholar</option>
-                    <option value="AST">Astrologian</option>
-                    <option value="SGE">Sage</option>
-                    <option value="MNK">Monk</option>
-                    <option value="DRG">Dragoon</option>
-                    <option value="NIN">Ninja</option>
-                    <option value="SAM">Samurai</option>
-                    <option value="RPR">Reaper</option>
-                    <option value="BRD">Bard</option>
-                    <option value="MCH">Machinist</option>
-                    <option value="DNC">Dancer</option>
-                    <option value="BLM">Black Mage</option>
-                    <option value="SMN">Summoner</option>
-                    <option value="RDM">Red Mage</option>
-                    <option value="BLU">Blue Mage</option>
-                </select>
-
-                <select name="jobs" id="jobs-crafting">
-                    <option value="CRP">Carpenter</option>
-                    <option value="BSM">Blacksmith</option>
-                    <option value="ARM">Armorer</option>
-                    <option value="GSM">Goldsmith</option>
-                    <option value="LTW">Leatherworker</option>
-                    <option value="WVR">Weaver</option>
-                    <option value="ALC">Alchemist</option>
-                    <option value="CUL">Culinarian</option>
-                </select>
-
-                <select name="jobs" id="jobs-gathering">
-                    <option value="MIN">Miner</option>
-                    <option value="BTN">Botanist</option>
-                    <option value="FSH">Fisher</option>
-                </select>
-            </div>
-            <div>
-                <label for="layouts">Layout: </label>
-                <select name="layouts" id="layouts">
-                    <option value="12">12x1</option>
-                    <option value="6">6x2</option>
-                    <option value="4">4x3</option>
-                    <option value="3">3x4</option>
-                    <option value="2">2x6</option>
-                    <option value="1">1x12</option>
-                </select>
-            </div>
-        </div>
-        <div class="content">
-            <div class="hotbar-container">
-                <div id="hotbar">
-                    <div data-slot="1"></div>
-                    <div data-slot="2"></div>
-                    <div data-slot="3"></div>
-                    <div data-slot="4"></div>
-                    <div data-slot="5"></div>
-                    <div data-slot="6"></div>
-                    <div data-slot="7"></div>
-                    <div data-slot="8"></div>
-                    <div data-slot="9"></div>
-                    <div data-slot="10"></div>
-                    <div data-slot="11"></div>
-                    <div data-slot="12"></div>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hotbars Planner</title>
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <link href="./styles.css" rel="stylesheet">
+        <script src="./app.js" defer></script>
+    </head>
+    <body data-category="1" data-layout="1">
+        <div class="container p-3">
+            <div class="row">
+                <div class="col-lg-4 col-xs-12">
+                    <div class="btn-group d-flex" id="categories" role="group" aria-label="Job category filters">
+                        <input type="radio" class="btn-check" name="job-cat" id="job-cat-1" value="1" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="job-cat-1">Combat</label>
+                      
+                        <input type="radio" class="btn-check" name="job-cat" id="job-cat-2" value="2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="job-cat-2">Crafting</label>
+                      
+                        <input type="radio" class="btn-check" name="job-cat" id="job-cat-3" value="3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="job-cat-3">Gathering</label>
+                      </div>
                 </div>
-                <div id="dragged-item"></div>
+                <div class="col-lg-4 col-xs-12">
+                    <div id="job-pickers" class="d-flex">
+                        <select class="form-select" aria-label="Combat jobs" name="job-cat-1-items" id="job-cat-1-items">
+                            <option selected></option>
+                            <option value="PLD">Paladin</option>
+                            <option value="WAR">Warrior</option>
+                            <option value="DRK">Dark Knight</option>
+                            <option value="GNB">Gunbreaker</option>
+                            <option value="WHM">White Mage</option>
+                            <option value="SCH">Scholar</option>
+                            <option value="AST">Astrologian</option>
+                            <option value="SGE">Sage</option>
+                            <option value="MNK">Monk</option>
+                            <option value="DRG">Dragoon</option>
+                            <option value="NIN">Ninja</option>
+                            <option value="SAM">Samurai</option>
+                            <option value="RPR">Reaper</option>
+                            <option value="BRD">Bard</option>
+                            <option value="MCH">Machinist</option>
+                            <option value="DNC">Dancer</option>
+                            <option value="BLM">Black Mage</option>
+                            <option value="SMN">Summoner</option>
+                            <option value="RDM">Red Mage</option>
+                            <option value="BLU">Blue Mage</option>
+                        </select>
+                        <select class="form-select" aria-label="Crafting jobs" name="job-cat-2-items" id="job-cat-2-items">
+                            <option selected></option>
+                            <option value="CRP">Carpenter</option>
+                            <option value="BSM">Blacksmith</option>
+                            <option value="ARM">Armorer</option>
+                            <option value="GSM">Goldsmith</option>
+                            <option value="LTW">Leatherworker</option>
+                            <option value="WVR">Weaver</option>
+                            <option value="ALC">Alchemist</option>
+                            <option value="CUL">Culinarian</option>
+                        </select>
+                        <select class="form-select" aria-label="Gathering jobs" name="job-cat-3-items" id="job-cat-3-items">
+                            <option selected></option>
+                            <option value="MIN">Miner</option>
+                            <option value="BTN">Botanist</option>
+                            <option value="FSH">Fisher</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <div class="btn-group d-flex" id="layouts" role="group" aria-label="Hotbar layouts toggles">
+                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-1" value="1" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="h-layout-1">12x1</label>
+                      
+                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-2" value="2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="h-layout-2">6x2</label>
+                      
+                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-3" value="3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="h-layout-3">4x3</label>
+
+                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-4" value="4" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="h-layout-4">3x4</label>
+                      
+                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-5" value="5" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="h-layout-5">2x6</label>
+                      
+                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-6" value="6" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="h-layout-6">1x12</label>
+                      </div>
+                </div>
             </div>
-            <div id="list"></div>
+            <div class="row py-3">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center" id="hotbar">
+                        <div data-slot="1"></div>
+                        <div data-slot="2"></div>
+                        <div data-slot="3"></div>
+                        <div data-slot="4"></div>
+                        <div data-slot="5"></div>
+                        <div data-slot="6"></div>
+                        <div data-slot="7"></div>
+                        <div data-slot="8"></div>
+                        <div data-slot="9"></div>
+                        <div data-slot="10"></div>
+                        <div data-slot="11"></div>
+                        <div data-slot="12"></div>
+                    </div>
+                    <div id="dragged-item"></div>
+                </div>
+                <div class="col">
+                    <div id="actions"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" type="text" value="Your macro will show up here..." aria-label="Hotbar template output" readonly>
+                </div>
+            </div>
         </div>
-        <div class="footer">
-            <pre></pre>
-        </div>
-    </div>
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </body>
 </html>
