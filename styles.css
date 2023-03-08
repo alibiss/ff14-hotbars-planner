@@ -1,7 +1,8 @@
 #container {
+    flex-wrap: wrap;
+
     display: flex;
     width: 75vw;
-    flex-wrap: wrap;
     margin: 0 auto;
 }
 #container > div {
@@ -9,8 +10,9 @@
 }
 
 .topbar {
-    display: flex;
     justify-content: space-between;
+
+    display: flex;
 }
 body:not([data-category="0"]) #jobs-combat,
 body:not([data-category="1"]) #jobs-crafting,
@@ -33,11 +35,12 @@ body[data-layout="1"] .hotbar-container {
     flex: 1 1 10%;
 }
 #hotbar {
-    display: flex;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
     gap: 5px;
+
+    display: flex;
     margin: 0 auto;
 }
 body[data-layout="12"] #hotbar {
@@ -61,6 +64,7 @@ body[data-layout="1"] #hotbar {
 #hotbar > div {
     width: 48px;
     height: 48px;
+
     background-color: lightslategray;
 }
 
@@ -112,48 +116,53 @@ body:not([data-job="BTN"]) #list .BTN,
 body:not([data-job="FSH"]) #list .FSH {
     display: none;
 }
-.jobActions > div, 
-.roleActions > div, 
-.limitBreak > div, 
-.commonActions > div,
-.classActions > div,
-.specialistActions > div,
-.roleActions > div {
-    display: inline-block;
-}
 #list .pve > div,
 #list .pvp > div {
     display: inline-block;
     margin-top: 1.25em;
 }
+#list .pve > div > div,
+#list .pvp > div > div {
+    display: inline-block;
+}
 .item {
     position: relative;
+
     width: 48px;
     height: 48px;
+
     background: url("/img/actions/background.png") no-repeat;
     background-size: 48px 48px;
     vertical-align: middle;
 }
 .item::before {
     content: "";
-    background: url("/img/actions/foreground.png") no-repeat;
-    background-size: cover;
-    width: 56px;
-    height: 56px;
-    display: block;
+
     position: absolute;
     top: -2px;
     left: -4px;
     z-index: 2;
+
+    display: block;
+    width: 56px;
+    height: 56px;
+    
+    background: url("/img/actions/foreground.png") no-repeat;
+    background-size: cover;
 }
 .item.parent {
     margin-top: .5em;
+}
+/* Make dragged items overlap their parent */
+.item.child {
+    z-index: 3;
 }
 .item > img {
     position: absolute;
     top: 0;
     left: 50%;
-    display: inline-block;
     z-index: 1;
+
+    display: inline-block;
     margin-left: calc((48 / 2) * -1px);
 }
