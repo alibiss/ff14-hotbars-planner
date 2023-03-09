@@ -14,84 +14,88 @@
                 <div class="col-lg-4 col-xs-12">
                     <div class="btn-group d-flex" id="categories" role="group" aria-label="Job category filters">
                         <input type="radio" class="btn-check" name="job-cat" id="job-cat-1" value="1" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="job-cat-1">Combat</label>
+                        <label class="btn btn-outline-primary col-4" for="job-cat-1">Combat</label>
                       
                         <input type="radio" class="btn-check" name="job-cat" id="job-cat-2" value="2" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="job-cat-2">Crafting</label>
+                        <label class="btn btn-outline-primary col-4" for="job-cat-2">Crafting</label>
                       
                         <input type="radio" class="btn-check" name="job-cat" id="job-cat-3" value="3" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="job-cat-3">Gathering</label>
+                        <label class="btn btn-outline-primary col-4" for="job-cat-3">Gathering</label>
                       </div>
                 </div>
                 <div class="col-lg-4 col-xs-12">
-                    <div id="job-pickers" class="d-flex">
-                        <select class="form-select" aria-label="Combat jobs" name="job-cat-1-items" id="job-cat-1-items">
-                            <option selected></option>
-                            <option value="PLD">Paladin</option>
-                            <option value="WAR">Warrior</option>
-                            <option value="DRK">Dark Knight</option>
-                            <option value="GNB">Gunbreaker</option>
-                            <option value="WHM">White Mage</option>
-                            <option value="SCH">Scholar</option>
-                            <option value="AST">Astrologian</option>
-                            <option value="SGE">Sage</option>
-                            <option value="MNK">Monk</option>
-                            <option value="DRG">Dragoon</option>
-                            <option value="NIN">Ninja</option>
-                            <option value="SAM">Samurai</option>
-                            <option value="RPR">Reaper</option>
-                            <option value="BRD">Bard</option>
-                            <option value="MCH">Machinist</option>
-                            <option value="DNC">Dancer</option>
-                            <option value="BLM">Black Mage</option>
-                            <option value="SMN">Summoner</option>
-                            <option value="RDM">Red Mage</option>
-                            <option value="BLU">Blue Mage</option>
-                        </select>
-                        <select class="form-select" aria-label="Crafting jobs" name="job-cat-2-items" id="job-cat-2-items">
-                            <option selected></option>
-                            <option value="CRP">Carpenter</option>
-                            <option value="BSM">Blacksmith</option>
-                            <option value="ARM">Armorer</option>
-                            <option value="GSM">Goldsmith</option>
-                            <option value="LTW">Leatherworker</option>
-                            <option value="WVR">Weaver</option>
-                            <option value="ALC">Alchemist</option>
-                            <option value="CUL">Culinarian</option>
-                        </select>
-                        <select class="form-select" aria-label="Gathering jobs" name="job-cat-3-items" id="job-cat-3-items">
-                            <option selected></option>
-                            <option value="MIN">Miner</option>
-                            <option value="BTN">Botanist</option>
-                            <option value="FSH">Fisher</option>
-                        </select>
+                    <div class="row d-flex gx-2">
+                        <div id="job-pickers" class="col-9 d-flex">
+                            <select class="form-select" aria-label="Combat jobs" name="job-cat-1-items" id="job-cat-1-items">
+                                <option selected></option>
+                                <option value="PLD">Paladin</option>
+                                <option value="WAR">Warrior</option>
+                                <option value="DRK">Dark Knight</option>
+                                <option value="GNB">Gunbreaker</option>
+                                <option value="WHM">White Mage</option>
+                                <option value="SCH">Scholar</option>
+                                <option value="AST">Astrologian</option>
+                                <option value="SGE">Sage</option>
+                                <option value="MNK">Monk</option>
+                                <option value="DRG">Dragoon</option>
+                                <option value="NIN">Ninja</option>
+                                <option value="SAM">Samurai</option>
+                                <option value="RPR">Reaper</option>
+                                <option value="BRD">Bard</option>
+                                <option value="MCH">Machinist</option>
+                                <option value="DNC">Dancer</option>
+                                <option value="BLM">Black Mage</option>
+                                <option value="SMN">Summoner</option>
+                                <option value="RDM">Red Mage</option>
+                                <option value="BLU">Blue Mage</option>
+                            </select>
+                            <select class="form-select" aria-label="Crafting jobs" name="job-cat-2-items" id="job-cat-2-items">
+                                <option selected></option>
+                                <option value="CRP">Carpenter</option>
+                                <option value="BSM">Blacksmith</option>
+                                <option value="ARM">Armorer</option>
+                                <option value="GSM">Goldsmith</option>
+                                <option value="LTW">Leatherworker</option>
+                                <option value="WVR">Weaver</option>
+                                <option value="ALC">Alchemist</option>
+                                <option value="CUL">Culinarian</option>
+                            </select>
+                            <select class="form-select" aria-label="Gathering jobs" name="job-cat-3-items" id="job-cat-3-items">
+                                <option selected></option>
+                                <option value="MIN">Miner</option>
+                                <option value="BTN">Botanist</option>
+                                <option value="FSH">Fisher</option>
+                            </select>
+                        </div>
+                        <div class="col-3 d-grid">
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#macro">Export</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-xs-12">
                     <div class="btn-group d-flex" id="layouts" role="group" aria-label="Hotbar layouts toggles">
                         <input type="radio" class="btn-check" name="h-layouts" id="h-layout-1" value="1" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="h-layout-1">12x1</label>
+                        <label class="btn btn-outline-primary col-2" for="h-layout-1">12x1</label>
                       
                         <input type="radio" class="btn-check" name="h-layouts" id="h-layout-2" value="2" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="h-layout-2">6x2</label>
+                        <label class="btn btn-outline-primary col-2" for="h-layout-2">6x2</label>
                       
                         <input type="radio" class="btn-check" name="h-layouts" id="h-layout-3" value="3" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="h-layout-3">4x3</label>
+                        <label class="btn btn-outline-primary col-2" for="h-layout-3">4x3</label>
 
                         <input type="radio" class="btn-check" name="h-layouts" id="h-layout-4" value="4" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="h-layout-4">3x4</label>
+                        <label class="btn btn-outline-primary col-2" for="h-layout-4">3x4</label>
                       
                         <input type="radio" class="btn-check" name="h-layouts" id="h-layout-5" value="5" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="h-layout-5">2x6</label>
+                        <label class="btn btn-outline-primary col-2" for="h-layout-5">2x6</label>
                       
                         <input type="radio" class="btn-check" name="h-layouts" id="h-layout-6" value="6" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="h-layout-6">1x12</label>
+                        <label class="btn btn-outline-primary col-2" for="h-layout-6">1x12</label>
                       </div>
                 </div>
             </div>
             <div class="row py-3">
                 <div class="col-12">
-                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#macro">Export</button>
                     <div id="hotbar" class="d-flex justify-content-center align-item-centers flex-wrap">
                         <div data-slot="1"></div>
                         <div data-slot="2"></div>
@@ -123,6 +127,9 @@
                 <div class="modal-body">
                     <input class="form-control" type="text" value="Your macro will show up here..." aria-label="Hotbar template output" readonly>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Copy to clipboard</button>
+                  </div>            
               </div>
             </div>
         </div>
