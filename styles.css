@@ -50,6 +50,8 @@ img:not([src]) {
     z-index: 1;
 
     display: inline-block;
+    width: var(--icon-bg-s);
+    height: var(--icon-bg-s);
     margin-left: var(--icon-img-offset-x);
 }
 

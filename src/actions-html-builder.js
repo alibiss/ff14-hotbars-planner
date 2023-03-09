@@ -25,8 +25,7 @@ new Promise(parsedDb => {
                     // output += `<div class="${type}">`;
                     const actions = Object.values(job.actions[mode][type]);
                     actions.forEach(action => {
-                        const icon = `<img width="48" height="48">`;
-                        output += `<div class="item parent ${type.replace(/s$/, "")}" data-skill="${action.name}">${icon}</div>`;
+                        output += `<div class="item parent ${type.replace(/s$/, "")}" data-skill="${action.name}"><img>></div>`;
                     })
                     // output += "</div>"; // close type div
                 })
