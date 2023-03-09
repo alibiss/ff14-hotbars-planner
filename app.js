@@ -37,8 +37,33 @@
     const layouts = document.getElementById("layouts");
     layouts.querySelectorAll("input").forEach(layout => {
         layout.addEventListener("change", (e) => { 
-            document.body.setAttribute("data-layout", e.target.value);
+            const hotbarContainer = document.getElementById("hotbar").parentNode,
+                actionsContainer = hotbarContainer.nextElementSibling,
+                regex = /\bcol(?:(?:-.+?)+)?\b/g;
+            switch(e.target.value) {
+                case "1":
+                    hotbarContainer.className = hotbarContainer.className.replace(regex, "col-12");
+                    actionsContainer.className = actionsContainer.className.replace(regex, "col");
+                    break;
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                    hotbarContainer.className = hotbarContainer.className.replace(regex, "col-4");
+                    actionsContainer.className = actionsContainer.className.replace(regex, "col-8");
+                    break;
+                case "6":
+                    hotbarContainer.className = hotbarContainer.className.replace(regex, "col-2");
+                    actionsContainer.className = actionsContainer.className.replace(regex, "col-10");
+                    break;     
+            }
          })
+    });
+
+    const macroModal = document.getElementById("macro"),
+        macro = macroModal.querySelector("input");
+    macroModal.addEventListener("shown.bs.modal", () => {
+        macro.focus()
     });
 
     function initJobicons(job) {
