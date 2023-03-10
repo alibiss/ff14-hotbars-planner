@@ -1,0 +1,257 @@
+#hotbar [data-slot] {
+  width: var(--icon-bg-s);
+  height: var(--icon-bg-s);
+  border-radius: 5px;
+  background-color: lightslategray;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+#actions .pve, #actions .pvp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 5px;
+}
+
+.item {
+  --icon-bg-s: var(--icon-size, 48px);
+  --icon-fg-s: calc(var(--icon-bg-s) * $resizeRatio);
+  --icon-bg-b: calc((var(--icon-bg-s) * 5) / 48);
+  --icon-fg-offset-x: calc(-1 * ((var(--icon-fg-s) * 4) / 56));
+  --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
+  --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
+  position: relative;
+  width: var(--icon-bg-s);
+  height: var(--icon-bg-s);
+  border-radius: var(--icon-bg-b);
+  background: url("/img/actions/background.png") no-repeat;
+  background-size: var(--icon-bg-s) var(--icon-bg-s);
+  font-size: 0;
+}
+.item.child {
+  z-index: 3;
+}
+.item::before {
+  content: "";
+  position: absolute;
+  top: var(--icon-fg-offset-y);
+  left: var(--icon-fg-offset-x);
+  z-index: 2;
+  display: block;
+  width: var(--icon-fg-s);
+  height: var(--icon-fg-s);
+  background: url("/img/actions/foreground.png") no-repeat;
+  background-size: cover;
+}
+.item img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  display: inline-block;
+  width: var(--icon-bg-s);
+  height: var(--icon-bg-s);
+  margin-left: var(--icon-img-offset-x);
+}
+
+body:not([data-category="1"]) #job-cat-1-items,
+body:not([data-category="2"]) #job-cat-2-items,
+body:not([data-category="3"]) #job-cat-3-items {
+  display: none;
+}
+
+body:not([data-category="1"]) #actions > .combat,
+body:not([data-category="2"]) #actions > .crafting,
+body:not([data-category="3"]) #actions > .gathering {
+  display: none;
+}
+
+body:not([data-job]) #actions > div {
+  display: none;
+}
+
+body:not([data-job="PLD]"]) #actions .PLD {
+  display: none;
+}
+
+body:not([data-job="WAR]"]) #actions .WAR {
+  display: none;
+}
+
+body:not([data-job="DRK]"]) #actions .DRK {
+  display: none;
+}
+
+body:not([data-job="GNB]"]) #actions .GNB {
+  display: none;
+}
+
+body:not([data-job="WHM]"]) #actions .WHM {
+  display: none;
+}
+
+body:not([data-job="SCH]"]) #actions .SCH {
+  display: none;
+}
+
+body:not([data-job="AST]"]) #actions .AST {
+  display: none;
+}
+
+body:not([data-job="SGE]"]) #actions .SGE {
+  display: none;
+}
+
+body:not([data-job="MNK]"]) #actions .MNK {
+  display: none;
+}
+
+body:not([data-job="DRG]"]) #actions .DRG {
+  display: none;
+}
+
+body:not([data-job="NIN]"]) #actions .NIN {
+  display: none;
+}
+
+body:not([data-job="SAM]"]) #actions .SAM {
+  display: none;
+}
+
+body:not([data-job="RPR]"]) #actions .RPR {
+  display: none;
+}
+
+body:not([data-job="BRD]"]) #actions .BRD {
+  display: none;
+}
+
+body:not([data-job="MCH]"]) #actions .MCH {
+  display: none;
+}
+
+body:not([data-job="DNC]"]) #actions .DNC {
+  display: none;
+}
+
+body:not([data-job="BLM]"]) #actions .BLM {
+  display: none;
+}
+
+body:not([data-job="SMN]"]) #actions .SMN {
+  display: none;
+}
+
+body:not([data-job="RDM]"]) #actions .RDM {
+  display: none;
+}
+
+body:not([data-job="BLU]"]) #actions .BLU {
+  display: none;
+}
+
+body:not([data-job="CRP]"]) #actions .CRP {
+  display: none;
+}
+
+body:not([data-job="BSM]"]) #actions .BSM {
+  display: none;
+}
+
+body:not([data-job="ARM]"]) #actions .ARM {
+  display: none;
+}
+
+body:not([data-job="GSM]"]) #actions .GSM {
+  display: none;
+}
+
+body:not([data-job="LTW]"]) #actions .LTW {
+  display: none;
+}
+
+body:not([data-job="WVE]"]) #actions .WVE {
+  display: none;
+}
+
+body:not([data-job="ALC]"]) #actions .ALC {
+  display: none;
+}
+
+body:not([data-job="CUL]"]) #actions .CUL {
+  display: none;
+}
+
+body:not([data-job="MIN]"]) #actions .MIN {
+  display: none;
+}
+
+body:not([data-job="BTN]"]) #actions .BTN {
+  display: none;
+}
+
+body:not([data-job="FSH]"]) #actions .FSH {
+  display: none;
+}
+
+body[data-layout="1"] .hotbar-container,
+body[data-layout="1"] .actions-container {
+  flex: 0 0 auto;
+  width: 100%;
+}
+body[data-layout="1"] #hotbar {
+  width: calc(var(--icon-bg-s) * 12 + 2.75rem);
+}
+
+body[data-layout="2"] .hotbar-container,
+body[data-layout="2"] .actions-container {
+  flex: 0 0 auto;
+  width: 100%;
+}
+body[data-layout="2"] #hotbar {
+  width: calc(var(--icon-bg-s) * 6 + 1.25rem);
+}
+
+body[data-layout="3"] {
+  width: calc(var(--icon-bg-s) * 4 + 0.75rem);
+}
+body[data-layout="3"] .hotbar-container {
+  flex: 0 0 auto;
+  width: 25%;
+}
+body[data-layout="3"] .actions-container {
+  flex: 0 0 auto;
+  width: 75%;
+}
+
+body[data-layout="4"] {
+  width: calc(var(--icon-bg-s) * 3 + 0.5rem);
+}
+body[data-layout="4"] .hotbar-container {
+  flex: 0 0 auto;
+  width: 25%;
+}
+body[data-layout="4"] .actions-container {
+  flex: 0 0 auto;
+  width: 75%;
+}
+
+body[data-layout="5"] {
+  width: calc(var(--icon-bg-s) * 2 + 0.25rem);
+}
+body[data-layout="5"] .hotbar-container {
+  flex: 0 0 auto;
+  width: 25%;
+}
+body[data-layout="5"] .actions-container {
+  flex: 0 0 auto;
+  width: 75%;
+}
+
+body[data-layout="6"] {
+  width: calc(var(--icon-bg-s) * 1 + 0rem);
+}
+body[data-layout="6"] .hotbar-container,
+body[data-layout="6"] .actions-container {
+  flex: 0 0 auto;
+  width: 50%;
+}/*# sourceMappingURL=style.css.map */

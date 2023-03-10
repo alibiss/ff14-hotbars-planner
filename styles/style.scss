@@ -1,0 +1,176 @@
+@use "variables";
+
+@mixin icon-variables {
+    --icon-bg-s: var(--icon-size, 48px);
+    --icon-fg-s: calc(var(--icon-bg-s) * $resizeRatio);
+    --icon-bg-b: calc((var(--icon-bg-s) * 5) / 48);
+    --icon-fg-offset-x: calc(-1 * ((var(--icon-fg-s) * 4) / 56));
+    --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
+    --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
+}
+
+#hotbar {
+    [data-slot] {
+        width: var(--icon-bg-s);
+        height: var(--icon-bg-s);
+        border-radius: 5px;
+
+        background-color: lightslategray;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    }
+}
+
+#actions {
+    .pve, .pvp {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 5px;
+    }
+}
+
+.item {
+    @include icon-variables;
+
+    position: relative;
+
+    width: var(--icon-bg-s);
+    height: var(--icon-bg-s);
+    border-radius: var(--icon-bg-b);
+
+    background: url("/img/actions/background.png") no-repeat;
+    background-size: var(--icon-bg-s) var(--icon-bg-s);
+    font-size: 0;
+
+    &.child {
+        z-index: 3;
+    }
+
+    &::before {
+        content: "";
+
+        position: absolute;
+        top: var(--icon-fg-offset-y);
+        left: var(--icon-fg-offset-x);
+        z-index: 2;
+    
+        display: block;
+        width: var(--icon-fg-s);
+        height: var(--icon-fg-s);
+        
+        background: url("/img/actions/foreground.png") no-repeat;
+        background-size: cover;
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        z-index: 1;
+    
+        display: inline-block;
+        width: var(--icon-bg-s);
+        height: var(--icon-bg-s);
+        margin-left: var(--icon-img-offset-x);
+    }
+}
+
+// Category changes
+
+body:not([data-category="1"]) #job-cat-1-items,
+body:not([data-category="2"]) #job-cat-2-items,
+body:not([data-category="3"]) #job-cat-3-items {
+    display: none;
+}
+body:not([data-category="1"]) #actions > .combat,
+body:not([data-category="2"]) #actions > .crafting,
+body:not([data-category="3"]) #actions > .gathering {
+    display: none;
+}
+
+// Job changes
+
+$tank: PLD WAR DRK GNB;
+$healer: WHM SCH AST SGE;
+$melee: MNK DRG NIN SAM RPR;
+$pranged: BRD MCH DNC;
+$mranged: BLM SMN RDM BLU;
+$crafter: CRP BSM ARM GSM LTW WVE ALC CUL;
+$gatherer: MIN BTN FSH;
+$job-groups: $tank $healer $melee $pranged $mranged $crafter $gatherer;
+
+body:not([data-job]) #actions > div {
+    display: none;
+}
+
+@each $group in $job-groups {
+    @each $job in $group {
+        body:not([data-job="#{$job}]"]) {
+            #actions .#{$job} {
+                display: none;
+            }
+        }
+    }
+}
+
+// Layout changes
+
+@mixin width($rowItems) {
+    width: calc((var(--icon-bg-s) * $rowItems) + (.25rem * ($rowItems - 1)));
+}
+
+@for $i from 1 through 6 {
+    body[data-layout="#{$i}"] {
+        @if $i >= 1 and $i < 3 {
+            .hotbar-container,
+            .actions-container {
+                // .col-12
+                flex: 0 0 auto;
+                width: 100%;
+            }
+
+            @if $i == 1 {
+                #hotbar {
+                    @include width(12)
+                }
+            }
+            @else if $i == 2 {
+                #hotbar {
+                    @include width(6)
+                }
+            }
+        }
+        @else if $i >= 3 and $i < 6 {
+            .hotbar-container {
+                // .col-3
+                flex: 0 0 auto;
+                width: 25%;
+            }
+
+            .actions-container {
+                // .col-9
+                flex: 0 0 auto;
+                width: 75%;
+            }
+
+            @if $i == 3 {
+                @include width(4)
+            }
+            @else if $i == 4 {
+                @include width(3)
+            }
+            @else if $i == 5 {
+                @include width(2)
+            }
+        }
+        @else if $i == 6 {
+            .hotbar-container,
+            .actions-container  {
+                // .col-6
+                flex: 0 0 auto;
+                width: 50%;
+            }
+
+            @include width(1)
+        }
+    }
+}
