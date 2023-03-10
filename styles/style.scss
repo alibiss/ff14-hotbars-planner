@@ -10,6 +10,8 @@
 }
 
 #hotbar {
+    @include icon-variables;
+
     [data-slot] {
         width: var(--icon-bg-s);
         height: var(--icon-bg-s);
@@ -21,6 +23,8 @@
 }
 
 #actions {
+    @include icon-variables;
+
     .pve, .pvp {
         display: flex;
         flex-wrap: wrap;
@@ -29,8 +33,6 @@
 }
 
 .item {
-    @include icon-variables;
-
     position: relative;
 
     width: var(--icon-bg-s);
