@@ -1,0 +1,11 @@
+// Hide job pickers depending on category selected
+
+@for $i from 1 through 3 {
+    $attribute: '[data-category="#{$i}"]';
+
+    body:not(#{$attribute}) {
+        #job-cat-#{$i}-items {
+            display: none;
+        }
+    }
+}

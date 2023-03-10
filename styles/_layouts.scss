@@ -1,0 +1,64 @@
+// Change containers width based on layout choosen
+
+@mixin width($rowItems) {
+    width: calc((var(--icon-bg-s) * $rowItems) + (.25rem * ($rowItems - 1)));
+}
+
+@for $i from 1 through 6 {
+    body[data-layout="#{$i}"] {
+        @if $i >= 1 and $i < 3 {
+            .hotbar-container,
+            .actions-container {
+                // .col-12
+                flex: 0 0 auto;
+                width: 100%;
+            }
+
+            @if $i == 1 {
+                #hotbar {
+                    @include width(12)
+                }
+            }
+            @else if $i == 2 {
+                #hotbar {
+                    @include width(6)
+                }
+            }
+        }
+        @else if $i >= 3 and $i < 6 {
+            .hotbar-container {
+                // .col-3
+                flex: 0 0 auto;
+                width: 25%;
+            }
+
+            .actions-container {
+                // .col-9
+                flex: 0 0 auto;
+                width: 75%;
+            }
+
+            @if $i == 3 {
+                @include width(4)
+            }
+            @else if $i == 4 {
+                @include width(3)
+            }
+            @else if $i == 5 {
+                @include width(2)
+            }
+        }
+        @else if $i == 6 {
+            .hotbar-container,
+            .actions-container  {
+                // .col-6
+                flex: 0 0 auto;
+                width: 50%;
+            }
+
+            #hotbar {
+                @include width(1)
+            }
+        }
+    }
+}

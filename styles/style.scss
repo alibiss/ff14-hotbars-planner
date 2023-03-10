@@ -1,4 +1,7 @@
 @use "variables";
+@use "categories";
+@use "jobs";
+@use "layouts";
 
 @mixin icon-variables {
     $ratio: variables.$resizeRatio;
@@ -25,12 +28,6 @@
 
 #actions {
     @include icon-variables;
-
-    .pve, .pvp {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 5px;
-    }
 }
 
 .item {
@@ -74,106 +71,5 @@
         width: var(--icon-bg-s);
         height: var(--icon-bg-s);
         margin-left: var(--icon-img-offset-x);
-    }
-}
-
-// Category changes
-
-body:not([data-category="1"]) #job-cat-1-items,
-body:not([data-category="2"]) #job-cat-2-items,
-body:not([data-category="3"]) #job-cat-3-items {
-    display: none;
-}
-body:not([data-category="1"]) #actions > .combat,
-body:not([data-category="2"]) #actions > .crafting,
-body:not([data-category="3"]) #actions > .gathering {
-    display: none;
-}
-
-// Job changes
-
-$tank: PLD WAR DRK GNB;
-$healer: WHM SCH AST SGE;
-$melee: MNK DRG NIN SAM RPR;
-$pranged: BRD MCH DNC;
-$mranged: BLM SMN RDM BLU;
-$crafter: CRP BSM ARM GSM LTW WVR ALC CUL;
-$gatherer: MIN BTN FSH;
-$job-groups: $tank $healer $melee $pranged $mranged $crafter $gatherer;
-
-body:not([data-job]) #actions > div {
-    display: none;
-}
-
-@each $group in $job-groups {
-    @each $job in $group {
-        body:not([data-job="#{$job}"]) {
-            #actions .#{$job} {
-                display: none;
-            }
-        }
-    }
-}
-
-// Layout changes
-
-@mixin width($rowItems) {
-    width: calc((var(--icon-bg-s) * $rowItems) + (.25rem * ($rowItems - 1)));
-}
-
-@for $i from 1 through 6 {
-    body[data-layout="#{$i}"] {
-        @if $i >= 1 and $i < 3 {
-            .hotbar-container,
-            .actions-container {
-                // .col-12
-                flex: 0 0 auto;
-                width: 100%;
-            }
-
-            @if $i == 1 {
-                #hotbar {
-                    @include width(12)
-                }
-            }
-            @else if $i == 2 {
-                #hotbar {
-                    @include width(6)
-                }
-            }
-        }
-        @else if $i >= 3 and $i < 6 {
-            .hotbar-container {
-                // .col-3
-                flex: 0 0 auto;
-                width: 25%;
-            }
-
-            .actions-container {
-                // .col-9
-                flex: 0 0 auto;
-                width: 75%;
-            }
-
-            @if $i == 3 {
-                @include width(4)
-            }
-            @else if $i == 4 {
-                @include width(3)
-            }
-            @else if $i == 5 {
-                @include width(2)
-            }
-        }
-        @else if $i == 6 {
-            .hotbar-container,
-            .actions-container  {
-                // .col-6
-                flex: 0 0 auto;
-                width: 50%;
-            }
-
-            @include width(1)
-        }
     }
 }
