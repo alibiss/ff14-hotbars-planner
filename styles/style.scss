@@ -1,8 +1,9 @@
 @use "variables";
 
 @mixin icon-variables {
+    $ratio: variables.$resizeRatio;
     --icon-bg-s: var(--icon-size, 48px);
-    --icon-fg-s: calc(var(--icon-bg-s) * $resizeRatio);
+    --icon-fg-s: calc(var(--icon-bg-s) * #{$ratio});
     --icon-bg-b: calc((var(--icon-bg-s) * 5) / 48);
     --icon-fg-offset-x: calc(-1 * ((var(--icon-fg-s) * 4) / 56));
     --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
