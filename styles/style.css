@@ -179,7 +179,7 @@ body:not([data-job=LTW]) #actions .LTW {
   display: none;
 }
 
-body:not([data-job=WVE]) #actions .WVE {
+body:not([data-job=WVR]) #actions .WVR {
   display: none;
 }
 
