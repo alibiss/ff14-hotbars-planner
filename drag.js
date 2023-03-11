@@ -54,7 +54,7 @@
     let parentOffspring = [];
 
     // 1. Make parents spawn a draggable clone
-    const items = document.getElementById("list").querySelectorAll(".item");
+    const items = document.getElementById("actions").querySelectorAll(".item");
     items.forEach(item => item.addEventListener("mousedown", startDrag, true));
 
     // 2. Stop dragging when mouse button is released

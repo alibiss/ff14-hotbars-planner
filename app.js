@@ -11,7 +11,7 @@
         actions.innerHTML = data;
         let script = document.createElement("script");
         script.src = "drag.js";
-        //actions.appendChild(script);
+        actions.appendChild(script);
     });
 
     const categories = document.getElementById("categories");
