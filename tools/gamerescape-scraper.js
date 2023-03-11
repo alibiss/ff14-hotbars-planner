@@ -17,7 +17,7 @@ import * as fs from 'fs';
 let database = {};
 
 new Promise(parsedDb => {
-    fs.readFile("./jobs.json", "utf-8", (err, data) => {
+    fs.readFile("/dist/jobs-min.json", "utf-8", (err, data) => {
         parsedDb(Object.assign(database, JSON.parse(data)));
     })
 })
@@ -64,7 +64,7 @@ new Promise(parsedDb => {
 
                                     // Init destination if it doesn't exist already
                                     const mode = /\(PvP\)$/.test(filename) ? "pvp" : "pve";
-                                    const destination = `../img/actions/${job.code}/${mode}`;
+                                    const destination = `/img/actions/${job.code}/${mode}`;
                                     fs.existsSync(destination) || fs.mkdirSync(destination, { recursive: true });
 
                                     // Get rid of redundant tags like (PvP) or (Carpenter) in the filename

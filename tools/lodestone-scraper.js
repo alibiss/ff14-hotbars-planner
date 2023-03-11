@@ -105,8 +105,8 @@ new Promise(allSettled => {
 .then(() => {
     console.log("All done!");
     //console.log(jobs)
-    fs.writeFileSync("../dist/jobs.json", JSON.stringify(jobs));
-    fs.writeFileSync("./jobs.json", JSON.stringify(jobs, null, 2));
+    fs.writeFileSync("/dist/jobs-min.json", JSON.stringify(jobs));
+    fs.writeFileSync("/src/jobs.json", JSON.stringify(jobs, null, 2));
 })
 
 function arrayPager(array, amount) {
