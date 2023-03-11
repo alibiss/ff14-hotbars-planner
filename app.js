@@ -34,27 +34,6 @@
         })
     });
 
-    const layouts = document.getElementById("layouts");
-    layouts.querySelectorAll("input").forEach(layout => {
-        layout.addEventListener("change", (e) => { 
-            document.body.setAttribute("data-layout", e.target.value);
-         })
-    });
-
-    const macroModal = document.getElementById("macro"),
-        macro = macroModal.querySelector("textarea");
-    macroModal.addEventListener("shown.bs.modal", () => {
-        let output = "";
-        const hotbar = document.getElementById("hotbar");
-        hotbar.querySelectorAll("[data-slot]").forEach((slot) => {
-            if ( slot.children.length < 1 ) return;
-            const action = slot.querySelector(".item.child").getAttribute("data-action");
-            output += `/ac ${action}\n`;
-        });
-        macro.value = output;
-        macro.focus();
-    });
-
     function initJobActions(job) {
         const parentNode = actions.querySelector(`[data-job="${job}"]`);
         if ( parentNode.querySelector("img").hasAttribute("src") ) return;
@@ -66,4 +45,50 @@
             icon.src = `./img/actions/${job}/${mode}/${actionContainer.getAttribute("data-skill")}.png`;
         });
     };
+
+    const layouts = document.getElementById("layouts");
+    layouts.querySelectorAll("input").forEach(layout => {
+        layout.addEventListener("change", (e) => { 
+            document.body.setAttribute("data-layout", e.target.value);
+         })
+    });
+
+    const macroExport = document.getElementById("macro-export"),
+        macroModal = document.getElementById("macro"),
+        macro = macroModal.querySelector("textarea"),
+        pvpToggle = document.getElementById("hotbarsPvPmode");
+    
+    macroExport.addEventListener("click", (e) => {
+        const output = pvpToggle.checked ? printMacro(true) : printMacro();
+        if ( output.length < 1 ) return;
+        macro.value = output;
+    })
+
+    macroModal.addEventListener("shown.bs.modal", () => {
+        macro.focus();
+    });
+
+    pvpToggle.addEventListener("change", (e) => {
+        const output = e.target.checked ? printMacro(true) : printMacro();
+        if ( output.length < 1 ) return;
+        macro.value = output;
+    })
+
+    function printMacro(isPvP) {
+        let output = "";
+        document.getElementById("hotbar").querySelectorAll("[data-slot]").forEach((node) => {
+            if ( node.children.length < 1 ) return;
+            const hotbar = {
+                type: isPvP === true ? "pvphotbar" : "hotbar",
+                number: node.parentElement.getAttribute("data-number")
+            };
+            const slot = {
+                action: node.querySelector(".item.child").getAttribute("data-action"),
+                number: node.getAttribute("data-slot")
+            };
+            output += `/${hotbar.type} "${slot.action}" ${hotbar.number} ${slot.number}\n`;
+        });
+
+        return output
+    }
 })()
