@@ -92,11 +92,10 @@
         const hotbarNodes = [...document.querySelectorAll(".hotbars-container [data-hotbar]")];
         const hotbars = options.reverse === true ? [...hotbarNodes].slice().reverse() : hotbarNodes;
 
-        hotbars.forEach((container, i) => {
+        hotbars.forEach((container, i, list) => {
             const slots = container.querySelectorAll("[data-slot]");
             if ( [...slots].every((slot) => slot.children.length < 1) ) return;
 
-            if ( i > 0 ) output += "\n";
             output += `/echo Start of macro ${i + 1}\n`;
 
             slots.forEach((node) => {
@@ -110,7 +109,9 @@
                     number: node.getAttribute("data-slot")
                 };
                 output += `/${hotbar.type} action "${slot.action}" ${hotbar.number} ${slot.number}\n`;
-            })
+            });
+
+            if ( (i + 1) < list.length ) output += "\n";
         });
 
         return output
