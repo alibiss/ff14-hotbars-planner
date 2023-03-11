@@ -4,7 +4,7 @@ import jsb from 'js-beautify';
 const database = {};
 
 new Promise(parsedDb => {
-    fs.readFile("/dist/jobs-min.json", "utf-8", (err, data) => {
+    fs.readFile("./dist/jobs-min.json", "utf-8", (err, data) => {
         parsedDb(Object.assign(database, JSON.parse(data)));
     })
 })
@@ -36,5 +36,5 @@ new Promise(parsedDb => {
         output += "</div>"; // close category div
     });
 
-    fs.writeFileSync("/actions.html", jsb.html(output));
+    fs.writeFileSync("./actions.html", jsb.html(output));
 })
