@@ -42,7 +42,7 @@
             const actionContainer = icon.parentNode;
             const modeContainer = actionContainer.parentNode;
             const mode = Array.from(modeContainer.classList).pop();
-            icon.src = `./img/actions/${job}/${mode}/${actionContainer.getAttribute("data-skill")}.png`;
+            icon.src = `./img/actions/${job}/${mode}/${actionContainer.getAttribute("data-action")}.png`;
         });
     };
 
@@ -60,7 +60,6 @@
     
     macroExport.addEventListener("click", (e) => {
         const output = pvpToggle.checked ? printMacro(true) : printMacro();
-        if ( output.length < 1 ) return;
         macro.value = output;
     })
 
@@ -70,7 +69,6 @@
 
     pvpToggle.addEventListener("change", (e) => {
         const output = e.target.checked ? printMacro(true) : printMacro();
-        if ( output.length < 1 ) return;
         macro.value = output;
     })
 
@@ -86,7 +84,7 @@
                 action: node.querySelector(".item.child").getAttribute("data-action"),
                 number: node.getAttribute("data-slot")
             };
-            output += `/${hotbar.type} "${slot.action}" ${hotbar.number} ${slot.number}\n`;
+            output += `/${hotbar.type} action "${slot.action}" ${hotbar.number} ${slot.number}\n`;
         });
 
         return output
