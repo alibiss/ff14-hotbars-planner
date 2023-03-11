@@ -1,12 +1,19 @@
 // Change containers width based on layout choosen
 
 @mixin width($rowItems) {
-    width: calc((var(--icon-bg-s) * $rowItems) + (.25rem * ($rowItems - 1)));
+    $containerSize: calc((var(--icon-bg-s) * $rowItems) + (.25rem * ($rowItems - 1)));
+    width: $containerSize;
+    @if $rowItems <= 6 {
+        margin: 0;
+    }
+    @else {
+        margin: 0 calc((100% - $containerSize) / 2);
+    }
 }
 
 @for $i from 1 through 6 {
     body[data-layout="#{$i}"] {
-        @if $i >= 1 and $i < 3 {
+        @if $i >= 1 and $i < 5 {
             .hotbars-container,
             .actions-container {
                 // .col-12
@@ -15,46 +22,27 @@
             }
 
             @if $i == 1 {
-                .hotbars-container > div {
+                .hotbars-container .container > div {
                     @include width(12)
                 }
             }
             @else if $i == 2 {
-                .hotbars-container > div {
+                .hotbars-container .container > div {
                     @include width(6)
                 }
             }
-        }
-        @else if $i >= 3 and $i < 6 {
-            .hotbars-container {
-                // .col-3
-                flex: 0 0 auto;
-                width: 25%;
-            }
-
-            .actions-container {
-                // .col-9
-                flex: 0 0 auto;
-                width: 75%;
-            }
-
-            @if $i == 3 {
-                .hotbars-container > div {
+            @else if $i == 3 {
+                .hotbars-container .container > div {
                     @include width(4)
                 }
             }
-            @else if $i == 4 {
-                .hotbars-container > div {
+            @else {
+                .hotbars-container .container > div {
                     @include width(3)
                 }
             }
-            @else if $i == 5 {
-                .hotbars-container > div {
-                    @include width(2)
-                }
-            }
         }
-        @else if $i == 6 {
+        @else {
             .hotbars-container,
             .actions-container  {
                 // .col-6
@@ -62,8 +50,15 @@
                 width: 50%;
             }
 
-            .hotbars-container > div {
-                @include width(1)
+            @if $i == 5 {
+                .hotbars-container .container > div {
+                    @include width(2)
+                }
+            }
+            @else {
+                .hotbars-container .container > div {
+                    @include width(1)
+                }
             }
         }
     }

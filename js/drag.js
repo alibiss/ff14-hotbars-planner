@@ -59,7 +59,7 @@
 
     // 2. Stop dragging when mouse button is released
     window.addEventListener("mouseup", releaseItem);
-    const hotbars = document.querySelectorAll(".hotbars-container > div");
+    const hotbars = document.querySelectorAll(".hotbars-container .container > div");
     hotbars.forEach((hotbar) => {
         const slots = hotbar.querySelectorAll("div");
         slots.forEach((slot) => {
