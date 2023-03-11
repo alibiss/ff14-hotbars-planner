@@ -42,9 +42,17 @@
     });
 
     const macroModal = document.getElementById("macro"),
-        macro = macroModal.querySelector("input");
+        macro = macroModal.querySelector("textarea");
     macroModal.addEventListener("shown.bs.modal", () => {
-        macro.focus()
+        let output = "";
+        const hotbar = document.getElementById("hotbar");
+        hotbar.querySelectorAll("[data-slot]").forEach((slot) => {
+            if ( slot.children.length < 1 ) return;
+            const action = slot.querySelector(".item.child").getAttribute("data-action");
+            output += `/ac ${action}\n`;
+        });
+        macro.value = output;
+        macro.focus();
     });
 
     function initJobActions(job) {
