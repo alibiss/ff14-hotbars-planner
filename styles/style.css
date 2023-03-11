@@ -205,6 +205,19 @@ img:not([src]) {
   visibility: hidden;
 }
 
+.hotbar-container,
+.actions-container {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.hotbar-container:focus,
+.actions-container:focus {
+  outline: none !important;
+}
+
 #hotbar {
   --icon-bg-s: var(--icon-size, 48px);
   --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);

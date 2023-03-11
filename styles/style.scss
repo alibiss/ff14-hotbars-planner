@@ -7,6 +7,17 @@ img:not([src]) {
     visibility: hidden;
 }
 
+.hotbar-container,
+.actions-container {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+
+    &:focus {
+        outline: none !important;
+    }
+}
+
 @mixin icon-variables {
     $ratio: variables.$resizeRatio;
     --icon-bg-s: var(--icon-size, 48px);
