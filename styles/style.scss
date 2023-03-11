@@ -3,21 +3,6 @@
 @use "jobs";
 @use "layouts";
 
-img:not([src]) {
-    visibility: hidden;
-}
-
-.hotbar-container,
-.actions-container {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    user-select: none;
-
-    &:focus {
-        outline: none !important;
-    }
-}
-
 @mixin icon-variables {
     $ratio: variables.$resizeRatio;
     --icon-bg-s: var(--icon-size, 48px);
@@ -28,9 +13,24 @@ img:not([src]) {
     --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
 }
 
-#hotbar {
+img:not([src]) {
+    visibility: hidden;
+}
+
+.hotbar-container,
+.actions-container {
     @include icon-variables;
 
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+
+    &:focus {
+        outline: none !important;
+    }
+}
+
+#hotbar {
     [data-slot] {
         width: var(--icon-bg-s);
         height: var(--icon-bg-s);
@@ -39,10 +39,6 @@ img:not([src]) {
         background-color: lightslategray;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     }
-}
-
-#actions {
-    @include icon-variables;
 }
 
 .item {

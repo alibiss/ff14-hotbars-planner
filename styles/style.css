@@ -207,6 +207,12 @@ img:not([src]) {
 
 .hotbar-container,
 .actions-container {
+  --icon-bg-s: var(--icon-size, 48px);
+  --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);
+  --icon-bg-b: calc((var(--icon-bg-s) * 5) / 48);
+  --icon-fg-offset-x: calc(-1 * ((var(--icon-fg-s) * 4) / 56));
+  --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
+  --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -218,29 +224,12 @@ img:not([src]) {
   outline: none !important;
 }
 
-#hotbar {
-  --icon-bg-s: var(--icon-size, 48px);
-  --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);
-  --icon-bg-b: calc((var(--icon-bg-s) * 5) / 48);
-  --icon-fg-offset-x: calc(-1 * ((var(--icon-fg-s) * 4) / 56));
-  --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
-  --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
-}
 #hotbar [data-slot] {
   width: var(--icon-bg-s);
   height: var(--icon-bg-s);
   border-radius: 5px;
   background-color: lightslategray;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-
-#actions {
-  --icon-bg-s: var(--icon-size, 48px);
-  --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);
-  --icon-bg-b: calc((var(--icon-bg-s) * 5) / 48);
-  --icon-fg-offset-x: calc(-1 * ((var(--icon-fg-s) * 4) / 56));
-  --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
-  --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
 }
 
 .item {
