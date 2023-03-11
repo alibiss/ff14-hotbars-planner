@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hotbars Planner</title>
         <link href="bootstrap.min.css" rel="stylesheet">
-        <link href="./styles.css" rel="stylesheet">
+        <link href="./styles/style.css" rel="stylesheet">
         <script src="./app.js" defer></script>
     </head>
-    <body data-category="1">
+    <body data-category="1" data-layout="1">
         <div class="container p-3">
             <div class="row">
                 <div class="col-lg-4 col-xs-12">
@@ -94,26 +94,30 @@
                       </div>
                 </div>
             </div>
-            <div class="row py-3">
-                <div class="col-12">
-                    <div id="hotbar" class="d-flex justify-content-center align-item-centers flex-wrap">
-                        <div data-slot="1"></div>
-                        <div data-slot="2"></div>
-                        <div data-slot="3"></div>
-                        <div data-slot="4"></div>
-                        <div data-slot="5"></div>
-                        <div data-slot="6"></div>
-                        <div data-slot="7"></div>
-                        <div data-slot="8"></div>
-                        <div data-slot="9"></div>
-                        <div data-slot="10"></div>
-                        <div data-slot="11"></div>
-                        <div data-slot="12"></div>
+            <div class="row d-flex justify-content-center py-5">
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col d-flex justify-content-center align-items-center hotbar-container">
+                            <div id="hotbar" class="d-flex flex-wrap gap-1">
+                                <div data-slot="1"></div>
+                                <div data-slot="2"></div>
+                                <div data-slot="3"></div>
+                                <div data-slot="4"></div>
+                                <div data-slot="5"></div>
+                                <div data-slot="6"></div>
+                                <div data-slot="7"></div>
+                                <div data-slot="8"></div>
+                                <div data-slot="9"></div>
+                                <div data-slot="10"></div>
+                                <div data-slot="11"></div>
+                                <div data-slot="12"></div>
+                            </div>
+                            <div id="dragged-item"></div>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center py-5 actions-container">
+                            <div id="actions"></div>
+                        </div>
                     </div>
-                    <div id="dragged-item"></div>
-                </div>
-                <div class="col py-3">
-                    <div id="actions"></div>
                 </div>
             </div>
         </div>
