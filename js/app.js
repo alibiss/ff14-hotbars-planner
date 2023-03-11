@@ -1,6 +1,6 @@
 (() => {
     let database = {};
-    fetch("/src/jobs-min.json", { mode: "no-cors" })
+    fetch("/dist/jobs-min.json", { mode: "no-cors" })
     .then(res => res.json())
     .then(data => Object.assign(database, data));
 
