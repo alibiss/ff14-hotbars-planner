@@ -143,7 +143,7 @@ body[data-layout="1"] .actions-container {
   flex: 0 0 auto;
   width: 100%;
 }
-body[data-layout="1"] #hotbar {
+body[data-layout="1"] .hotbar-container > div {
   width: calc(var(--icon-bg-s) * 12 + 2.75rem);
 }
 
@@ -152,7 +152,7 @@ body[data-layout="2"] .actions-container {
   flex: 0 0 auto;
   width: 100%;
 }
-body[data-layout="2"] #hotbar {
+body[data-layout="2"] .hotbar-container > div {
   width: calc(var(--icon-bg-s) * 6 + 1.25rem);
 }
 
@@ -164,7 +164,7 @@ body[data-layout="3"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
 }
-body[data-layout="3"] #hotbar {
+body[data-layout="3"] .hotbar-container > div {
   width: calc(var(--icon-bg-s) * 4 + 0.75rem);
 }
 
@@ -176,7 +176,7 @@ body[data-layout="4"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
 }
-body[data-layout="4"] #hotbar {
+body[data-layout="4"] .hotbar-container > div {
   width: calc(var(--icon-bg-s) * 3 + 0.5rem);
 }
 
@@ -188,7 +188,7 @@ body[data-layout="5"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
 }
-body[data-layout="5"] #hotbar {
+body[data-layout="5"] .hotbar-container > div {
   width: calc(var(--icon-bg-s) * 2 + 0.25rem);
 }
 
@@ -197,7 +197,7 @@ body[data-layout="6"] .actions-container {
   flex: 0 0 auto;
   width: 50%;
 }
-body[data-layout="6"] #hotbar {
+body[data-layout="6"] .hotbar-container > div {
   width: calc(var(--icon-bg-s) * 1 + 0rem);
 }
 
@@ -224,7 +224,7 @@ img:not([src]) {
   outline: none !important;
 }
 
-#hotbar [data-slot] {
+.hotbar-container > div [data-slot] {
   width: var(--icon-bg-s);
   height: var(--icon-bg-s);
   border-radius: 5px;

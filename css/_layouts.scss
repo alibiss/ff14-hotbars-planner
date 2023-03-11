@@ -15,12 +15,12 @@
             }
 
             @if $i == 1 {
-                #hotbar {
+                .hotbar-container > div {
                     @include width(12)
                 }
             }
             @else if $i == 2 {
-                #hotbar {
+                .hotbar-container > div {
                     @include width(6)
                 }
             }
@@ -39,17 +39,17 @@
             }
 
             @if $i == 3 {
-                #hotbar {
+                .hotbar-container > div {
                     @include width(4)
                 }
             }
             @else if $i == 4 {
-                #hotbar {
+                .hotbar-container > div {
                     @include width(3)
                 }
             }
             @else if $i == 5 {
-                #hotbar {
+                .hotbar-container > div {
                     @include width(2)
                 }
             }
@@ -62,7 +62,7 @@
                 width: 50%;
             }
 
-            #hotbar {
+            .hotbar-container > div {
                 @include width(1)
             }
         }

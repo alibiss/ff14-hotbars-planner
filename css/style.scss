@@ -30,7 +30,7 @@ img:not([src]) {
     }
 }
 
-#hotbar {
+.hotbar-container > div {
     [data-slot] {
         width: var(--icon-bg-s);
         height: var(--icon-bg-s);
