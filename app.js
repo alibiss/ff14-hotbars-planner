@@ -30,33 +30,14 @@
         job.addEventListener("change", (e) => {
             if ( e.target.value.length < 1 ) return;
             document.body.setAttribute("data-job", e.target.value);
-            initJobicons(e.target.value);
+            initJobActions(e.target.value);
         })
     });
 
     const layouts = document.getElementById("layouts");
     layouts.querySelectorAll("input").forEach(layout => {
         layout.addEventListener("change", (e) => { 
-            const hotbarContainer = document.getElementById("hotbar").parentNode,
-                actionsContainer = hotbarContainer.nextElementSibling,
-                regex = /\bcol(?:(?:-.+?)+)?\b/g;
-            switch(e.target.value) {
-                case "1":
-                    hotbarContainer.className = hotbarContainer.className.replace(regex, "col-12");
-                    actionsContainer.className = actionsContainer.className.replace(regex, "col");
-                    break;
-                case "2":
-                case "3":
-                case "4":
-                case "5":
-                    hotbarContainer.className = hotbarContainer.className.replace(regex, "col-4");
-                    actionsContainer.className = actionsContainer.className.replace(regex, "col-8");
-                    break;
-                case "6":
-                    hotbarContainer.className = hotbarContainer.className.replace(regex, "col-2");
-                    actionsContainer.className = actionsContainer.className.replace(regex, "col-10");
-                    break;     
-            }
+            document.body.setAttribute("data-layout", e.target.value);
          })
     });
 
@@ -66,14 +47,15 @@
         macro.focus()
     });
 
-    function initJobicons(job) {
-        const parentNode = actions.querySelector(`[class="${job}"]`);
+    function initJobActions(job) {
+        const parentNode = actions.querySelector(`[data-job="${job}"]`);
         if ( parentNode.querySelector("img").hasAttribute("src") ) return;
     
         parentNode.querySelectorAll(".item > img").forEach(icon => {
             const actionContainer = icon.parentNode;
             const modeContainer = actionContainer.parentNode;
-            icon.src = `./img/actions/${job}/${modeContainer.className}/${actionContainer.getAttribute("data-skill")}.png`;
+            const mode = Array.from(modeContainer.classList).pop();
+            icon.src = `./img/actions/${job}/${mode}/${actionContainer.getAttribute("data-skill")}.png`;
         });
     };
 })()
