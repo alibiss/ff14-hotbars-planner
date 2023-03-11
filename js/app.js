@@ -40,26 +40,31 @@
          })
     });
 
+    const exportOptions = { pvp: false, reverse: false };
     const macroExport = document.getElementById("macro-export"),
         macroModal = document.getElementById("macro"),
-        macro = macroModal.querySelector("textarea"),
-        pvpToggle = document.getElementById("hotbarsPvPmode"),
-        copyButton = document.getElementById("toClipboard");
-    
+        macro = macroModal.querySelector("textarea");
     macroExport.addEventListener("click", (e) => {
-        const output = pvpToggle.checked ? printMacro(true) : printMacro();
+        const output = printMacro();
         macro.value = output;
     });
-
     macroModal.addEventListener("shown.bs.modal", () => {
         macro.focus();
     });
 
+    const pvpToggle = document.getElementById("hotbarsPvPmode");
     pvpToggle.addEventListener("change", (e) => {
-        const output = e.target.checked ? printMacro(true) : printMacro();
-        macro.value = output;
+        exportOptions.pvp = e.target.checked;
+        macro.value = printMacro();
     });
 
+    const reverseOrder = document.getElementById("hotbarsReverse");
+    reverseOrder.addEventListener("change", (e) => {
+        exportOptions.reverse = e.target.checked;
+        macro.value = printMacro();
+    })
+
+    const copyButton = document.getElementById("toClipboard");
     copyButton.addEventListener("click", (e) => {
         const textarea = document.getElementById("macro").querySelector("textarea");
 
@@ -79,17 +84,20 @@
         tooltip.show();
     })
 
-    function printMacro(isPvP) {
+    function printMacro() {
         let output = "";
+        const options = exportOptions;
 
-        const hotbars = document.querySelectorAll(".hotbar-container > div");
-        hotbars.forEach((container) => {
+        const hotbarNodes = [...document.querySelectorAll(".hotbars-container > div")].filter((node) => !node.id);
+        const hotbars = options.reverse === true ? [...hotbarNodes].slice().reverse() : hotbarNodes;
+
+        hotbars.forEach((container, i) => {
             const slots = container.querySelectorAll("[data-slot]");
             slots.forEach((node) => {
                 if ( node.children.length < 1 ) return;
                 const hotbar = {
-                    type: isPvP === true ? "pvphotbar" : "hotbar",
-                    number: node.parentElement.getAttribute("data-hotbar")
+                    type: options.pvp === true ? "pvphotbar" : "hotbar",
+                    number: (i + 1)
                 };
                 const slot = {
                     action: node.querySelector(".item.child").getAttribute("data-action"),
