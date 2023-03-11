@@ -156,9 +156,6 @@ body[data-layout="2"] #hotbar {
   width: calc(var(--icon-bg-s) * 6 + 1.25rem);
 }
 
-body[data-layout="3"] {
-  width: calc(var(--icon-bg-s) * 4 + 0.75rem);
-}
 body[data-layout="3"] .hotbar-container {
   flex: 0 0 auto;
   width: 25%;
@@ -167,10 +164,10 @@ body[data-layout="3"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
 }
-
-body[data-layout="4"] {
-  width: calc(var(--icon-bg-s) * 3 + 0.5rem);
+body[data-layout="3"] #hotbar {
+  width: calc(var(--icon-bg-s) * 4 + 0.75rem);
 }
+
 body[data-layout="4"] .hotbar-container {
   flex: 0 0 auto;
   width: 25%;
@@ -179,10 +176,10 @@ body[data-layout="4"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
 }
-
-body[data-layout="5"] {
-  width: calc(var(--icon-bg-s) * 2 + 0.25rem);
+body[data-layout="4"] #hotbar {
+  width: calc(var(--icon-bg-s) * 3 + 0.5rem);
 }
+
 body[data-layout="5"] .hotbar-container {
   flex: 0 0 auto;
   width: 25%;
@@ -190,6 +187,9 @@ body[data-layout="5"] .hotbar-container {
 body[data-layout="5"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
+}
+body[data-layout="5"] #hotbar {
+  width: calc(var(--icon-bg-s) * 2 + 0.25rem);
 }
 
 body[data-layout="6"] .hotbar-container,
