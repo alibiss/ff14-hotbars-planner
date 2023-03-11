@@ -138,25 +138,25 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
   display: none !important;
 }
 
-body[data-layout="1"] .hotbar-container,
+body[data-layout="1"] .hotbars-container,
 body[data-layout="1"] .actions-container {
   flex: 0 0 auto;
   width: 100%;
 }
-body[data-layout="1"] .hotbar-container > div {
+body[data-layout="1"] .hotbars-container > div {
   width: calc(var(--icon-bg-s) * 12 + 2.75rem);
 }
 
-body[data-layout="2"] .hotbar-container,
+body[data-layout="2"] .hotbars-container,
 body[data-layout="2"] .actions-container {
   flex: 0 0 auto;
   width: 100%;
 }
-body[data-layout="2"] .hotbar-container > div {
+body[data-layout="2"] .hotbars-container > div {
   width: calc(var(--icon-bg-s) * 6 + 1.25rem);
 }
 
-body[data-layout="3"] .hotbar-container {
+body[data-layout="3"] .hotbars-container {
   flex: 0 0 auto;
   width: 25%;
 }
@@ -164,11 +164,11 @@ body[data-layout="3"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
 }
-body[data-layout="3"] .hotbar-container > div {
+body[data-layout="3"] .hotbars-container > div {
   width: calc(var(--icon-bg-s) * 4 + 0.75rem);
 }
 
-body[data-layout="4"] .hotbar-container {
+body[data-layout="4"] .hotbars-container {
   flex: 0 0 auto;
   width: 25%;
 }
@@ -176,11 +176,11 @@ body[data-layout="4"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
 }
-body[data-layout="4"] .hotbar-container > div {
+body[data-layout="4"] .hotbars-container > div {
   width: calc(var(--icon-bg-s) * 3 + 0.5rem);
 }
 
-body[data-layout="5"] .hotbar-container {
+body[data-layout="5"] .hotbars-container {
   flex: 0 0 auto;
   width: 25%;
 }
@@ -188,16 +188,16 @@ body[data-layout="5"] .actions-container {
   flex: 0 0 auto;
   width: 75%;
 }
-body[data-layout="5"] .hotbar-container > div {
+body[data-layout="5"] .hotbars-container > div {
   width: calc(var(--icon-bg-s) * 2 + 0.25rem);
 }
 
-body[data-layout="6"] .hotbar-container,
+body[data-layout="6"] .hotbars-container,
 body[data-layout="6"] .actions-container {
   flex: 0 0 auto;
   width: 50%;
 }
-body[data-layout="6"] .hotbar-container > div {
+body[data-layout="6"] .hotbars-container > div {
   width: calc(var(--icon-bg-s) * 1 + 0rem);
 }
 
@@ -205,7 +205,7 @@ img:not([src]) {
   visibility: hidden;
 }
 
-.hotbar-container,
+.hotbars-container,
 .actions-container {
   --icon-bg-s: var(--icon-size, 48px);
   --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);
@@ -219,12 +219,12 @@ img:not([src]) {
      -moz-user-select: none;
           user-select: none;
 }
-.hotbar-container:focus,
+.hotbars-container:focus,
 .actions-container:focus {
   outline: none !important;
 }
 
-.hotbar-container > div [data-slot] {
+.hotbars-container > div [data-slot] {
   width: var(--icon-bg-s);
   height: var(--icon-bg-s);
   border-radius: 5px;

@@ -17,7 +17,7 @@ img:not([src]) {
     visibility: hidden;
 }
 
-.hotbar-container,
+.hotbars-container,
 .actions-container {
     @include icon-variables;
 
@@ -30,7 +30,7 @@ img:not([src]) {
     }
 }
 
-.hotbar-container > div {
+.hotbars-container > div {
     [data-slot] {
         width: var(--icon-bg-s);
         height: var(--icon-bg-s);

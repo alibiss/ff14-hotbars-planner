@@ -7,7 +7,7 @@
 @for $i from 1 through 6 {
     body[data-layout="#{$i}"] {
         @if $i >= 1 and $i < 3 {
-            .hotbar-container,
+            .hotbars-container,
             .actions-container {
                 // .col-12
                 flex: 0 0 auto;
@@ -15,18 +15,18 @@
             }
 
             @if $i == 1 {
-                .hotbar-container > div {
+                .hotbars-container > div {
                     @include width(12)
                 }
             }
             @else if $i == 2 {
-                .hotbar-container > div {
+                .hotbars-container > div {
                     @include width(6)
                 }
             }
         }
         @else if $i >= 3 and $i < 6 {
-            .hotbar-container {
+            .hotbars-container {
                 // .col-3
                 flex: 0 0 auto;
                 width: 25%;
@@ -39,30 +39,30 @@
             }
 
             @if $i == 3 {
-                .hotbar-container > div {
+                .hotbars-container > div {
                     @include width(4)
                 }
             }
             @else if $i == 4 {
-                .hotbar-container > div {
+                .hotbars-container > div {
                     @include width(3)
                 }
             }
             @else if $i == 5 {
-                .hotbar-container > div {
+                .hotbars-container > div {
                     @include width(2)
                 }
             }
         }
         @else if $i == 6 {
-            .hotbar-container,
+            .hotbars-container,
             .actions-container  {
                 // .col-6
                 flex: 0 0 auto;
                 width: 50%;
             }
 
-            .hotbar-container > div {
+            .hotbars-container > div {
                 @include width(1)
             }
         }
