@@ -1,5 +1,5 @@
 {
-  "name": "hotbars-planner",
+  "name": "hotbars-planner-build-tools",
   "version": "1.0.0",
   "main": "build.js",
   "scripts": {
