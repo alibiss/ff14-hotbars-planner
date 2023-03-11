@@ -265,4 +265,9 @@ img:not([src]) {
   width: var(--icon-bg-s);
   height: var(--icon-bg-s);
   margin-left: var(--icon-img-offset-x);
+}
+
+#macro textarea {
+  min-height: 20rem;
+  font-family: monospace;
 }/*# sourceMappingURL=style.css.map */

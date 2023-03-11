@@ -84,3 +84,9 @@ img:not([src]) {
         margin-left: var(--icon-img-offset-x);
     }
 }
+
+#macro textarea {
+    min-height: 20rem;
+
+    font-family: monospace;
+}
