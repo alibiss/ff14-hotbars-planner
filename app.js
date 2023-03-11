@@ -56,12 +56,13 @@
     const macroExport = document.getElementById("macro-export"),
         macroModal = document.getElementById("macro"),
         macro = macroModal.querySelector("textarea"),
-        pvpToggle = document.getElementById("hotbarsPvPmode");
+        pvpToggle = document.getElementById("hotbarsPvPmode"),
+        copyButton = document.getElementById("toClipboard");
     
     macroExport.addEventListener("click", (e) => {
         const output = pvpToggle.checked ? printMacro(true) : printMacro();
         macro.value = output;
-    })
+    });
 
     macroModal.addEventListener("shown.bs.modal", () => {
         macro.focus();
@@ -70,6 +71,25 @@
     pvpToggle.addEventListener("change", (e) => {
         const output = e.target.checked ? printMacro(true) : printMacro();
         macro.value = output;
+    });
+
+    copyButton.addEventListener("click", (e) => {
+        const textarea = document.getElementById("macro").querySelector("textarea");
+
+        // Select the text field
+        textarea.select();
+        textarea.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(textarea.value);
+
+        // Show tooltip
+        const tooltip = new bootstrap.Tooltip(e.target, {
+            placement: "left",
+            title: "Copied to cliboard!",
+            trigger: "manual"
+        });
+        tooltip.show();
     })
 
     function printMacro(isPvP) {
