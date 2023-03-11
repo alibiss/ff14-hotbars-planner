@@ -1,16 +1,16 @@
 (() => {
     let database = {};
-    fetch("./dist/jobs.json", { mode: "no-cors" })
+    fetch("/src/jobs-min.json", { mode: "no-cors" })
     .then(res => res.json())
     .then(data => Object.assign(database, data));
 
     const actions = document.getElementById("actions");
-    fetch("./dist/actions")
+    fetch("/actions.html")
     .then(res => res.text())
     .then(data => {
         actions.innerHTML = data;
         let script = document.createElement("script");
-        script.src = "drag.js";
+        script.src = "/js/drag.js";
         actions.appendChild(script);
     });
 
