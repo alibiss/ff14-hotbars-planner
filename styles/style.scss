@@ -3,6 +3,10 @@
 @use "jobs";
 @use "layouts";
 
+img:not([src]) {
+    visibility: hidden;
+}
+
 @mixin icon-variables {
     $ratio: variables.$resizeRatio;
     --icon-bg-s: var(--icon-size, 48px);

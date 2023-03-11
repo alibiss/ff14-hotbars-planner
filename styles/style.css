@@ -201,6 +201,10 @@ body[data-layout="6"] #hotbar {
   width: calc(var(--icon-bg-s) * 1 + 0rem);
 }
 
+img:not([src]) {
+  visibility: hidden;
+}
+
 #hotbar {
   --icon-bg-s: var(--icon-size, 48px);
   --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);
