@@ -10,7 +10,7 @@
     </head>
     <body data-category="1" data-layout="1">
         <div class="container p-3">
-            <div class="row">
+            <div class="row topbar">
                 <div class="col-lg-4 col-xs-12">
                     <div class="btn-group d-flex" id="categories" role="group" aria-label="Job category filters">
                         <input type="radio" class="btn-check" name="job-cat" id="job-cat-1" value="1" autocomplete="off" checked>
@@ -94,9 +94,9 @@
                       </div>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center py-5">
-                <div class="col hotbars-container d-flex flex-wrap justify-content-center align-items-center">
-                    <div class="container d-flex flex-wrap gap-3 justify-content-center align-items-center">
+            <div class="row py-5 content">
+                <div class="col d-flex flex-wrap align-items-center">
+                    <div class="hotbars-container">
                         <div class="d-flex flex-wrap gap-1" data-hotbar="1">
                             <div data-slot="1"></div>
                             <div data-slot="2"></div>
@@ -141,9 +141,9 @@
                         </div>
                         <div id="dragged-item"></div>
                     </div>
-                </div>
-                <div class="col d-flex justify-content-center align-items-center py-5 actions-container">
-                    <div id="actions"></div>
+                    <div class="actions-container">
+                        <div id="actions"></div>
+                    </div>
                 </div>
             </div>
         </div>

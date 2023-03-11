@@ -88,7 +88,7 @@
         let output = "";
         const options = exportOptions;
 
-        const hotbarNodes = [...document.querySelectorAll(".hotbars-container .container > div")].filter((node) => !node.id);
+        const hotbarNodes = [...document.querySelectorAll(".hotbars-container [data-hotbar]")];
         const hotbars = options.reverse === true ? [...hotbarNodes].slice().reverse() : hotbarNodes;
 
         hotbars.forEach((container, i) => {

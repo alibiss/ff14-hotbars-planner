@@ -21,6 +21,9 @@ img:not([src]) {
 .actions-container {
     @include icon-variables;
 
+    display: flex;
+    flex-wrap: wrap;
+
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     user-select: none;
@@ -30,7 +33,9 @@ img:not([src]) {
     }
 }
 
-.hotbars-container > div {
+.hotbars-container {
+    gap: calc(.25rem * 3);
+
     [data-slot] {
         width: var(--icon-bg-s);
         height: var(--icon-bg-s);
