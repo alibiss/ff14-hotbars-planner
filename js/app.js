@@ -30,21 +30,8 @@
         job.addEventListener("change", (e) => {
             if ( e.target.value.length < 1 ) return;
             document.body.setAttribute("data-job", e.target.value);
-            initJobActions(e.target.value);
         })
     });
-
-    function initJobActions(job) {
-        const parentNode = actions.querySelector(`[data-job="${job}"]`);
-        if ( parentNode.querySelector("img").hasAttribute("src") ) return;
-    
-        parentNode.querySelectorAll(".item > img").forEach(icon => {
-            const actionContainer = icon.parentNode;
-            const modeContainer = actionContainer.parentNode;
-            const mode = Array.from(modeContainer.classList).pop();
-            icon.src = `./img/actions/${job}/${mode}/${actionContainer.getAttribute("data-action")}.png`;
-        });
-    };
 
     const layouts = document.getElementById("layouts");
     layouts.querySelectorAll("input").forEach(layout => {
