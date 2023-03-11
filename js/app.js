@@ -50,6 +50,7 @@
     });
     macroModal.addEventListener("shown.bs.modal", () => {
         macro.focus();
+        if ( macro.value.length < 1 ) macro.placeholder = macro.getAttribute("value");
     });
 
     const pvpToggle = document.getElementById("hotbarsPvPmode");
