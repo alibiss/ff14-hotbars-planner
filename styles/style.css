@@ -15,127 +15,127 @@ body:not([data-job]) #actions > div {
 }
 
 body:not([data-job=PLD]) #actions .PLD {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=WAR]) #actions .WAR {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=DRK]) #actions .DRK {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=GNB]) #actions .GNB {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=WHM]) #actions .WHM {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=SCH]) #actions .SCH {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=AST]) #actions .AST {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=SGE]) #actions .SGE {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=MNK]) #actions .MNK {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=DRG]) #actions .DRG {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=NIN]) #actions .NIN {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=SAM]) #actions .SAM {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=RPR]) #actions .RPR {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=BRD]) #actions .BRD {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=MCH]) #actions .MCH {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=DNC]) #actions .DNC {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=BLM]) #actions .BLM {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=SMN]) #actions .SMN {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=RDM]) #actions .RDM {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=BLU]) #actions .BLU {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=CRP]) #actions .CRP {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=BSM]) #actions .BSM {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=ARM]) #actions .ARM {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=GSM]) #actions .GSM {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=LTW]) #actions .LTW {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=WVR]) #actions .WVR {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=ALC]) #actions .ALC {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=CUL]) #actions .CUL {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=MIN]) #actions .MIN {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=BTN]) #actions .BTN {
-  display: none;
+  display: none !important;
 }
 
 body:not([data-job=FSH]) #actions .FSH {
-  display: none;
+  display: none !important;
 }
 
 body[data-layout="1"] .hotbar-container,

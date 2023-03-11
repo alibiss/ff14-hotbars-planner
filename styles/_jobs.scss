@@ -17,7 +17,7 @@ body:not([data-job]) #actions > div {
     @each $job in $group {
         body:not([data-job="#{$job}"]) {
             #actions .#{$job} {
-                display: none;
+                display: none !important;
             }
         }
     }
