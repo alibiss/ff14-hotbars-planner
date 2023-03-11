@@ -1,8 +1,12 @@
 // Change containers width based on layout choosen
 
-@mixin width($rowItems) {
+$layouts: 12 6 4 3 2 1;
+
+@mixin setWidth($rowItems) {
     $containerSize: calc((var(--icon-bg-s) * $rowItems) + (.25rem * ($rowItems - 1)));
+
     width: $containerSize;
+
     @if $rowItems <= 6 {
         margin: 0;
     }
@@ -11,55 +15,41 @@
     }
 }
 
+.hotbars-container,
+.actions-container {
+    justify-content: center;
+}
+
 @for $i from 1 through 6 {
+    $index: $i;
+    $items: nth($layouts, $i);
+
+    /* Layout #{$index} - #{$items} items per row */
+
     body[data-layout="#{$i}"] {
-        @if $i >= 1 and $i < 5 {
+        @if $i < 4 {
+
+            // .col-12
             .hotbars-container,
             .actions-container {
-                // .col-12
                 flex: 0 0 auto;
                 width: 100%;
             }
-
-            @if $i == 1 {
-                .hotbars-container .container > div {
-                    @include width(12)
-                }
-            }
-            @else if $i == 2 {
-                .hotbars-container .container > div {
-                    @include width(6)
-                }
-            }
-            @else if $i == 3 {
-                .hotbars-container .container > div {
-                    @include width(4)
-                }
-            }
-            @else {
-                .hotbars-container .container > div {
-                    @include width(3)
-                }
+            
+            .actions-container {
+                margin-top: calc(.25rem * 5);
             }
         }
         @else {
+            // .col-6
             .hotbars-container,
-            .actions-container  {
-                // .col-6
+            .actions-container {
                 flex: 0 0 auto;
                 width: 50%;
             }
-
-            @if $i == 5 {
-                .hotbars-container .container > div {
-                    @include width(2)
-                }
-            }
-            @else {
-                .hotbars-container .container > div {
-                    @include width(1)
-                }
-            }
+        }
+        .hotbars-container [data-hotbar] {
+            @include setWidth(nth($layouts, $i))
         }
     }
 }
