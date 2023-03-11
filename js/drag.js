@@ -58,9 +58,14 @@
     items.forEach(item => item.addEventListener("mousedown", startDrag, true));
 
     // 2. Stop dragging when mouse button is released
-    const hotbarSlots = document.getElementById("hotbar").querySelectorAll("div");
-    hotbarSlots.forEach(slot => slot.addEventListener("mouseup", releaseItem, true));
     window.addEventListener("mouseup", releaseItem);
+    const hotbars = document.querySelectorAll("[data-hotbar]");
+    hotbars.forEach((hotbar) => {
+        const slots = hotbar.querySelectorAll("div");
+        slots.forEach((slot) => {
+            slot.addEventListener("mouseup", releaseItem, true)
+        })
+    });
 
     // Functions
     function startDrag(e) { // on mousedown

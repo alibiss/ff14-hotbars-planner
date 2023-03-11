@@ -81,17 +81,22 @@
 
     function printMacro(isPvP) {
         let output = "";
-        document.getElementById("hotbar").querySelectorAll("[data-slot]").forEach((node) => {
-            if ( node.children.length < 1 ) return;
-            const hotbar = {
-                type: isPvP === true ? "pvphotbar" : "hotbar",
-                number: node.parentElement.getAttribute("data-number")
-            };
-            const slot = {
-                action: node.querySelector(".item.child").getAttribute("data-action"),
-                number: node.getAttribute("data-slot")
-            };
-            output += `/${hotbar.type} action "${slot.action}" ${hotbar.number} ${slot.number}\n`;
+
+        const hotbars = document.querySelectorAll(".hotbar-container > div");
+        hotbars.forEach((container) => {
+            const slots = container.querySelectorAll("[data-slot]");
+            slots.forEach((node) => {
+                if ( node.children.length < 1 ) return;
+                const hotbar = {
+                    type: isPvP === true ? "pvphotbar" : "hotbar",
+                    number: node.parentElement.getAttribute("data-hotbar")
+                };
+                const slot = {
+                    action: node.querySelector(".item.child").getAttribute("data-action"),
+                    number: node.getAttribute("data-slot")
+                };
+                output += `/${hotbar.type} action "${slot.action}" ${hotbar.number} ${slot.number}\n`;
+            })
         });
 
         return output
