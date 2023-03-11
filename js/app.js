@@ -93,6 +93,11 @@
 
         hotbars.forEach((container, i) => {
             const slots = container.querySelectorAll("[data-slot]");
+            if ( [...slots].every((slot) => slot.children.length < 1) ) return;
+
+            if ( i > 0 ) output += "\n";
+            output += `/echo Start of macro ${i + 1}\n`;
+
             slots.forEach((node) => {
                 if ( node.children.length < 1 ) return;
                 const hotbar = {
