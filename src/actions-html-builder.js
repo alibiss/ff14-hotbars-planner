@@ -16,10 +16,10 @@ new Promise(parsedDb => {
         output += `<div class="${category}">`;
         const jobs = Object.values(database[category]);
         jobs.forEach(job => { // PLD, WAR, DRK, etc..
-            output += `<div class="${job.code}">`;
+            output += `<div class="d-flex flex-wrap gap-3 ${job.code}">`;
             const modes = Object.keys(job.actions);
             modes.forEach(mode => { // pve, pvp
-                output += `<div class="${mode}">`;
+                output += `<div class="d-flex flex-wrap gap-1 ${mode}">`;
                 const types = Object.keys(job.actions[mode]);
                 types.forEach(type => { // jobActions, roleActions, etc..
                     // output += `<div class="${type}">`;
