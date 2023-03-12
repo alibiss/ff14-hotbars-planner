@@ -1,0 +1,51 @@
+// _components.scss
+
+.item {
+    position: relative;
+
+    width: var(--icon-bg-s);
+    height: var(--icon-bg-s);
+    border-radius: var(--icon-bg-b);
+
+    background: url("/img/actions/background.png") no-repeat;
+    background-size: var(--icon-bg-s) var(--icon-bg-s);
+    font-size: 0;
+
+    &.child {
+        z-index: 3;
+    }
+
+    &::before {
+        content: "";
+
+        position: absolute;
+        top: var(--icon-fg-offset-y);
+        left: var(--icon-fg-offset-x);
+        z-index: 2;
+    
+        display: block;
+        width: var(--icon-fg-s);
+        height: var(--icon-fg-s);
+        
+        background: url("/img/actions/foreground.png") no-repeat;
+        background-size: cover;
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        z-index: 1;
+    
+        display: inline-block;
+        width: var(--icon-bg-s);
+        height: var(--icon-bg-s);
+        margin-left: var(--icon-img-offset-x);
+    }
+}
+
+#macro textarea {
+    min-height: 20rem;
+
+    font-family: monospace;
+}

@@ -1,0 +1,31 @@
+// Variables
+
+$layouts: 12 6 4 3 2 1;
+$resizeRatio: calc(((56 * 100) / 48) / 100) !default;
+
+// Mixins
+
+@mixin iconCustomProperties {
+    $ratio: $resizeRatio;
+    --icon-bg-s: var(--icon-size, 48px);
+    --icon-fg-s: calc(var(--icon-bg-s) * #{$ratio});
+    --icon-bg-b: calc((var(--icon-bg-s) * 5) / 48);
+    --icon-fg-offset-x: calc(-1 * ((var(--icon-fg-s) * 4) / 56));
+    --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
+    --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
+}
+
+@mixin setHotbarWidth($rowItems) {
+    $containerSize: calc((var(--icon-bg-s) * $rowItems) + (.25rem * ($rowItems - 1)));
+
+    width: $containerSize;
+
+    @if $rowItems <= 6 {
+        // Side by side
+        margin: 0;
+    }
+    @else {
+        // 100% width
+        margin: 0 calc((100% - $containerSize) / 2);
+    }
+}
