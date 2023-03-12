@@ -92,7 +92,7 @@
         const hotbarNodes = [...document.querySelectorAll(".hotbars-container [data-hotbar]")];
         const hotbars = options.reverse === true ? [...hotbarNodes].slice().reverse() : hotbarNodes;
 
-        hotbars.forEach((container, i, list) => {
+        hotbars.forEach((container, i) => {
             const slots = container.querySelectorAll("[data-slot]");
             if ( [...slots].every((slot) => slot.children.length < 1) ) return;
 
@@ -100,6 +100,7 @@
 
             slots.forEach((node) => {
                 if ( node.children.length < 1 ) return;
+
                 const hotbar = {
                     type: options.pvp === true ? "pvphotbar" : "hotbar",
                     number: (i + 1)
@@ -111,9 +112,9 @@
                 output += `/${hotbar.type} action "${slot.action}" ${hotbar.number} ${slot.number}\n`;
             });
 
-            if ( (i + 1) < list.length ) output += "\n";
+            output += "\n";
         });
 
-        return output
+        return output.trim()
     }
 })()
