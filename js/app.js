@@ -8,7 +8,7 @@
     fetch("/actions.html")
     .then(res => res.text())
     .then(data => {
-        actions.innerHTML = data;
+        actions.innerHTML += data;
         let script = document.createElement("script");
         script.src = "/js/drag.js";
         actions.appendChild(script);
@@ -39,6 +39,8 @@
             document.body.setAttribute("data-layout", e.target.value);
          })
     });
+
+    // Macro Modal
 
     const exportOptions = { pvp: false, reverse: false };
     const macroExport = document.getElementById("macro-export"),
