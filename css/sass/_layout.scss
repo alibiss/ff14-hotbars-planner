@@ -48,7 +48,7 @@
     /* Layout #{$i} - #{$items} items per row */
 
     body[data-layout="#{$i}"] {
-        .hotbars-container [data-hotbar] {
+        .hotbars-container .hotbar {
             @include setHotbarWidth($items)
         }
     }

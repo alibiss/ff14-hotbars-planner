@@ -43,6 +43,12 @@
 }
 
 .hotbars-container {
+    .hotbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .25rem;
+    }
+
     [data-slot] {
         width: var(--icon-bg-s);
         height: var(--icon-bg-s);

@@ -6,7 +6,7 @@
         <title>Hotbars Planner</title>
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
-        <script src="/js/app.js" defer></script>
+        <script type="module" src="/js/app.js" defer></script>
     </head>
     <body data-category="1" data-layout="1" data-job="" data-job-mode="1">
         <div class="container p-3">
@@ -109,47 +109,59 @@
                 </div>
                 <div class="col">
                     <div class="hotbars-container">
-                        <div class="d-flex flex-wrap gap-1" data-hotbar="1">
-                            <div data-slot="1"></div>
-                            <div data-slot="2"></div>
-                            <div data-slot="3"></div>
-                            <div data-slot="4"></div>
-                            <div data-slot="5"></div>
-                            <div data-slot="6"></div>
-                            <div data-slot="7"></div>
-                            <div data-slot="8"></div>
-                            <div data-slot="9"></div>
-                            <div data-slot="10"></div>
-                            <div data-slot="11"></div>
-                            <div data-slot="12"></div>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Hotbar list control">
+                            <div class="btn-group me-2" role="group" aria-label="Hotbars">
+                                <button type="button" class="btn btn-outline-primary">1</button>
+                                <button type="button" class="btn btn-outline-primary">2</button>
+                                <button type="button" class="btn btn-outline-primary">3</button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Add new hotbar">
+                                <button type="button" class="btn btn-success" id="new-hotbar">+</button>
+                            </div>
                         </div>
-                        <div class="d-flex flex-wrap gap-1" data-hotbar="2">
-                            <div data-slot="1"></div>
-                            <div data-slot="2"></div>
-                            <div data-slot="3"></div>
-                            <div data-slot="4"></div>
-                            <div data-slot="5"></div>
-                            <div data-slot="6"></div>
-                            <div data-slot="7"></div>
-                            <div data-slot="8"></div>
-                            <div data-slot="9"></div>
-                            <div data-slot="10"></div>
-                            <div data-slot="11"></div>
-                            <div data-slot="12"></div>
-                        </div>
-                        <div class="d-flex flex-wrap gap-1" data-hotbar="3">
-                            <div data-slot="1"></div>
-                            <div data-slot="2"></div>
-                            <div data-slot="3"></div>
-                            <div data-slot="4"></div>
-                            <div data-slot="5"></div>
-                            <div data-slot="6"></div>
-                            <div data-slot="7"></div>
-                            <div data-slot="8"></div>
-                            <div data-slot="9"></div>
-                            <div data-slot="10"></div>
-                            <div data-slot="11"></div>
-                            <div data-slot="12"></div>
+                        <div class="container d-flex flex-wrap gap-3">
+                            <div class="hotbar">
+                                <div data-slot="1"></div>
+                                <div data-slot="2"></div>
+                                <div data-slot="3"></div>
+                                <div data-slot="4"></div>
+                                <div data-slot="5"></div>
+                                <div data-slot="6"></div>
+                                <div data-slot="7"></div>
+                                <div data-slot="8"></div>
+                                <div data-slot="9"></div>
+                                <div data-slot="10"></div>
+                                <div data-slot="11"></div>
+                                <div data-slot="12"></div>
+                            </div>
+                            <div class="hotbar">
+                                <div data-slot="1"></div>
+                                <div data-slot="2"></div>
+                                <div data-slot="3"></div>
+                                <div data-slot="4"></div>
+                                <div data-slot="5"></div>
+                                <div data-slot="6"></div>
+                                <div data-slot="7"></div>
+                                <div data-slot="8"></div>
+                                <div data-slot="9"></div>
+                                <div data-slot="10"></div>
+                                <div data-slot="11"></div>
+                                <div data-slot="12"></div>
+                            </div>
+                            <div class="hotbar">
+                                <div data-slot="1"></div>
+                                <div data-slot="2"></div>
+                                <div data-slot="3"></div>
+                                <div data-slot="4"></div>
+                                <div data-slot="5"></div>
+                                <div data-slot="6"></div>
+                                <div data-slot="7"></div>
+                                <div data-slot="8"></div>
+                                <div data-slot="9"></div>
+                                <div data-slot="10"></div>
+                                <div data-slot="11"></div>
+                                <div data-slot="12"></div>
+                            </div>
                         </div>
                         <div id="dragged-item"></div>
                     </div>
