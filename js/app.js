@@ -19,9 +19,23 @@
         category.addEventListener("change", (e) => {
             document.body.setAttribute("data-category", e.target.value);
 
+            // Disable PvP toggle when needed
+            switch(+e.target.value) {
+                case 1:
+                    PvpMode.removeAttribute("disabled");
+                    break;
+                default:
+                    PvpMode.setAttribute("disabled", true);
+            }
+
             // Reset job picker when changing category
-            document.body.removeAttribute("data-job");
+            document.body.setAttribute("data-job", "");
             jobPickers.querySelectorAll("select").forEach(picker => picker.value = 0);
+
+            // Reset mode picker when changing category
+            document.body.setAttribute("data-job-mode", 1);
+            PveMode.checked = true;
+            PvpMode.checked = false;
         })
     });
 
@@ -32,6 +46,12 @@
             document.body.setAttribute("data-job", e.target.value);
         })
     });
+
+    const PveMode = document.getElementById("actions-mode-pve"),
+        PvpMode = document.getElementById("actions-mode-pvp");
+    [PveMode, PvpMode].forEach(btn => btn.addEventListener("change", (e) => {
+        document.body.setAttribute("data-job-mode", e.target.value);
+    }))
 
     const layouts = document.getElementById("layouts");
     layouts.querySelectorAll("input").forEach(layout => {

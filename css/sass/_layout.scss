@@ -24,6 +24,11 @@
         flex-wrap: wrap;
     }
 
+    body:not([data-job-mode="1"]) & .pve,
+    body:not([data-job-mode="2"]) & .pvp {
+        display: none;
+    }
+
     @each $group in $job-groups {
         @each $job in $group {
             body:not([data-job="#{$job}"]) & {
@@ -32,10 +37,6 @@
                 }
             }
         }
-    }
-
-    body:not([data-job]) #actions > div {
-        display: none;
     }
 }
 

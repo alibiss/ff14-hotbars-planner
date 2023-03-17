@@ -35,6 +35,9 @@ body:not([data-category="3"]) #job-cat-3-items {
   display: flex;
   flex-wrap: wrap;
 }
+body:not([data-job-mode="1"]) .actions-container .pve, body:not([data-job-mode="2"]) .actions-container .pvp {
+  display: none;
+}
 body:not([data-job=PLD]) .actions-container [data-job=PLD] {
   display: none !important;
 }
@@ -127,9 +130,6 @@ body:not([data-job=BTN]) .actions-container [data-job=BTN] {
 }
 body:not([data-job=FSH]) .actions-container [data-job=FSH] {
   display: none !important;
-}
-.actions-container body:not([data-job]) #actions > div {
-  display: none;
 }
 
 /* Layout 1 - 12 items per row */
