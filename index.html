@@ -10,7 +10,7 @@
     </head>
     <body data-category="1" data-layout="1">
         <div class="container p-3">
-            <div class="row topbar">
+            <div class="row">
                 <div class="col-lg-4 col-xs-12">
                     <div class="btn-group d-flex" id="categories" role="group" aria-label="Job category filters">
                         <input type="radio" class="btn-check" name="job-cat" id="job-cat-1" value="1" autocomplete="off" checked>
@@ -94,8 +94,20 @@
                       </div>
                 </div>
             </div>
-            <div class="row py-5 content">
-                <div class="col d-flex flex-wrap align-items-center">
+            <div class="row py-5">
+                <div class="col">
+                    <div class="actions-container">
+                        <div class="btn-group d-flex w-75" role="group" aria-label="Toggle PvE/PvP modes">
+                            <input type="radio" class="btn-check" name="btnradio" id="actions-mode-pve" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="actions-mode-pve">PvE</label>
+                          
+                            <input type="radio" class="btn-check" name="btnradio" id="actions-mode-pvp" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="actions-mode-pvp">PvP</label>
+                        </div>
+                        <div id="actions"></div>
+                    </div>
+                </div>
+                <div class="col">
                     <div class="hotbars-container">
                         <div class="d-flex flex-wrap gap-1" data-hotbar="1">
                             <div data-slot="1"></div>
@@ -140,9 +152,6 @@
                             <div data-slot="12"></div>
                         </div>
                         <div id="dragged-item"></div>
-                    </div>
-                    <div class="actions-container">
-                        <div id="actions"></div>
                     </div>
                 </div>
             </div>

@@ -159,6 +159,11 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
   outline: none !important;
 }
 
+.actions-container .pve, .actions-container .pvp {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /* Layout 1 - 12 items per row */
 body[data-layout="1"] .hotbars-container [data-hotbar] {
   width: calc(var(--icon-bg-s) * 12 + 2.75rem);

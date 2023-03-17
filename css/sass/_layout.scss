@@ -18,6 +18,13 @@
     }
 }
 
+.actions-container {
+    .pve, .pvp {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
 // Set hotbars width based on layout picker
 
 @for $i from 1 through 6 {
