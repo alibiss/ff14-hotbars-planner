@@ -9,28 +9,3 @@
         }
     }
 }
-
-// Hide job containers if not matching the job in the job picker
-
-$tank: PLD WAR DRK GNB;
-$healer: WHM SCH AST SGE;
-$melee: MNK DRG NIN SAM RPR;
-$pranged: BRD MCH DNC;
-$mranged: BLM SMN RDM BLU;
-$crafter: CRP BSM ARM GSM LTW WVR ALC CUL;
-$gatherer: MIN BTN FSH;
-$job-groups: $tank $healer $melee $pranged $mranged $crafter $gatherer;
-
-body:not([data-job]) #actions > div {
-    display: none;
-}
-
-@each $group in $job-groups {
-    @each $job in $group {
-        body:not([data-job="#{$job}"]) {
-            #actions [data-job="#{$job}"] {
-                display: none !important;
-            }
-        }
-    }
-}

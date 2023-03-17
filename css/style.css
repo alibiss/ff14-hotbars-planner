@@ -10,134 +10,6 @@ body:not([data-category="3"]) #job-cat-3-items {
   display: none;
 }
 
-body:not([data-job]) #actions > div {
-  display: none;
-}
-
-body:not([data-job=PLD]) #actions [data-job=PLD] {
-  display: none !important;
-}
-
-body:not([data-job=WAR]) #actions [data-job=WAR] {
-  display: none !important;
-}
-
-body:not([data-job=DRK]) #actions [data-job=DRK] {
-  display: none !important;
-}
-
-body:not([data-job=GNB]) #actions [data-job=GNB] {
-  display: none !important;
-}
-
-body:not([data-job=WHM]) #actions [data-job=WHM] {
-  display: none !important;
-}
-
-body:not([data-job=SCH]) #actions [data-job=SCH] {
-  display: none !important;
-}
-
-body:not([data-job=AST]) #actions [data-job=AST] {
-  display: none !important;
-}
-
-body:not([data-job=SGE]) #actions [data-job=SGE] {
-  display: none !important;
-}
-
-body:not([data-job=MNK]) #actions [data-job=MNK] {
-  display: none !important;
-}
-
-body:not([data-job=DRG]) #actions [data-job=DRG] {
-  display: none !important;
-}
-
-body:not([data-job=NIN]) #actions [data-job=NIN] {
-  display: none !important;
-}
-
-body:not([data-job=SAM]) #actions [data-job=SAM] {
-  display: none !important;
-}
-
-body:not([data-job=RPR]) #actions [data-job=RPR] {
-  display: none !important;
-}
-
-body:not([data-job=BRD]) #actions [data-job=BRD] {
-  display: none !important;
-}
-
-body:not([data-job=MCH]) #actions [data-job=MCH] {
-  display: none !important;
-}
-
-body:not([data-job=DNC]) #actions [data-job=DNC] {
-  display: none !important;
-}
-
-body:not([data-job=BLM]) #actions [data-job=BLM] {
-  display: none !important;
-}
-
-body:not([data-job=SMN]) #actions [data-job=SMN] {
-  display: none !important;
-}
-
-body:not([data-job=RDM]) #actions [data-job=RDM] {
-  display: none !important;
-}
-
-body:not([data-job=BLU]) #actions [data-job=BLU] {
-  display: none !important;
-}
-
-body:not([data-job=CRP]) #actions [data-job=CRP] {
-  display: none !important;
-}
-
-body:not([data-job=BSM]) #actions [data-job=BSM] {
-  display: none !important;
-}
-
-body:not([data-job=ARM]) #actions [data-job=ARM] {
-  display: none !important;
-}
-
-body:not([data-job=GSM]) #actions [data-job=GSM] {
-  display: none !important;
-}
-
-body:not([data-job=LTW]) #actions [data-job=LTW] {
-  display: none !important;
-}
-
-body:not([data-job=WVR]) #actions [data-job=WVR] {
-  display: none !important;
-}
-
-body:not([data-job=ALC]) #actions [data-job=ALC] {
-  display: none !important;
-}
-
-body:not([data-job=CUL]) #actions [data-job=CUL] {
-  display: none !important;
-}
-
-body:not([data-job=MIN]) #actions [data-job=MIN] {
-  display: none !important;
-}
-
-body:not([data-job=BTN]) #actions [data-job=BTN] {
-  display: none !important;
-}
-
-body:not([data-job=FSH]) #actions [data-job=FSH] {
-  display: none !important;
-}
-
 .actions-container,
 .hotbars-container {
   --icon-bg-s: var(--icon-size, 48px);
@@ -162,6 +34,102 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
 .actions-container .pve, .actions-container .pvp {
   display: flex;
   flex-wrap: wrap;
+}
+body:not([data-job=PLD]) .actions-container [data-job=PLD] {
+  display: none !important;
+}
+body:not([data-job=WAR]) .actions-container [data-job=WAR] {
+  display: none !important;
+}
+body:not([data-job=DRK]) .actions-container [data-job=DRK] {
+  display: none !important;
+}
+body:not([data-job=GNB]) .actions-container [data-job=GNB] {
+  display: none !important;
+}
+body:not([data-job=WHM]) .actions-container [data-job=WHM] {
+  display: none !important;
+}
+body:not([data-job=SCH]) .actions-container [data-job=SCH] {
+  display: none !important;
+}
+body:not([data-job=AST]) .actions-container [data-job=AST] {
+  display: none !important;
+}
+body:not([data-job=SGE]) .actions-container [data-job=SGE] {
+  display: none !important;
+}
+body:not([data-job=MNK]) .actions-container [data-job=MNK] {
+  display: none !important;
+}
+body:not([data-job=DRG]) .actions-container [data-job=DRG] {
+  display: none !important;
+}
+body:not([data-job=NIN]) .actions-container [data-job=NIN] {
+  display: none !important;
+}
+body:not([data-job=SAM]) .actions-container [data-job=SAM] {
+  display: none !important;
+}
+body:not([data-job=RPR]) .actions-container [data-job=RPR] {
+  display: none !important;
+}
+body:not([data-job=BRD]) .actions-container [data-job=BRD] {
+  display: none !important;
+}
+body:not([data-job=MCH]) .actions-container [data-job=MCH] {
+  display: none !important;
+}
+body:not([data-job=DNC]) .actions-container [data-job=DNC] {
+  display: none !important;
+}
+body:not([data-job=BLM]) .actions-container [data-job=BLM] {
+  display: none !important;
+}
+body:not([data-job=SMN]) .actions-container [data-job=SMN] {
+  display: none !important;
+}
+body:not([data-job=RDM]) .actions-container [data-job=RDM] {
+  display: none !important;
+}
+body:not([data-job=BLU]) .actions-container [data-job=BLU] {
+  display: none !important;
+}
+body:not([data-job=CRP]) .actions-container [data-job=CRP] {
+  display: none !important;
+}
+body:not([data-job=BSM]) .actions-container [data-job=BSM] {
+  display: none !important;
+}
+body:not([data-job=ARM]) .actions-container [data-job=ARM] {
+  display: none !important;
+}
+body:not([data-job=GSM]) .actions-container [data-job=GSM] {
+  display: none !important;
+}
+body:not([data-job=LTW]) .actions-container [data-job=LTW] {
+  display: none !important;
+}
+body:not([data-job=WVR]) .actions-container [data-job=WVR] {
+  display: none !important;
+}
+body:not([data-job=ALC]) .actions-container [data-job=ALC] {
+  display: none !important;
+}
+body:not([data-job=CUL]) .actions-container [data-job=CUL] {
+  display: none !important;
+}
+body:not([data-job=MIN]) .actions-container [data-job=MIN] {
+  display: none !important;
+}
+body:not([data-job=BTN]) .actions-container [data-job=BTN] {
+  display: none !important;
+}
+body:not([data-job=FSH]) .actions-container [data-job=FSH] {
+  display: none !important;
+}
+.actions-container body:not([data-job]) #actions > div {
+  display: none;
 }
 
 /* Layout 1 - 12 items per row */

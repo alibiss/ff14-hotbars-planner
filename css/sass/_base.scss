@@ -3,6 +3,15 @@
 $layouts: 12 6 4 3 2 1;
 $resizeRatio: calc(((56 * 100) / 48) / 100) !default;
 
+$tank: PLD WAR DRK GNB;
+$healer: WHM SCH AST SGE;
+$melee: MNK DRG NIN SAM RPR;
+$pranged: BRD MCH DNC;
+$mranged: BLM SMN RDM BLU;
+$crafter: CRP BSM ARM GSM LTW WVR ALC CUL;
+$gatherer: MIN BTN FSH;
+$job-groups: $tank $healer $melee $pranged $mranged $crafter $gatherer;
+
 // Mixins
 
 @mixin iconCustomProperties {

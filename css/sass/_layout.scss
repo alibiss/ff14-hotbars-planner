@@ -23,6 +23,20 @@
         display: flex;
         flex-wrap: wrap;
     }
+
+    @each $group in $job-groups {
+        @each $job in $group {
+            body:not([data-job="#{$job}"]) & {
+                [data-job="#{$job}"] {
+                    display: none !important;
+                }
+            }
+        }
+    }
+
+    body:not([data-job]) #actions > div {
+        display: none;
+    }
 }
 
 // Set hotbars width based on layout picker
