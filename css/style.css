@@ -138,8 +138,8 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
   display: none !important;
 }
 
-.hotbars-container,
-.actions-container {
+.actions-container,
+.hotbars-container {
   --icon-bg-s: var(--icon-size, 48px);
   --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);
   --icon-bg-b: calc((var(--icon-bg-s) * 5) / 48);
@@ -149,29 +149,14 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 0.75rem;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
 }
-.hotbars-container:focus,
-.actions-container:focus {
+.actions-container:focus,
+.hotbars-container:focus {
   outline: none !important;
-}
-
-.hotbars-container {
-  gap: 0.75rem;
-}
-.hotbars-container [data-slot] {
-  width: var(--icon-bg-s);
-  height: var(--icon-bg-s);
-  border-radius: 5px;
-  background-color: lightslategray;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-.hotbars-container #dragged-item {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 /* Layout 1 - 12 items per row */
@@ -243,6 +228,19 @@ body[data-layout="6"] .hotbars-container [data-hotbar] {
   width: var(--icon-bg-s);
   height: var(--icon-bg-s);
   margin-left: var(--icon-img-offset-x);
+}
+
+.hotbars-container [data-slot] {
+  width: var(--icon-bg-s);
+  height: var(--icon-bg-s);
+  border-radius: 5px;
+  background-color: lightslategray;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.hotbars-container #dragged-item {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #macro textarea {
