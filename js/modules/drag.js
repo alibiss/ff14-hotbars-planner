@@ -158,4 +158,4 @@ function releaseAction(event) {
     window.removeEventListener("mousemove", moveAction);
 }
 
-export { initDragging, releaseAction }
+export { DraggedActions, initDragging, releaseAction }

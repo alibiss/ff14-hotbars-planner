@@ -48,9 +48,15 @@
 }
 
 .hotbars-container {
-    .btn-group[aria-label="Hotbars"] > button:hover {
+    .hotbar-controls button {
         --bs-btn-hover-bg: #e74c3c;
         --bs-btn-hover-border-color: #e74c3c;
+
+        @for $i from 1 through 10 {
+            &:nth-of-type(#{$i})::before {
+                content: '#{$i}';
+            }
+        }
     }
 
     .hotbar {

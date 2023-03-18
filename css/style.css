@@ -204,9 +204,39 @@ body:not([data-job-mode="1"]) .item.parent.pve, body:not([data-job-mode="2"]) .i
   margin-left: var(--icon-img-offset-x);
 }
 
-.hotbars-container .btn-group[aria-label=Hotbars] > button:hover {
+.hotbars-container .hotbar-controls button {
   --bs-btn-hover-bg: #e74c3c;
   --bs-btn-hover-border-color: #e74c3c;
+}
+.hotbars-container .hotbar-controls button:nth-of-type(1)::before {
+  content: "1";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(2)::before {
+  content: "2";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(3)::before {
+  content: "3";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(4)::before {
+  content: "4";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(5)::before {
+  content: "5";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(6)::before {
+  content: "6";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(7)::before {
+  content: "7";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(8)::before {
+  content: "8";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(9)::before {
+  content: "9";
+}
+.hotbars-container .hotbar-controls button:nth-of-type(10)::before {
+  content: "10";
 }
 .hotbars-container .hotbar {
   display: flex;
