@@ -204,6 +204,10 @@ body:not([data-job-mode="1"]) .item.parent.pve, body:not([data-job-mode="2"]) .i
   margin-left: var(--icon-img-offset-x);
 }
 
+.hotbars-container .btn-group[aria-label=Hotbars] > button:hover {
+  --bs-btn-hover-bg: #e74c3c;
+  --bs-btn-hover-border-color: #e74c3c;
+}
 .hotbars-container .hotbar {
   display: flex;
   flex-wrap: wrap;
