@@ -22,6 +22,7 @@
     .pve, .pvp {
         display: flex;
         flex-wrap: wrap;
+        gap: .25rem;
     }
 
     body:not([data-job-mode="1"]) & .pve,

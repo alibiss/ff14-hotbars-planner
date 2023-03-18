@@ -34,6 +34,7 @@ body:not([data-category="3"]) #job-cat-3-items {
 .actions-container .pve, .actions-container .pvp {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.25rem;
 }
 body:not([data-job-mode="1"]) .actions-container .pve, body:not([data-job-mode="2"]) .actions-container .pvp {
   display: none;
