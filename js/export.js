@@ -68,4 +68,4 @@ function print() {
     return output.trim()
 }
 
-export { print }
+export { print, macros }

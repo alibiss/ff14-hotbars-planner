@@ -1,4 +1,4 @@
-import { print } from "./modules/export.js";
+import { print, macros as textarea } from "./export.js";
 import { pve, pvp } from "./actions.js";
 
 const categories = document.getElementById("categories"),
@@ -14,11 +14,11 @@ menus.querySelectorAll("select").forEach(job => {
     job.addEventListener("change", changeJob)
 })
 
+macro.addEventListener("click", printMacro)
+
 layouts.querySelectorAll("input").forEach(layout => {
     layout.addEventListener("change", changeLayout)
 })
-
-macro.addEventListener("click", printMacro)
 
 function changeCategory(e) {
     document.body.setAttribute("data-category", e.target.value);
@@ -49,5 +49,5 @@ function changeLayout(e) {
 }
 
 function printMacro() {
-    macro.value = print();
+    textarea.value = print();
 }
