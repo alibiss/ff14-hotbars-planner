@@ -1,5 +1,5 @@
 import { print } from "./modules/export.js";
-import { pve, pvp } from "./modules/actions.js";
+import { pve, pvp } from "./actions.js";
 
 const categories = document.getElementById("categories"),
     menus = document.getElementById("job-pickers"),

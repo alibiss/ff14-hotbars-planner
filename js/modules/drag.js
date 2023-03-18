@@ -9,114 +9,153 @@
 // onmouseover      The mouse pointer is moved over an element
 // onmouseup        The mouse button is released over an element
 
-class HotbarsList {
-    constructor(selector) {
-        this.el = document.querySelector(selector);
-    }
-
-    get list() {
-        return this.el.children
-    }
-
-    create() {
-        try {
-            if ( this.list.length > 9 ) throw "Max number of hotbars reached.";
-
-            const newHotbar = document.createElement("div");
-            newHotbar.classList.add("hotbar");
-            this.el.appendChild(newHotbar);
-            for (let i=0; i<12; i++) {
-                newHotbar.innerHTML += `<div data-slot="${i+1}"></div>`;
-            }
-        } catch(err) {
-            console.error(err);
-        }
-    }
-
-    delete(n) {
-        try {
-            this.list.find((_h, i) => i+1 == n).remove()
-        } catch(err) {
-            console.error(err);
-        }
-    }
-}
-
-class DraggedActions {
+class ClonesList {
     constructor() {
         this.list = [];
     }
 
     create(event) {
-        this.list.push( new PlacedAction(event.target) );
+        this.list.push( new ClonedAction(event.target) );
+
+        return [...this.list].pop()
     }
 
-    find(uid) {
-        // document.getElementById("dragged-item").lastChild;
+    find(node) {
         return this.list.find(action => {
-            if ( action.uid !== uid ) return;
+            if ( action.uid !== node.getAttribute("data-uid") ) return;
             return action;
         })
     }
+
+    delete(node) {
+        const index = this.list.indexOf(this.find(node));
+        if ( index > -1 ) this.list.splice(index, 1); 
+        node.remove();
+
+        return true
+    }
 }
 
-class PlacedAction {
+class ClonedAction {
     constructor(node) {
+        // Init values
         this.el = node.cloneNode(true);
         this.uid = Math.random().toString(16).slice(2);
+        this.offset = {};
+        this.origin = null;
+
+        // Apply styling and properties
         this.el.classList.replace("parent", "child");
-        this.el.setAttribute("data-uuid", this.uid);
-        this.el.addEventListener("mousedown", startDrag, true);
-    }
-}
-
-class DraggedAction {
-    move(cursor) {
-        clearSelection();
-        this.el.style.left = (cursor.clientX + this.offset.x) + "px";
-        this.el.style.top = (cursor.clientY + this.offset.y) + "px";
+        this.el.setAttribute("data-uid", this.uid);
+        this.el.addEventListener("mousedown", initDragging, true);
     }
 
-    swap(sibling) {
-        //console.debug("swap()");
-        sibling.parentNode.appendChild(this.el);
-        this.origin.appendChild(sibling);
+    update(cursor, node) {
+        // Offset
+        const abs = [cursor.target, document.body].map((el) => el.getBoundingClientRect());
+
+        this.offset.x = abs[0].x - Math.abs(document.body.offsetLeft) - cursor.clientX;
+        this.offset.y = abs[0].y - Math.abs(document.body.offsetTop) - cursor.clientY;
+
+        // Origin
+        this.origin = ( node.hasAttribute("data-slot") ? node : null );
+
+        return {
+            offset: { x: this.offset.x, y: this.offset.y },
+            origin: this.origin
+        }
     }
 
     replace(sibling) {
-        //console.debug("replace()");
         sibling.parentNode.appendChild(this.el);
-        findItem(sibling).delete();
+
+        if ( this.origin === null ) {
+            // Dragged action from actions list
+            DraggedActions.delete(sibling);
+        } else {
+            // Dragged action from hotbar
+            this.origin.appendChild(sibling);
+        }
     }
 
     clean() {
-        //console.debug("clean()");
         this.el.removeAttribute("style");
-        delete this.origin;
-        delete this.offset;
-        window.removeEventListener("mousemove", moveItem);
-    }
-
-    delete() {
-        //console.debug("delete()");
-        const index = parentOffspring.indexOf(findItem(this.node));
-        if ( index > -1 ) parentOffspring.splice(index, 1);
-        this.node.remove();
-        window.removeEventListener("mousemove", moveItem);
+        this.origin = null;
+        this.offset = {};
     }
 }
+
+const DraggedActions = new ClonesList;
 
 function initDragging(event) {
     if (event.button > 0) return; // Only M1 allowed
 
-    const clickedElement = event.target;
+    let actionData;
 
-    if ( clickedElement.classList.contains("parent") ) {
-
+    if ( this.classList.contains("parent") ) {
+        actionData = DraggedActions.create(event)
+    } else {
+        actionData = DraggedActions.find(this)
     }
 
+    // Keep info updated
+    actionData.update(event, this.parentNode);
+
+    // Prevent further cursor events from interferring with release
+    actionData.el.style.pointerEvents = "none";
+
+    // Initialize position before moving cursor
+    actionData.el.style.position = "absolute";
+    actionData.el.style.left = event.clientX + actionData.offset.x + "px";
+    actionData.el.style.top = event.clientY + actionData.offset.y + "px";
+    document.getElementById("dragged-item").appendChild(actionData.el);
+
     // Make dragged item follow the cursor
-    window.addEventListener("mousemove", moveItem);
+    window.addEventListener("mousemove", moveAction);
 }
 
-export { HotbarsList, DraggedAction }
+function moveAction(event) {
+    const node = document.getElementById("dragged-item").lastChild;
+    if ( node === null ) return;
+
+    // Clear selection areas while moving cursor
+    if (document.selection && document.selection.empty) {
+        document.selection.empty();
+    } else if (window.getSelection) {
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+    };
+
+    const actionData = DraggedActions.find(node);
+    actionData.el.style.left = (event.clientX + actionData.offset.x) + "px";
+    actionData.el.style.top = (event.clientY + actionData.offset.y) + "px";
+}
+
+function releaseAction(event) {
+    if (event.button > 0) return; // Only M1 allowed
+
+    event.stopImmediatePropagation(); // !important
+
+    const draggedAction = document.getElementById("dragged-item").lastChild;
+    if ( draggedAction === null ) return;
+
+    // Invalid release spot
+    if ( this === window || this.hasAttribute("data-slot") === false ) {
+        return DraggedActions.delete(draggedAction)
+    };
+
+    const actionData = DraggedActions.find(draggedAction);
+
+    if ( this.children.length > 0 ) {
+        // Populated slot
+        actionData.replace(this.lastChild)
+    } else {
+        // Empty slot
+        this.appendChild(actionData.el)
+    }
+
+    actionData.clean();
+    window.removeEventListener("mousemove", moveAction);
+}
+
+export { initDragging, releaseAction }
