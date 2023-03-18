@@ -47,8 +47,8 @@
     }
 }
 
-.hotbars-container {
-    .hotbar-controls button {
+#hotbars-manager {
+    .controls > button {
         --bs-btn-hover-bg: #e74c3c;
         --bs-btn-hover-border-color: #e74c3c;
 
@@ -58,31 +58,9 @@
             }
         }
     }
-
-    .hotbar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: .25rem;
-    }
-
-    [data-slot] {
-        width: var(--icon-bg-s);
-        height: var(--icon-bg-s);
-        border-radius: 5px;
-
-        background-color: lightslategray;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, 
-            rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-    }
-
-    #dragged-item {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
 }
 
-#macro textarea {
+#macro-dialog textarea {
     min-height: 20rem;
 
     font-family: monospace;

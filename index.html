@@ -9,168 +9,178 @@
         <script type="module" src="/js/app.js" defer></script>
     </head>
     <body data-category="1" data-layout="1" data-job="" data-job-mode="1">
-        <div class="container p-3">
+        <div class="container-md py-5">
             <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="btn-group d-flex" id="categories" role="group" aria-label="Job category filters">
-                        <input type="radio" class="btn-check" name="job-cat" id="job-cat-1" value="1" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary col-4" for="job-cat-1">Combat</label>
-                      
-                        <input type="radio" class="btn-check" name="job-cat" id="job-cat-2" value="2" autocomplete="off">
-                        <label class="btn btn-outline-primary col-4" for="job-cat-2">Crafting</label>
-                      
-                        <input type="radio" class="btn-check" name="job-cat" id="job-cat-3" value="3" autocomplete="off">
-                        <label class="btn btn-outline-primary col-4" for="job-cat-3">Gathering</label>
-                      </div>
-                </div>
-                <div class="col-lg-4 col-xs-12">
-                    <div class="row d-flex gx-2">
-                        <div id="job-pickers" class="col-9 d-flex">
-                            <select class="form-select" aria-label="Combat jobs" name="job-cat-1-items" id="job-cat-1-items">
-                                <option selected></option>
-                                <option value="PLD">Paladin</option>
-                                <option value="WAR">Warrior</option>
-                                <option value="DRK">Dark Knight</option>
-                                <option value="GNB">Gunbreaker</option>
-                                <option value="WHM">White Mage</option>
-                                <option value="SCH">Scholar</option>
-                                <option value="AST">Astrologian</option>
-                                <option value="SGE">Sage</option>
-                                <option value="MNK">Monk</option>
-                                <option value="DRG">Dragoon</option>
-                                <option value="NIN">Ninja</option>
-                                <option value="SAM">Samurai</option>
-                                <option value="RPR">Reaper</option>
-                                <option value="BRD">Bard</option>
-                                <option value="MCH">Machinist</option>
-                                <option value="DNC">Dancer</option>
-                                <option value="BLM">Black Mage</option>
-                                <option value="SMN">Summoner</option>
-                                <option value="RDM">Red Mage</option>
-                                <option value="BLU">Blue Mage</option>
-                            </select>
-                            <select class="form-select" aria-label="Crafting jobs" name="job-cat-2-items" id="job-cat-2-items">
-                                <option selected></option>
-                                <option value="CRP">Carpenter</option>
-                                <option value="BSM">Blacksmith</option>
-                                <option value="ARM">Armorer</option>
-                                <option value="GSM">Goldsmith</option>
-                                <option value="LTW">Leatherworker</option>
-                                <option value="WVR">Weaver</option>
-                                <option value="ALC">Alchemist</option>
-                                <option value="CUL">Culinarian</option>
-                            </select>
-                            <select class="form-select" aria-label="Gathering jobs" name="job-cat-3-items" id="job-cat-3-items">
-                                <option selected></option>
-                                <option value="MIN">Miner</option>
-                                <option value="BTN">Botanist</option>
-                                <option value="FSH">Fisher</option>
-                            </select>
+                <div class="col-lg-4">
+                    <div class="row gy-2">
+                        <div class="col-12">
+                            <div id="hotbar-layouts">
+                                <div class="btn-group d-flex" role="group" aria-label="Hotbar layouts">
+                                    <input type="radio" class="btn-check" name="hotbar-layouts" id="hotbar-layout-1" value="1" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary btn-sm" for="hotbar-layout-1">12x1</label>
+                                  
+                                    <input type="radio" class="btn-check" name="hotbar-layouts" id="hotbar-layout-2" value="2" autocomplete="off">
+                                    <label class="btn btn-outline-primary btn-sm" for="hotbar-layout-2">6x2</label>
+                                  
+                                    <input type="radio" class="btn-check" name="hotbar-layouts" id="hotbar-layout-3" value="3" autocomplete="off">
+                                    <label class="btn btn-outline-primary btn-sm" for="hotbar-layout-3">4x3</label>
+                    
+                                    <input type="radio" class="btn-check" name="hotbar-layouts" id="hotbar-layout-4" value="4" autocomplete="off">
+                                    <label class="btn btn-outline-primary btn-sm" for="hotbar-layout-4">3x4</label>
+                                  
+                                    <input type="radio" class="btn-check" name="hotbar-layouts" id="hotbar-layout-5" value="5" autocomplete="off">
+                                    <label class="btn btn-outline-primary btn-sm" for="hotbar-layout-5">2x6</label>
+                                  
+                                    <input type="radio" class="btn-check" name="hotbar-layouts" id="hotbar-layout-6" value="6" autocomplete="off">
+                                    <label class="btn btn-outline-primary btn-sm" for="hotbar-layout-6">1x12</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-3 d-grid">
-                            <button type="button" id="macro-export" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#macro">Export</button>
+                        <div class="col-12">
+                            <div id="hotbars-manager">
+                                <div class="btn-toolbar d-flex gap-2" role="toolbar" aria-label="Hotbars Manager">
+                                    <div class="btn-group flex-grow-1 controls" role="group" aria-label="Hotbars">
+                                        <button type="button" class="btn btn-outline-primary"></button>
+                                        <button type="button" class="btn btn-outline-primary"></button>
+                                        <button type="button" class="btn btn-outline-primary"></button>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Add new hotbar">
+                                        <button type="button" class="btn btn-success" id="add-hotbar">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div id="job-categories">
+                                <div class="btn-group d-flex" role="group" aria-label="Job categories">
+                                    <input type="radio" class="btn-check" name="job-cat" id="job-cat-1" value="1" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary col-4" for="job-cat-1">Combat</label>
+                                  
+                                    <input type="radio" class="btn-check" name="job-cat" id="job-cat-2" value="2" autocomplete="off">
+                                    <label class="btn btn-outline-primary col-4" for="job-cat-2">Crafting</label>
+                                  
+                                    <input type="radio" class="btn-check" name="job-cat" id="job-cat-3" value="3" autocomplete="off">
+                                    <label class="btn btn-outline-primary col-4" for="job-cat-3">Gathering</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex gap-1">
+                                <div id="job-menus" class="flex-grow-1">
+                                    <select class="form-select" aria-label="Combat jobs" name="job-cat-1-items" id="job-cat-1-items">
+                                        <option selected></option>
+                                        <option value="PLD">Paladin</option>
+                                        <option value="WAR">Warrior</option>
+                                        <option value="DRK">Dark Knight</option>
+                                        <option value="GNB">Gunbreaker</option>
+                                        <option value="WHM">White Mage</option>
+                                        <option value="SCH">Scholar</option>
+                                        <option value="AST">Astrologian</option>
+                                        <option value="SGE">Sage</option>
+                                        <option value="MNK">Monk</option>
+                                        <option value="DRG">Dragoon</option>
+                                        <option value="NIN">Ninja</option>
+                                        <option value="SAM">Samurai</option>
+                                        <option value="RPR">Reaper</option>
+                                        <option value="BRD">Bard</option>
+                                        <option value="MCH">Machinist</option>
+                                        <option value="DNC">Dancer</option>
+                                        <option value="BLM">Black Mage</option>
+                                        <option value="SMN">Summoner</option>
+                                        <option value="RDM">Red Mage</option>
+                                        <option value="BLU">Blue Mage</option>
+                                    </select>
+                                    <select class="form-select" aria-label="Crafting jobs" name="job-cat-2-items" id="job-cat-2-items">
+                                        <option selected></option>
+                                        <option value="CRP">Carpenter</option>
+                                        <option value="BSM">Blacksmith</option>
+                                        <option value="ARM">Armorer</option>
+                                        <option value="GSM">Goldsmith</option>
+                                        <option value="LTW">Leatherworker</option>
+                                        <option value="WVR">Weaver</option>
+                                        <option value="ALC">Alchemist</option>
+                                        <option value="CUL">Culinarian</option>
+                                    </select>
+                                    <select class="form-select" aria-label="Gathering jobs" name="job-cat-3-items" id="job-cat-3-items">
+                                        <option selected></option>
+                                        <option value="MIN">Miner</option>
+                                        <option value="BTN">Botanist</option>
+                                        <option value="FSH">Fisher</option>
+                                    </select>
+                                </div>
+                                <button type="button" id="macro-export" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#macro-dialog">Export</button>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div id="actions-modes">
+                                <div class="btn-group d-flex" role="group" aria-label="Toggle job action modes">
+                                    <input type="radio" class="btn-check" name="btnradio" id="actions-mode-pve" value="1" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="actions-mode-pve">PvE</label>
+                                  
+                                    <input type="radio" class="btn-check" name="btnradio" id="actions-mode-pvp" value="2" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="actions-mode-pvp">PvP</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div id="actions"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-xs-12">
-                    <div class="btn-group d-flex" id="layouts" role="group" aria-label="Hotbar layouts toggles">
-                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-1" value="1" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary col-2" for="h-layout-1">12x1</label>
-                      
-                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-2" value="2" autocomplete="off">
-                        <label class="btn btn-outline-primary col-2" for="h-layout-2">6x2</label>
-                      
-                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-3" value="3" autocomplete="off">
-                        <label class="btn btn-outline-primary col-2" for="h-layout-3">4x3</label>
-
-                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-4" value="4" autocomplete="off">
-                        <label class="btn btn-outline-primary col-2" for="h-layout-4">3x4</label>
-                      
-                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-5" value="5" autocomplete="off">
-                        <label class="btn btn-outline-primary col-2" for="h-layout-5">2x6</label>
-                      
-                        <input type="radio" class="btn-check" name="h-layouts" id="h-layout-6" value="6" autocomplete="off">
-                        <label class="btn btn-outline-primary col-2" for="h-layout-6">1x12</label>
-                      </div>
-                </div>
-            </div>
-            <div class="row py-5">
-                <div class="col">
-                    <div class="actions-container">
-                        <div class="container-fluid d-flex justify-content-center">
-                            <div class="btn-group w-75" role="group" aria-label="Toggle PvE/PvP modes">
-                                <input type="radio" class="btn-check" name="btnradio" id="actions-mode-pve" value="1" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="actions-mode-pve">PvE</label>
-                              
-                                <input type="radio" class="btn-check" name="btnradio" id="actions-mode-pvp" value="2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="actions-mode-pvp">PvP</label>
+                <div class="col-lg-8">
+                    <div class="container-fluid">
+                        <div id="hotbars">
+                            <div class="d-flex flex-wrap gap-3">
+                                <div class="hotbar">
+                                    <div data-slot="1"></div>
+                                    <div data-slot="2"></div>
+                                    <div data-slot="3"></div>
+                                    <div data-slot="4"></div>
+                                    <div data-slot="5"></div>
+                                    <div data-slot="6"></div>
+                                    <div data-slot="7"></div>
+                                    <div data-slot="8"></div>
+                                    <div data-slot="9"></div>
+                                    <div data-slot="10"></div>
+                                    <div data-slot="11"></div>
+                                    <div data-slot="12"></div>
+                                </div>
+                                <div class="hotbar">
+                                    <div data-slot="1"></div>
+                                    <div data-slot="2"></div>
+                                    <div data-slot="3"></div>
+                                    <div data-slot="4"></div>
+                                    <div data-slot="5"></div>
+                                    <div data-slot="6"></div>
+                                    <div data-slot="7"></div>
+                                    <div data-slot="8"></div>
+                                    <div data-slot="9"></div>
+                                    <div data-slot="10"></div>
+                                    <div data-slot="11"></div>
+                                    <div data-slot="12"></div>
+                                </div>
+                                <div class="hotbar">
+                                    <div data-slot="1"></div>
+                                    <div data-slot="2"></div>
+                                    <div data-slot="3"></div>
+                                    <div data-slot="4"></div>
+                                    <div data-slot="5"></div>
+                                    <div data-slot="6"></div>
+                                    <div data-slot="7"></div>
+                                    <div data-slot="8"></div>
+                                    <div data-slot="9"></div>
+                                    <div data-slot="10"></div>
+                                    <div data-slot="11"></div>
+                                    <div data-slot="12"></div>
+                                </div>
                             </div>
+                            <div id="dragged-item"></div>
                         </div>
-                        <div id="actions"></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="hotbars-container">
-                        <div class="btn-toolbar w-75 d-flex" role="toolbar" aria-label="Hotbar list control">
-                            <div class="btn-group me-2 flex-fill hotbar-controls" role="group" aria-label="Hotbars">
-                                <button type="button" class="btn btn-outline-primary"></button>
-                                <button type="button" class="btn btn-outline-primary"></button>
-                                <button type="button" class="btn btn-outline-primary"></button>
-                            </div>
-                            <div class="btn-group" role="group" aria-label="Add new hotbar">
-                                <button type="button" class="btn btn-success" id="add-new-hotbar">+</button>
-                            </div>
-                        </div>
-                        <div class="container d-flex flex-wrap gap-3">
-                            <div class="hotbar">
-                                <div data-slot="1"></div>
-                                <div data-slot="2"></div>
-                                <div data-slot="3"></div>
-                                <div data-slot="4"></div>
-                                <div data-slot="5"></div>
-                                <div data-slot="6"></div>
-                                <div data-slot="7"></div>
-                                <div data-slot="8"></div>
-                                <div data-slot="9"></div>
-                                <div data-slot="10"></div>
-                                <div data-slot="11"></div>
-                                <div data-slot="12"></div>
-                            </div>
-                            <div class="hotbar">
-                                <div data-slot="1"></div>
-                                <div data-slot="2"></div>
-                                <div data-slot="3"></div>
-                                <div data-slot="4"></div>
-                                <div data-slot="5"></div>
-                                <div data-slot="6"></div>
-                                <div data-slot="7"></div>
-                                <div data-slot="8"></div>
-                                <div data-slot="9"></div>
-                                <div data-slot="10"></div>
-                                <div data-slot="11"></div>
-                                <div data-slot="12"></div>
-                            </div>
-                            <div class="hotbar">
-                                <div data-slot="1"></div>
-                                <div data-slot="2"></div>
-                                <div data-slot="3"></div>
-                                <div data-slot="4"></div>
-                                <div data-slot="5"></div>
-                                <div data-slot="6"></div>
-                                <div data-slot="7"></div>
-                                <div data-slot="8"></div>
-                                <div data-slot="9"></div>
-                                <div data-slot="10"></div>
-                                <div data-slot="11"></div>
-                                <div data-slot="12"></div>
-                            </div>
-                        </div>
-                        <div id="dragged-item"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="macro" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div id="macro-dialog" class="modal fade" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -180,23 +190,22 @@
                 <div class="modal-body">
                     <div class="hstack gap-3">
                         <div class="form-check-reverse form-switch ms-auto m-1">
-                            <input class="form-check-input" type="checkbox" role="switch" id="hotbarsReverse">
-                            <label class="form-check-label" for="hotbarsReverse">Reverse order</label>
+                            <input class="form-check-input" type="checkbox" role="switch" id="toggle-reverse">
+                            <label class="form-check-label" for="toggle-reverse">Reverse order</label>
                         </div>
                         <div class="form-check-reverse form-switch m-1">
-                            <input class="form-check-input" type="checkbox" role="switch" id="hotbarsPvPmode">
-                            <label class="form-check-label" for="hotbarsPvPmode">PvP</label>
+                            <input class="form-check-input" type="checkbox" role="switch" id="toggle-pvp">
+                            <label class="form-check-label" for="toggle-pvp">PvP</label>
                         </div>
                       </div>
                     <textarea class="form-control" value="Your macro will show up here..." aria-label="Hotbar template output" readonly></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="toClipboard" class="btn btn-primary" data-toggle="tooltip">Copy to clipboard</button>
+                    <button type="button" id="clipboard" class="btn btn-primary" data-toggle="tooltip">Copy to clipboard</button>
                   </div>            
               </div>
             </div>
         </div>
-          
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
 </html>

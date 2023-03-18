@@ -1,33 +1,35 @@
-const popup = document.getElementById("macro"),
-    pvp = document.getElementById("hotbarsPvPmode"),
-    reverse = document.getElementById("hotbarsReverse"),
-    macros = popup.querySelector("textarea"),
-    copy = document.getElementById("toClipboard");
+import { hotbars } from "./actions.js";
+
+const dialog = document.getElementById("macro-dialog"),
+    pvp = document.getElementById("toggle-pvp"),
+    reverse = document.getElementById("toggle-reverse"),
+    output = dialog.querySelector("textarea"),
+    copy = document.getElementById("clipboard");
 
 const options = { pvp: false, reverse: false };
 
-popup.addEventListener("shown.bs.modal", () => {
-    macros.focus();
-    if ( macros.value.length < 1 ) {
-        macros.placeholder = macros.getAttribute("value");
+dialog.addEventListener("shown.bs.modal", () => {
+    output.focus();
+    if ( output.value.length < 1 ) {
+        output.placeholder = output.getAttribute("value");
     }
 })
 
 pvp.addEventListener("change", (e) => {
     options.pvp = e.target.checked;
-    macros.value = print();
+    output.value = print();
 })
 
 reverse.addEventListener("change", (e) => {
     options.reverse = e.target.checked;
-    macros.value = print();
+    output.value = print();
 })
 
 copy.addEventListener("click", (e) => {
-    macros.select();
-    macros.setSelectionRange(0, 99999); // For mobile devices
+    output.select();
+    output.setSelectionRange(0, 99999); // For mobile devices
 
-    navigator.clipboard.writeText(macros.value);
+    navigator.clipboard.writeText(output.value);
 
     const tooltip = new bootstrap.Tooltip(e.target, {
         placement: "left",
@@ -40,10 +42,10 @@ copy.addEventListener("click", (e) => {
 function print() {
     let output = "";
 
-    const array = [...document.querySelectorAll(".hotbars-container .hotbar")];
-    const hotbars = options.reverse ? [...array].slice().reverse() : array;
+    const array = [...hotbars.querySelectorAll(".hotbar")];
+    const hotbarsList = options.reverse ? [...array].slice().reverse() : array;
 
-    hotbars.forEach((container, i) => {
+    hotbarsList.forEach((container, i) => {
         const slots = container.querySelectorAll("[data-slot]");
         if ( [...slots].every((slot) => slot.children.length < 1) ) return;
 
@@ -68,4 +70,4 @@ function print() {
     return output.trim()
 }
 
-export { print, macros }
+export { print, output }

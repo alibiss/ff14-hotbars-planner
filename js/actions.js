@@ -4,9 +4,8 @@ window.addEventListener("mouseup", releaseAction);
 
 const pve = document.getElementById("actions-mode-pve"),
     pvp = document.getElementById("actions-mode-pvp"),
-    more = document.getElementById("add-new-hotbar"),
-    controls = document.querySelector(".hotbar-controls"),
-    hotbars = document.querySelector(".hotbars-container");
+    manager = document.getElementById("hotbars-manager"),
+    hotbars = document.getElementById("hotbars");
 
 [pve, pvp].forEach(btn => btn.addEventListener("change", (e) => {
     document.body.setAttribute("data-job-mode", e.target.value);
@@ -30,8 +29,8 @@ fetch("/dist/jobs-min.json", { mode: "no-cors" })
 .then(data => Object.assign(db, data))
 
 // Hotbars manager
-more.addEventListener("click", addHotbar)
-controls.addEventListener("click", removeHotbar)
+manager.querySelector("#add-hotbar").addEventListener("click", addHotbar)
+manager.querySelector(".controls").addEventListener("click", removeHotbar)
 
 // Init default hotbars
 hotbars.querySelectorAll(".hotbar").forEach((hotbar) => {
@@ -51,7 +50,7 @@ function addHotbar() {
         slot.addEventListener("mouseup", releaseAction, true)
     })
     sibling.parentNode.appendChild(newHotbar);
-    controls.innerHTML += `<button type="button" class="btn btn-outline-primary"></button>`;
+    manager.querySelector(".controls").innerHTML += `<button type="button" class="btn btn-outline-primary"></button>`;
 }
 
 function removeHotbar(e) {
@@ -65,4 +64,4 @@ function removeHotbar(e) {
     e.target.remove();
 }
 
-export { pve, pvp }
+export { pve, pvp, hotbars }

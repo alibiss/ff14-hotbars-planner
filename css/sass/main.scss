@@ -1,4 +1,8 @@
 @use "base";
-@use "header";
-@use "layout";
+@use "sidebar";
+@use "hotbars";
 @use "components";
+
+body {
+    overflow: hidden;
+}

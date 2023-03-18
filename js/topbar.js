@@ -1,10 +1,10 @@
-import { print, macros as textarea } from "./export.js";
+import { print, output as textarea } from "./export.js";
 import { pve, pvp } from "./actions.js";
 
-const categories = document.getElementById("categories"),
-    menus = document.getElementById("job-pickers"),
+const categories = document.getElementById("job-categories"),
+    menus = document.getElementById("job-menus"),
     macro = document.getElementById("macro-export"),
-    layouts = document.getElementById("layouts");
+    layouts = document.getElementById("hotbar-layouts");
 
 categories.querySelectorAll("input").forEach(category => {
     category.addEventListener("change", changeCategory)

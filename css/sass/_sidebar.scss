@@ -1,0 +1,37 @@
+@import "base";
+
+@for $i from 1 through 3 {
+    $attribute: '[data-category="#{$i}"]';
+
+    body:not(#{$attribute}) {
+        #job-cat-#{$i}-items {
+            display: none;
+        }
+    }
+}
+
+#actions {
+    @include iconCustomProperties;
+
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+
+    &:focus {
+        outline: none !important;
+    }
+
+    [data-job] {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .25rem;
+    }
+
+    @each $group in $job-groups {
+        @each $job in $group {
+            body:not([data-job="#{$job}"]) & [data-job="#{$job}"] {
+                display: none !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@import "base";
+
+#hotbars {
+    @include iconCustomProperties;
+
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+
+    &:focus {
+        outline: none !important;
+    }
+
+    .hotbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .25rem;
+    }
+
+    @for $i from 1 through 6 {
+        $items: nth($layouts, $i);
+    
+        /* Layout #{$i} - #{$items} items per row */
+    
+        body[data-layout="#{$i}"] & .hotbar {
+            @include setHotbarWidth($items)
+        }
+    }
+
+    [data-slot] {
+        width: var(--icon-bg-s);
+        height: var(--icon-bg-s);
+        border-radius: 5px;
+
+        background-color: lightslategray;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, 
+            rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    }
+}
+
+#dragged-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
