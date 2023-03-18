@@ -19,15 +19,10 @@
 }
 
 .actions-container {
-    .pve, .pvp {
+    [data-job] {
         display: flex;
         flex-wrap: wrap;
         gap: .25rem;
-    }
-
-    body:not([data-job-mode="1"]) & .pve,
-    body:not([data-job-mode="2"]) & .pvp {
-        display: none;
     }
 
     @each $group in $job-groups {

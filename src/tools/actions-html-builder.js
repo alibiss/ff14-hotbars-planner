@@ -19,18 +19,18 @@ new Promise(parsedDb => {
             output += `<div data-job="${job.code}">`;
             const modes = Object.keys(job.actions);
             modes.forEach(mode => { // pve, pvp
-                output += `<div class="${mode}">`;
+                // output += `<div class="${mode}">`;
                 const types = Object.keys(job.actions[mode]);
                 types.forEach(type => { // jobActions, roleActions, etc..
                     // output += `<div class="${type}">`;
                     const actions = Object.values(job.actions[mode][type]);
                     actions.forEach(action => {
                         const img = `<img src="/img/actions/${job.code}/${mode}/${action.name}.png" loading="lazy">`;
-                        output += `<div class="item parent ${type.replace(/s$/, "")}" data-action="${action.name}">${img}</div>`;
+                        output += `<div class="item parent ${mode} ${type.replace(/s$/, "")}" data-action="${action.name}">${img}</div>`;
                     })
                     // output += "</div>"; // close type div
                 })
-                output += "</div>"; // close mode div
+                // output += "</div>"; // close mode div
             })
             output += "</div>"; // close job div
         })

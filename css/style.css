@@ -31,13 +31,10 @@ body:not([data-category="3"]) #job-cat-3-items {
   outline: none !important;
 }
 
-.actions-container .pve, .actions-container .pvp {
+.actions-container [data-job] {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
-}
-body:not([data-job-mode="1"]) .actions-container .pve, body:not([data-job-mode="2"]) .actions-container .pvp {
-  display: none;
 }
 body:not([data-job=PLD]) .actions-container [data-job=PLD] {
   display: none !important;
@@ -177,6 +174,9 @@ body[data-layout="6"] .hotbars-container .hotbar {
   background: url("/img/actions/background.png") no-repeat;
   background-size: var(--icon-bg-s) var(--icon-bg-s);
   font-size: 0;
+}
+body:not([data-job-mode="1"]) .item.parent.pve, body:not([data-job-mode="2"]) .item.parent.pvp {
+  display: none;
 }
 .item.child {
   z-index: 3;
