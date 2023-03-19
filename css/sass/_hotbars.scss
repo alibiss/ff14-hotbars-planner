@@ -11,9 +11,12 @@
         outline: none !important;
     }
 
+    & > div:not([id]) {
+        justify-items: center;
+    }
+
     .hotbar {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
         gap: .25rem;
     }
 
@@ -21,9 +24,19 @@
         $items: nth($layouts, $i);
     
         /* Layout #{$i} - #{$items} items per row */
-    
-        body[data-layout="#{$i}"] & .hotbar {
-            @include setHotbarWidth($items)
+
+        body[data-layout="#{$i}"] & {
+            & > div:not([id]) {
+                @if $i < 6 {
+                    grid-template-columns: repeat($i, 1fr);
+                }
+                @else if $i == 6 {
+                    grid-template-columns: repeat(10, 1fr);
+                }
+            }
+            .hotbar {
+                grid-template-columns: repeat($items, var(--icon-bg-s));
+            }
         }
     }
 

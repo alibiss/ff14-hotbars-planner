@@ -23,18 +23,3 @@ $job-groups: $tank $healer $melee $pranged $mranged $crafter $gatherer;
     --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
     --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
 }
-
-@mixin setHotbarWidth($rowItems) {
-    $containerSize: calc((var(--icon-bg-s) * $rowItems) + (.25rem * ($rowItems - 1)));
-
-    width: $containerSize;
-
-    @if $rowItems <= 6 {
-        // Side by side
-        margin: 0;
-    }
-    @else {
-        // 100% width
-        margin: 0 calc((100% - $containerSize) / 2);
-    }
-}

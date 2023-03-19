@@ -144,34 +144,48 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
 #hotbars:focus {
   outline: none !important;
 }
+#hotbars > div:not([id]) {
+  justify-items: center;
+}
 #hotbars .hotbar {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 0.25rem;
 }
+body[data-layout="1"] #hotbars > div:not([id]) {
+  grid-template-columns: repeat(1, 1fr);
+}
 body[data-layout="1"] #hotbars .hotbar {
-  width: calc(var(--icon-bg-s) * 12 + 2.75rem);
-  margin: 0 calc((100% - (var(--icon-bg-s) * 12 + 2.75rem)) / 2);
+  grid-template-columns: repeat(12, var(--icon-bg-s));
+}
+body[data-layout="2"] #hotbars > div:not([id]) {
+  grid-template-columns: repeat(2, 1fr);
 }
 body[data-layout="2"] #hotbars .hotbar {
-  width: calc(var(--icon-bg-s) * 6 + 1.25rem);
-  margin: 0;
+  grid-template-columns: repeat(6, var(--icon-bg-s));
+}
+body[data-layout="3"] #hotbars > div:not([id]) {
+  grid-template-columns: repeat(3, 1fr);
 }
 body[data-layout="3"] #hotbars .hotbar {
-  width: calc(var(--icon-bg-s) * 4 + 0.75rem);
-  margin: 0;
+  grid-template-columns: repeat(4, var(--icon-bg-s));
+}
+body[data-layout="4"] #hotbars > div:not([id]) {
+  grid-template-columns: repeat(4, 1fr);
 }
 body[data-layout="4"] #hotbars .hotbar {
-  width: calc(var(--icon-bg-s) * 3 + 0.5rem);
-  margin: 0;
+  grid-template-columns: repeat(3, var(--icon-bg-s));
+}
+body[data-layout="5"] #hotbars > div:not([id]) {
+  grid-template-columns: repeat(5, 1fr);
 }
 body[data-layout="5"] #hotbars .hotbar {
-  width: calc(var(--icon-bg-s) * 2 + 0.25rem);
-  margin: 0;
+  grid-template-columns: repeat(2, var(--icon-bg-s));
+}
+body[data-layout="6"] #hotbars > div:not([id]) {
+  grid-template-columns: repeat(10, 1fr);
 }
 body[data-layout="6"] #hotbars .hotbar {
-  width: calc(var(--icon-bg-s) * 1 + 0rem);
-  margin: 0;
+  grid-template-columns: repeat(1, var(--icon-bg-s));
 }
 #hotbars [data-slot] {
   width: var(--icon-bg-s);
