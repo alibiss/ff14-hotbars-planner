@@ -25,7 +25,7 @@ new Promise(parsedDb => {
                     // output += `<div class="${type}">`;
                     const actions = Object.values(job.actions[mode][type]);
                     actions.forEach(action => {
-                        const info = [...Object.keys(action).map((key) => [key, action[key]])].flat().join("|").replace(/>/g, "&gt;").replace(/</g, "&lt;");
+                        const info = [...Object.keys(action).flatMap((key) => [key, action[key].replace(/\|/g, encodeURIComponent("|"))])].join("|").replace(/>/g, "&gt;").replace(/</g, "&lt;");
                         const img = `<img src="/img/actions/${job.code}/${mode}/${action.name}.png" loading="lazy">`;
                         output += `<div class="item parent ${mode} ${type.replace(/s$/, "").toLowerCase()}" data-info="${info}" data-bs-toggle="tooltip">${img}</div>`;
                     })
