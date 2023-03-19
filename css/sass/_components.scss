@@ -9,6 +9,11 @@
     background-size: var(--icon-bg-s) var(--icon-bg-s);
     font-size: 0;
 
+    cursor: grab;
+    html.dragging & {
+        cursor: grabbing;
+    }
+
     body:not([data-job-mode="1"]) &.parent.pve,
     body:not([data-job-mode="2"]) &.parent.pvp {
         display: none;

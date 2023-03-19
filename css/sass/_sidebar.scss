@@ -22,9 +22,10 @@
     }
 
     [data-job] {
-        display: flex;
-        flex-wrap: wrap;
-        gap: .25rem;
+        display: grid;
+        grid-template-columns: repeat(8, minmax(max-content, 1fr));
+        row-gap: .25rem;
+        justify-items: center;
     }
 
     @each $group in $job-groups {

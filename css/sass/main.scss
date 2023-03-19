@@ -3,6 +3,10 @@
 @use "hotbars";
 @use "components";
 
+html.dragging {
+    cursor: grabbing;
+}
+
 body {
     overflow: hidden;
 }

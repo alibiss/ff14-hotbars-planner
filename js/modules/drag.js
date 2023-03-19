@@ -90,6 +90,9 @@ const DraggedActions = new ClonesList;
 function initDragging(event) {
     if (event.button > 0) return; // Only M1 allowed
 
+    // Toggle custom cursor styling while dragging
+    document.body.parentNode.classList.add("dragging");
+
     let actionData;
 
     if ( this.classList.contains("parent") ) {
@@ -138,6 +141,9 @@ function releaseAction(event) {
 
     const draggedAction = document.getElementById("dragged-item").lastChild;
     if ( draggedAction === null ) return;
+
+    // Toggle custom cursor styling while dragging
+    document.body.parentNode.classList.remove("dragging");
 
     // Invalid release spot
     if ( this === window || this.hasAttribute("data-slot") === false ) {

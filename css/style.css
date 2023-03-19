@@ -25,9 +25,10 @@ body:not([data-category="3"]) #job-cat-3-items {
   outline: none !important;
 }
 #actions [data-job] {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(max-content, 1fr));
+  row-gap: 0.25rem;
+  justify-items: center;
 }
 body:not([data-job=PLD]) #actions [data-job=PLD] {
   display: none !important;
@@ -194,6 +195,10 @@ body[data-layout="6"] #hotbars .hotbar {
   background: url("/img/actions/background.png") no-repeat;
   background-size: var(--icon-bg-s) var(--icon-bg-s);
   font-size: 0;
+  cursor: grab;
+}
+html.dragging .item {
+  cursor: grabbing;
 }
 body:not([data-job-mode="1"]) .item.parent.pve, body:not([data-job-mode="2"]) .item.parent.pvp {
   display: none;
@@ -262,6 +267,10 @@ body:not([data-job-mode="1"]) .item.parent.pve, body:not([data-job-mode="2"]) .i
 #macro-dialog textarea {
   min-height: 20rem;
   font-family: monospace;
+}
+
+html.dragging {
+  cursor: grabbing;
 }
 
 body {
