@@ -45,11 +45,13 @@ function print() {
     const array = [...hotbars.querySelectorAll(".hotbar")];
     const hotbarsList = options.reverse ? [...array].slice().reverse() : array;
 
+    let counter = 0;
     hotbarsList.forEach((container, i) => {
         const slots = container.querySelectorAll("[data-slot]");
         if ( [...slots].every((slot) => slot.children.length < 1) ) return;
 
-        output += `/echo Start of macro ${i+1}\n`;
+        counter++;
+        output += `/echo Start of macro ${counter}\n`;
 
         slots.forEach((node) => {
             if ( node.children.length < 1 ) return;
