@@ -60,7 +60,7 @@ function print() {
                 mode: options.pvp ? "pvphotbar" : "hotbar",
                 number: i+1,
                 slot: node.getAttribute("data-slot"),
-                action: node.querySelector(".item.child").getAttribute("data-bs-title").split("|")[1]
+                action: node.querySelector(".item.child").getAttribute("data-info").split("|")[1]
             }
 
             output += `/${hotbar.mode} action "${hotbar.action}" ${hotbar.number} ${hotbar.slot}\n`;

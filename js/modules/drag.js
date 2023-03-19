@@ -22,7 +22,7 @@ class ClonesList {
 
     find(node) {
         return this.list.find(action => {
-            if ( action.uid !== node.getAttribute("data-uid") ) return;
+            if ( node.id.endsWith(action.uid) === false ) return;
             return action;
         })
     }
@@ -40,14 +40,17 @@ class ClonedAction {
     constructor(node) {
         // Init values
         this.el = node.cloneNode(true);
-        this.uid = Math.random().toString(16).slice(2);
+        this.uid = Math.random().toString().slice(2, 8);
         this.offset = {};
         this.origin = null;
 
         // Apply styling and properties
+        this.el.id = "action" + this.uid;
         this.el.classList.replace("parent", "child");
-        this.el.setAttribute("data-uid", this.uid);
         this.el.addEventListener("mousedown", initDragging, true);
+        new bootstrap.Tooltip(this.el, {
+            title: this.el.getAttribute("data-info").split("|")[1]
+        });
     }
 
     update(cursor, node) {
@@ -100,6 +103,9 @@ function initDragging(event) {
     } else {
         actionData = DraggedActions.find(this)
     }
+
+    // Prune BS tooltip leftovers
+    document.querySelectorAll("body > div[id^='tooltip']").forEach((node) => node.remove())
 
     // Keep info updated
     actionData.update(event, this.parentNode);

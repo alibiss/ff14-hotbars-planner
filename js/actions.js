@@ -18,7 +18,10 @@ fetch("/actions.html")
     const actions = document.getElementById("actions");
     actions.innerHTML += data;
     actions.querySelectorAll(".item").forEach((action) => {
-        action.addEventListener("mousedown", initDragging, true)
+        action.addEventListener("mousedown", initDragging, true);
+        new bootstrap.Tooltip(action, {
+            title: action.getAttribute("data-info").split("|")[1]
+        });
     })
 })
 
