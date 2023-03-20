@@ -53,12 +53,17 @@ class ClonedAction {
         });
     }
 
+    get container() {
+        // Subtract relative container offset too. Be it a <div> or <body> itself !
+        return document.getElementById("dragged-item");
+    }
+
     update(cursor, node) {
         // Offset
-        const abs = [cursor.target, document.body].map((el) => el.getBoundingClientRect());
+        const abs = [cursor.target, this.container].map((el) => el.getBoundingClientRect());
 
-        this.offset.x = abs[0].x - Math.abs(document.body.offsetLeft) - cursor.clientX;
-        this.offset.y = abs[0].y - Math.abs(document.body.offsetTop) - cursor.clientY;
+        this.offset.x = abs[0].x - abs[1].x - cursor.clientX;
+        this.offset.y = abs[0].y - abs[1].y - cursor.clientY;
 
         // Origin
         this.origin = ( node.hasAttribute("data-slot") ? node : null );
