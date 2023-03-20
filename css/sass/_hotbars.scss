@@ -13,6 +13,10 @@
     }
 }
 
+#layouts-dropdwon::after {
+    display: none
+  }
+
 #hotbars {
     @include iconCustomProperties;
 
