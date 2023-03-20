@@ -17,6 +17,9 @@ body:not([data-category="3"]) #job-cat-3-items {
   --icon-fg-offset-x: calc(-1 * ((var(--icon-fg-s) * 4) / 56));
   --icon-fg-offset-y: calc(-1 * ((var(--icon-fg-s) * 2) / 56));
   --icon-img-offset-x: calc(-1 * (var(--icon-bg-s) / 2));
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 50vh;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
@@ -159,6 +162,10 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
   content: "10";
 }
 
+#layouts-dropdwon::after {
+  display: none;
+}
+
 #hotbars {
   --icon-bg-s: var(--icon-size, 48px);
   --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);
@@ -288,6 +295,17 @@ html.dragging {
 }
 
 @media (min-width: 1200px) {
+  :root {
+    --icon-size: 40px;
+  }
+  body {
+    background: url("https://img.finalfantasyxiv.com/lds/h/b/eFpGHU58nchvRG-q7uTmpoH-wg.jpg") top center;
+  }
+  .main {
+    backdrop-filter: brightness(33%) blur(10px);
+  }
+}
+@media (max-width: 768px) {
   :root {
     --icon-size: 40px;
   }

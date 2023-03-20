@@ -11,4 +11,18 @@ html.dragging {
     :root {
         --icon-size: 40px;
     }
+
+    body {
+        background: url("https://img.finalfantasyxiv.com/lds/h/b/eFpGHU58nchvRG-q7uTmpoH-wg.jpg") top center;
+    }
+
+    .main {
+        backdrop-filter: brightness(33%) blur(10px);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --icon-size: 40px;
+    }
 }
