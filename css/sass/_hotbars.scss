@@ -1,5 +1,18 @@
 @import "base";
 
+#hotbars-remove {
+    button {
+        --bs-btn-hover-bg: #e74c3c;
+        --bs-btn-hover-border-color: #e74c3c;
+
+        @for $i from 1 through 10 {
+            &:nth-of-type(#{$i})::before {
+                content: '#{$i}';
+            }
+        }
+    }
+}
+
 #hotbars {
     @include iconCustomProperties;
 
@@ -11,7 +24,7 @@
         outline: none !important;
     }
 
-    & > div:not([id]) {
+    .hotbars-container {
         justify-items: center;
     }
 
@@ -26,7 +39,7 @@
         /* Layout #{$i} - #{$items} items per row */
 
         body[data-layout="#{$i}"] & {
-            & > div:not([id]) {
+            .hotbars-container {
                 @if $i < 6 {
                     grid-template-columns: repeat($i, 1fr);
                 }

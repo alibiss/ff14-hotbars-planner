@@ -1,4 +1,4 @@
-import { hotbars } from "./actions.js";
+import { hotbars } from "../hotbars.js";
 
 const dialog = document.getElementById("macro-dialog"),
     pvp = document.getElementById("toggle-pvp"),
@@ -6,6 +6,7 @@ const dialog = document.getElementById("macro-dialog"),
     output = dialog.querySelector("textarea"),
     copy = document.getElementById("clipboard");
 
+// Default options
 const options = { pvp: false, reverse: false };
 
 dialog.addEventListener("shown.bs.modal", () => {
@@ -13,17 +14,17 @@ dialog.addEventListener("shown.bs.modal", () => {
     if ( output.value.length < 1 ) {
         output.placeholder = output.getAttribute("value");
     }
-})
+});
 
 pvp.addEventListener("change", (e) => {
     options.pvp = e.target.checked;
     output.value = print();
-})
+});
 
 reverse.addEventListener("change", (e) => {
     options.reverse = e.target.checked;
     output.value = print();
-})
+});
 
 copy.addEventListener("click", (e) => {
     output.select();
@@ -37,7 +38,9 @@ copy.addEventListener("click", (e) => {
         trigger: "manual"
     });
     tooltip.show();
-})
+});
+
+// Functions
     
 function print() {
     let output = "";

@@ -124,6 +124,41 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
   display: none !important;
 }
 
+#hotbars-remove button {
+  --bs-btn-hover-bg: #e74c3c;
+  --bs-btn-hover-border-color: #e74c3c;
+}
+#hotbars-remove button:nth-of-type(1)::before {
+  content: "1";
+}
+#hotbars-remove button:nth-of-type(2)::before {
+  content: "2";
+}
+#hotbars-remove button:nth-of-type(3)::before {
+  content: "3";
+}
+#hotbars-remove button:nth-of-type(4)::before {
+  content: "4";
+}
+#hotbars-remove button:nth-of-type(5)::before {
+  content: "5";
+}
+#hotbars-remove button:nth-of-type(6)::before {
+  content: "6";
+}
+#hotbars-remove button:nth-of-type(7)::before {
+  content: "7";
+}
+#hotbars-remove button:nth-of-type(8)::before {
+  content: "8";
+}
+#hotbars-remove button:nth-of-type(9)::before {
+  content: "9";
+}
+#hotbars-remove button:nth-of-type(10)::before {
+  content: "10";
+}
+
 #hotbars {
   --icon-bg-s: var(--icon-size, 48px);
   --icon-fg-s: calc(var(--icon-bg-s) * 1.1666666667);
@@ -144,44 +179,44 @@ body:not([data-job=FSH]) #actions [data-job=FSH] {
 #hotbars:focus {
   outline: none !important;
 }
-#hotbars > div:not([id]) {
+#hotbars .hotbars-container {
   justify-items: center;
 }
 #hotbars .hotbar {
   display: grid;
   gap: 0.25rem;
 }
-body[data-layout="1"] #hotbars > div:not([id]) {
+body[data-layout="1"] #hotbars .hotbars-container {
   grid-template-columns: repeat(1, 1fr);
 }
 body[data-layout="1"] #hotbars .hotbar {
   grid-template-columns: repeat(12, var(--icon-bg-s));
 }
-body[data-layout="2"] #hotbars > div:not([id]) {
+body[data-layout="2"] #hotbars .hotbars-container {
   grid-template-columns: repeat(2, 1fr);
 }
 body[data-layout="2"] #hotbars .hotbar {
   grid-template-columns: repeat(6, var(--icon-bg-s));
 }
-body[data-layout="3"] #hotbars > div:not([id]) {
+body[data-layout="3"] #hotbars .hotbars-container {
   grid-template-columns: repeat(3, 1fr);
 }
 body[data-layout="3"] #hotbars .hotbar {
   grid-template-columns: repeat(4, var(--icon-bg-s));
 }
-body[data-layout="4"] #hotbars > div:not([id]) {
+body[data-layout="4"] #hotbars .hotbars-container {
   grid-template-columns: repeat(4, 1fr);
 }
 body[data-layout="4"] #hotbars .hotbar {
   grid-template-columns: repeat(3, var(--icon-bg-s));
 }
-body[data-layout="5"] #hotbars > div:not([id]) {
+body[data-layout="5"] #hotbars .hotbars-container {
   grid-template-columns: repeat(5, 1fr);
 }
 body[data-layout="5"] #hotbars .hotbar {
   grid-template-columns: repeat(2, var(--icon-bg-s));
 }
-body[data-layout="6"] #hotbars > div:not([id]) {
+body[data-layout="6"] #hotbars .hotbars-container {
   grid-template-columns: repeat(10, 1fr);
 }
 body[data-layout="6"] #hotbars .hotbar {
@@ -241,41 +276,6 @@ body:not([data-job-mode="1"]) .item.parent.pve, body:not([data-job-mode="2"]) .i
   width: var(--icon-bg-s);
   height: var(--icon-bg-s);
   margin-left: var(--icon-img-offset-x);
-}
-
-#hotbars-manager .controls > button {
-  --bs-btn-hover-bg: #e74c3c;
-  --bs-btn-hover-border-color: #e74c3c;
-}
-#hotbars-manager .controls > button:nth-of-type(1)::before {
-  content: "1";
-}
-#hotbars-manager .controls > button:nth-of-type(2)::before {
-  content: "2";
-}
-#hotbars-manager .controls > button:nth-of-type(3)::before {
-  content: "3";
-}
-#hotbars-manager .controls > button:nth-of-type(4)::before {
-  content: "4";
-}
-#hotbars-manager .controls > button:nth-of-type(5)::before {
-  content: "5";
-}
-#hotbars-manager .controls > button:nth-of-type(6)::before {
-  content: "6";
-}
-#hotbars-manager .controls > button:nth-of-type(7)::before {
-  content: "7";
-}
-#hotbars-manager .controls > button:nth-of-type(8)::before {
-  content: "8";
-}
-#hotbars-manager .controls > button:nth-of-type(9)::before {
-  content: "9";
-}
-#hotbars-manager .controls > button:nth-of-type(10)::before {
-  content: "10";
 }
 
 #macro-dialog textarea {

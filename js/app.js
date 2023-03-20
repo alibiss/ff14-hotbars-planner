@@ -1,3 +1,5 @@
 import "./sidebar.js";
-import "./actions.js";
-import "./export.js";
+import "./hotbars.js";
+import { releaseAction } from "./modules/drag.js";
+
+window.addEventListener("mouseup", releaseAction);

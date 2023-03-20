@@ -1,24 +1,40 @@
-import { print, output as textarea } from "./export.js";
-import { pve, pvp } from "./actions.js";
+import { initDragging } from "./modules/drag.js";
 
-const categories = document.getElementById("job-categories"),
-    menus = document.getElementById("job-menus"),
-    macro = document.getElementById("macro-export"),
-    layouts = document.getElementById("hotbar-layouts");
+const categories = document.getElementById("job-categories"), 
+    pickers = document.getElementById("job-pickers"), 
+    pve = document.getElementById("actions-mode-pve"), 
+    pvp = document.getElementById("actions-mode-pvp");
 
 categories.querySelectorAll("input").forEach(category => {
     category.addEventListener("change", changeCategory)
-})
+});
 
-menus.querySelectorAll("select").forEach(job => {
-    job.addEventListener("change", changeJob)
-})
+pickers.querySelectorAll("select").forEach(job => {
+    job.addEventListener("change", (e) => {
+        if ( e.target.value.length < 1 ) return;
+        document.body.setAttribute("data-job", e.target.value);
+    })
+});
 
-macro.addEventListener("click", printMacro)
+[pve, pvp].forEach(btn => btn.addEventListener("change", (e) => {
+    document.body.setAttribute("data-job-mode", e.target.value);
+}));
 
-layouts.querySelectorAll("input").forEach(layout => {
-    layout.addEventListener("change", changeLayout)
-})
+// Append action nodes to DOM
+fetch("/actions.html")
+.then(res => res.text())
+.then(data => {
+    const actions = document.getElementById("actions");
+    actions.innerHTML += data;
+    actions.querySelectorAll(".item").forEach((action) => {
+        action.addEventListener("mousedown", initDragging, true);
+        new bootstrap.Tooltip(action, {
+            title: action.getAttribute("data-info").split("|")[1]
+        });
+    })
+});
+
+// Functions
 
 function changeCategory(e) {
     document.body.setAttribute("data-category", e.target.value);
@@ -32,22 +48,9 @@ function changeCategory(e) {
     }
 
     document.body.setAttribute("data-job", "");
-    menus.querySelectorAll("select").forEach(menu => menu.value = 0);
+    pickers.querySelectorAll("select").forEach(menu => menu.value = 0);
 
     document.body.setAttribute("data-job-mode", 1);
     pve.checked = true;
     pvp.checked = false;
-}
-
-function changeJob(e) {
-    if ( e.target.value.length < 1 ) return;
-    document.body.setAttribute("data-job", e.target.value);
-}
-
-function changeLayout(e) {
-    document.body.setAttribute("data-layout", e.target.value);
-}
-
-function printMacro() {
-    textarea.value = print();
 }

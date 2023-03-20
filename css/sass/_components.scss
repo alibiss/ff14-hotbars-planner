@@ -52,19 +52,6 @@
     }
 }
 
-#hotbars-manager {
-    .controls > button {
-        --bs-btn-hover-bg: #e74c3c;
-        --bs-btn-hover-border-color: #e74c3c;
-
-        @for $i from 1 through 10 {
-            &:nth-of-type(#{$i})::before {
-                content: '#{$i}';
-            }
-        }
-    }
-}
-
 #macro-dialog textarea {
     min-height: 20rem;
 
