@@ -13,6 +13,15 @@ pickers.querySelectorAll("select").forEach(job => {
     job.addEventListener("change", (e) => {
         if ( e.target.value.length < 1 ) return;
         document.body.setAttribute("data-job", e.target.value);
+
+        if ( document.body.getAttribute("data-category") > 1 ) return
+        if ( e.target.value === "BLU" ) {
+            pve.checked = true;
+            pvp.setAttribute("disabled", true);
+            document.body.setAttribute("data-job-mode", 1);
+        } else {
+            pvp.removeAttribute("disabled");
+        }
     })
 });
 
