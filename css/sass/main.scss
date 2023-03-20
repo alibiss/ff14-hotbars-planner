@@ -6,3 +6,9 @@
 html.dragging {
     cursor: grabbing;
 }
+
+@media (min-width: 1200px) {
+    :root {
+        --icon-size: 40px;
+    }
+}
