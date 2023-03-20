@@ -30,7 +30,7 @@ pickers.querySelectorAll("select").forEach(job => {
 }));
 
 // Append action nodes to DOM
-fetch("../actions.html")
+fetch("./actions.html")
 .then(res => res.text())
 .then(data => {
     const actions = document.getElementById("actions");
