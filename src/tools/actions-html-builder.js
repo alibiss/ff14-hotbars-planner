@@ -28,7 +28,7 @@ new Promise(parsedDb => {
                         const info = [...Object.entries(action).flatMap((a) => [
                             a[0], a[1].replace(/\|/g, encodeURIComponent("|"))
                         ])].join("|").replace(/>/g, "&gt;").replace(/</g, "&lt;");
-                        const img = `<img src="/img/actions/${job.code}/${mode}/${action.name}.png" loading="lazy">`;
+                        const img = `<img src="./img/actions/${job.code}/${mode}/${action.name}.png" loading="lazy">`;
                         output += `<div class="item parent ${mode} ${type.replace(/s$/, "").toLowerCase()}" data-info="${info}" data-bs-toggle="tooltip">${img}</div>`;
                     })
                     // output += "</div>"; // close type div
