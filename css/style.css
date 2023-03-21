@@ -248,7 +248,7 @@ body[data-layout="6"] #hotbars .hotbar {
   width: var(--icon-bg-s);
   height: var(--icon-bg-s);
   border-radius: var(--icon-bg-b);
-  background: url("/img/actions/background.png") no-repeat;
+  background: url("./img/actions/background.png") no-repeat;
   background-size: var(--icon-bg-s) var(--icon-bg-s);
   font-size: 0;
   cursor: grab;
@@ -271,7 +271,7 @@ body:not([data-job-mode="1"]) .item.parent.pve, body:not([data-job-mode="2"]) .i
   display: block;
   width: var(--icon-fg-s);
   height: var(--icon-fg-s);
-  background: url("/img/actions/foreground.png") no-repeat;
+  background: url("./img/actions/foreground.png") no-repeat;
   background-size: cover;
 }
 .item img {
